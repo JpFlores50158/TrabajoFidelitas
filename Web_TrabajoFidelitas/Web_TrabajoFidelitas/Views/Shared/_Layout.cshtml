@@ -1,39 +1,180 @@
 ﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-</head>
-<body>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
-        <div class="container">
-            @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+<html lang="en">
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Dashboard - NiceAdmin Bootstrap Template</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="~/Estilos/assets/img/favicon.png" rel="icon">
+    <link href="~/Estilos/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/Estilos/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Estilos/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/Estilos/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/Estilos/assets/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="~/Estilos/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="~/Estilos/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="~/Estilos/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+
+    <!-- Template Main CSS File -->
+    <link href="~/Estilos/assets/css/style.css" rel="stylesheet">
+    <style>
+        .middle-aligned {
+            margin-left: 1.5%;
+            top: 95%;
+            transform: translateY(-50%);
+            z-index: 2000;
+        }
+    </style>
+    <!-- =======================================================
+    * Template Name: NiceAdmin
+    * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+    * Updated: Apr 7 2024 with Bootstrap v5.3.3
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="@Url.Action("Index","Home")" class="logo d-flex align-items-center">
+                <img src="~/Estilos/assets/img/Grupo-Motores-Britanicos-2.png" />
+
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn"></i>
+        </div><!-- End Logo -->
+
+        <nav class="header-nav ms-auto">
+
+
+
+
+
+
+
+            <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+
+                <span class="d-none d-md-block dropdown-toggle ps-2"><i class="bi bi-person-circle mx-2"></i>K. Anderson</span>
+            </a><!-- End Profile Iamge Icon -->
+
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                <li class="dropdown-header">
+                    <h6>Kevin Anderson</h6>
+                    <span>Web Designer</span>
+                </li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="@Url.Action("IniciarSesion","Usuario")">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>Sign Out</span>
+                    </a>
+                </li>
+
+            </ul><!-- End Profile Dropdown Items -->
+
+
+        </nav><!-- End Icons Navigation -->
+
+    </header><!-- End Header -->
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+
+            <li class="nav-item">
+                <a class="nav-link " href="@Url.Action("MostrarClientes","Cliente")">
+                    <span>Cliente</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="@Url.Action("MostrarAutomoviles","Automovil")">
+                    <span>Automovil</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="@Url.Action("MostrarSucursales","Sucursal")">
+                    <span>Sucursal</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="@Url.Action("MostrarCitas","Cita")">
+                    <span>Cita</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="@Url.Action("MostrarReportes","Reporte")">
+                    <span>Reporte</span>
+                </a>
+            </li>
+
+
+
+
+        </ul>
+
+    </aside><!-- End Sidebar-->
+
+
+    <main id="main" class="main">
+        @RenderBody()
+
+
+
+
+    </main><!-- End #main -->
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+        <div class="copyright">
+            &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+            <!-- All the links in the footer should remain intact. -->
+            <!-- You can delete the links only if you purchased the pro version. -->
+            <!-- Licensing information: https://bootstrapmade.com/license/ -->
+            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
+    </footer><!-- End Footer -->
+    <!-- Enlace para abrir el modal -->
+    <a href="#" class="btn btn-primary position-fixed start-0 middle-aligned"  data-bs-toggle="modal" data-bs-target="#conversationModal">
+        <i class="bi bi-chat-dots-fill"></i>
+    </a>
+
+   
+
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="~/Estilos/assets/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="~/Estilos/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Estilos/assets/vendor/chart.js/chart.umd.js"></script>
+    <script src="~/Estilos/assets/vendor/echarts/echarts.min.js"></script>
+    <script src="~/Estilos/assets/vendor/quill/quill.min.js"></script>
+    <script src="~/Estilos/assets/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="~/Estilos/assets/vendor/tinymce/tinymce.min.js"></script>
+    <script src="~/Estilos/assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="~/Estilos/assets/js/main.js"></script>
+
 </body>
+
 </html>
