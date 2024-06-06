@@ -93,42 +93,85 @@
         </nav><!-- End Icons Navigation -->
 
     </header><!-- End Header -->
+    <!--estilos-->
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+        .sidebar {
+            height: 100vh; 
+            width: 250px; 
+            background: linear-gradient(to bottom, #1e3c72, #2a5298); 
+            position: fixed;
+            overflow-y: auto; 
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            padding-top: 40px;
+        }
+
+        .sidebar-nav {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-item {
+            margin: 20px 0; 
+        }
+
+        .nav-link {
+            display: block;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 20px 30px; 
+            border-radius: 10px;
+         
+            transition: background-color 0.3s, box-shadow 0.3s; 
+        }
+
+            .nav-link:hover {
+                background-color: #c0c0c0; 
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+            }
+
+            .nav-link span {
+                font-size: 18px;
+                font-weight: bold;
+            }
+    </style>
+    <!--fin de estilos-->
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
-
         <ul class="sidebar-nav" id="sidebar-nav">
-
             <li class="nav-item">
-                <a class="nav-link " href="@Url.Action("MostrarClientes","Cliente")">
+                <a class="nav-link" href="@Url.Action("MostrarClientes","Cliente")">
                     <span>Cliente</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="@Url.Action("MostrarAutomoviles","Automovil")">
+                <a class="nav-link" href="@Url.Action("MostrarAutomoviles","Automovil")">
                     <span>Automovil</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="@Url.Action("MostrarSucursales","Sucursal")">
+                <a class="nav-link" href="@Url.Action("MostrarSucursales","Sucursal")">
                     <span>Sucursal</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="@Url.Action("MostrarCitas","Cita")">
+                <a class="nav-link" href="@Url.Action("MostrarCitas","Cita")">
                     <span>Cita</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="@Url.Action("MostrarReportes","Reporte")">
+                <a class="nav-link" href="@Url.Action("MostrarReportes","Reporte")">
                     <span>Reporte</span>
                 </a>
             </li>
-
-
-
-
         </ul>
-
     </aside><!-- End Sidebar-->
 
 
@@ -153,11 +196,11 @@
         </div>
     </footer><!-- End Footer -->
     <!-- Enlace para abrir el modal -->
-    <a href="#" class="btn btn-primary position-fixed start-0 middle-aligned"  data-bs-toggle="modal" data-bs-target="#conversationModal">
+    <a href="#" class="btn btn-primary position-fixed start-0 middle-aligned" data-bs-toggle="modal" data-bs-target="#conversationModal">
         <i class="bi bi-chat-dots-fill"></i>
     </a>
 
-   
+
 
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
