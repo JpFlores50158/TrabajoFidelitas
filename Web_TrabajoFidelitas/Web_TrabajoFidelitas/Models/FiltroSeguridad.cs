@@ -15,8 +15,8 @@ namespace Web_TrabajoFidelitas.Models
             {
                 filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary
                 {
-                    { "controller", "Inicio" },
-                    { "action", "InicioSesion"}
+                    { "controller", "Usuario" },
+                    { "action", "IniciarSesion"}
                 });
             }
 

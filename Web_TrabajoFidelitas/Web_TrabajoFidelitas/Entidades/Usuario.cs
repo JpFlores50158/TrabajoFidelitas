@@ -7,15 +7,14 @@ namespace Web_TrabajoFidelitas.Entidades
 {
         public class Usuario
         {
-            public long idUsuario { get; set; }
-            public string nombreUsuario { get; set; }
-            public string emailUsuario { get; set; }
-            public string contrasenaUsuario { get; set; }
-            public bool estado { get; set; }
-            public long idRol { get; set; }
-            public string nombre_rol { get; set; }
-            public string codigo { get; set; }
-        }
+        public long idUsuario { get; set; }
+        public string nombreUsuario { get; set; }
+        public string emailUsuario { get; set; }
+        public string contrasenaUsuario { get; set; }
+        public bool estado { get; set; }
+        public long idRol { get; set; }
+        public string nombreRol { get; set; }
+    }
         public class ConfirmacionUsuarios
         {
             public int Codigo { get; set; }

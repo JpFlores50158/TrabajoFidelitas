@@ -2,6 +2,26 @@
     <h1>Dashboard</h1>
 
 </div><!-- End Page Title -->
+
+
+@if (Session["RolUsuario"] != null && Session["RolUsuario"].ToString() != "1")
+{
+    <div class="m-3">
+
+        <div class="d-grid gap-2 mt-3">
+            <h3> MODO USUARIO</h3>
+        </div>
+    </div>
+}
+@if (Session["RolUsuario"] != null && Session["RolUsuario"].ToString() == "1")
+{
+    <div class="m-3">
+
+        <div class="d-grid gap-2 mt-3">
+            <h3> MODO ADMIN</h3>
+        </div>
+    </div>
+}
 <div class="m-3">
 
     <div class="d-grid gap-2 mt-3">
@@ -220,6 +240,5 @@
 
 
     </div><!-- End Right side columns -->
-
     </div>
 </section>
