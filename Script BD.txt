@@ -1,0 +1,396 @@
+USE [master]
+GO
+/****** Object:  Database [MotoresBritanicos]    Script Date: 6/5/2024 8:11:03 PM ******/
+CREATE DATABASE [MotoresBritanicos]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'MotoresBritanicos', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\DATA\MotoresBritanicos.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'MotoresBritanicos_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\DATA\MotoresBritanicos_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT, LEDGER = OFF
+GO
+ALTER DATABASE [MotoresBritanicos] SET COMPATIBILITY_LEVEL = 160
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [MotoresBritanicos].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [MotoresBritanicos] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [MotoresBritanicos] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [MotoresBritanicos] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET  ENABLE_BROKER 
+GO
+ALTER DATABASE [MotoresBritanicos] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [MotoresBritanicos] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET RECOVERY FULL 
+GO
+ALTER DATABASE [MotoresBritanicos] SET  MULTI_USER 
+GO
+ALTER DATABASE [MotoresBritanicos] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [MotoresBritanicos] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [MotoresBritanicos] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [MotoresBritanicos] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [MotoresBritanicos] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+EXEC sys.sp_db_vardecimal_storage_format N'MotoresBritanicos', N'ON'
+GO
+ALTER DATABASE [MotoresBritanicos] SET QUERY_STORE = ON
+GO
+ALTER DATABASE [MotoresBritanicos] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP_POLICY = (STALE_QUERY_THRESHOLD_DAYS = 30), DATA_FLUSH_INTERVAL_SECONDS = 900, INTERVAL_LENGTH_MINUTES = 60, MAX_STORAGE_SIZE_MB = 1000, QUERY_CAPTURE_MODE = AUTO, SIZE_BASED_CLEANUP_MODE = AUTO, MAX_PLANS_PER_QUERY = 200, WAIT_STATS_CAPTURE_MODE = ON)
+GO
+USE [MotoresBritanicos]
+GO
+/****** Object:  Table [dbo].[AuditoriaCitas]    Script Date: 6/5/2024 8:11:03 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AuditoriaCitas](
+	[idAuditoria] [int] IDENTITY(1,1) NOT NULL,
+	[idCita] [int] NOT NULL,
+	[fechaHoraCambio] [datetime] NOT NULL,
+	[detalleCambio] [varchar](255) NOT NULL,
+	[usuarioCambio] [varchar](100) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[idAuditoria] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Automoviles]    Script Date: 6/5/2024 8:11:03 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Automoviles](
+	[idAutomovil] [int] IDENTITY(1,1) NOT NULL,
+	[idCliente] [int] NOT NULL,
+	[placa] [varchar](10) NOT NULL,
+	[marca] [varchar](50) NOT NULL,
+	[modelo] [varchar](50) NOT NULL,
+	[ano] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[idAutomovil] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Citas]    Script Date: 6/5/2024 8:11:03 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Citas](
+	[idCita] [int] IDENTITY(1,1) NOT NULL,
+	[idCliente] [int] NOT NULL,
+	[idAutomovil] [int] NOT NULL,
+	[idSucursal] [int] NOT NULL,
+	[idServicio] [int] NOT NULL,
+	[fechaHora] [datetime] NOT NULL,
+	[comentarios] [varchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[idCita] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Ciudades]    Script Date: 6/5/2024 8:11:03 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Ciudades](
+	[idCiudad] [int] IDENTITY(1,1) NOT NULL,
+	[nombreCiudad] [varchar](80) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[idCiudad] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Clientes]    Script Date: 6/5/2024 8:11:03 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Clientes](
+	[idCliente] [int] IDENTITY(1,1) NOT NULL,
+	[nombreCliente] [varchar](100) NOT NULL,
+	[telefonoCliente] [varchar](20) NOT NULL,
+	[direccionCliente] [varchar](255) NOT NULL,
+	[emailCliente] [varchar](100) NOT NULL,
+	[idUsuarioCliente] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[idCliente] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Reportes]    Script Date: 6/5/2024 8:11:03 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Reportes](
+	[idReporte] [int] IDENTITY(1,1) NOT NULL,
+	[idCita] [int] NOT NULL,
+	[detalle_texto] [varchar](255) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[idReporte] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Roles]    Script Date: 6/5/2024 8:11:03 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Roles](
+	[idRol] [int] IDENTITY(1,1) NOT NULL,
+	[nombreRol] [varchar](50) NOT NULL,
+	[descripcionRol] [varchar](255) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[idRol] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Servicios]    Script Date: 6/5/2024 8:11:03 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Servicios](
+	[idServicio] [int] IDENTITY(1,1) NOT NULL,
+	[nombreServicio] [varchar](100) NOT NULL,
+	[precioServicio] [decimal](10, 2) NOT NULL,
+	[descripcionServicio] [varchar](255) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[idServicio] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Sucursales]    Script Date: 6/5/2024 8:11:03 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Sucursales](
+	[idSucursal] [int] IDENTITY(1,1) NOT NULL,
+	[nombreSucursal] [varchar](100) NOT NULL,
+	[direccionSucursal] [varchar](255) NOT NULL,
+	[idCiudadSucursal] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[idSucursal] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Usuarios]    Script Date: 6/5/2024 8:11:03 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Usuarios](
+	[idUsuario] [int] IDENTITY(1,1) NOT NULL,
+	[nombreUsuario] [varchar](50) NOT NULL,
+	[contrasenaUsuario] [varchar](50) NOT NULL,
+	[emailUsuario] [varchar](100) NOT NULL,
+	[idRol] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[idUsuario] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[Roles] ON 
+GO
+INSERT [dbo].[Roles] ([idRol], [nombreRol], [descripcionRol]) VALUES (1, N'Gerente', N'Personas con permisos completos de gestiona el sistema')
+GO
+INSERT [dbo].[Roles] ([idRol], [nombreRol], [descripcionRol]) VALUES (2, N'Ventas', N'Persona con permisos limitados para acceder y utilizar funcionalidades especificas de ventas')
+GO
+SET IDENTITY_INSERT [dbo].[Roles] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Usuarios] ON 
+GO
+INSERT [dbo].[Usuarios] ([idUsuario], [nombreUsuario], [contrasenaUsuario], [emailUsuario], [idRol]) VALUES (6, N'erickRivera', N'erickpass', N'erick@example.com', 1)
+GO
+INSERT [dbo].[Usuarios] ([idUsuario], [nombreUsuario], [contrasenaUsuario], [emailUsuario], [idRol]) VALUES (7, N'luisNunez', N'luispass', N'luis@example.com', 2)
+GO
+SET IDENTITY_INSERT [dbo].[Usuarios] OFF
+GO
+ALTER TABLE [dbo].[AuditoriaCitas]  WITH CHECK ADD FOREIGN KEY([idCita])
+REFERENCES [dbo].[Citas] ([idCita])
+GO
+ALTER TABLE [dbo].[Automoviles]  WITH CHECK ADD FOREIGN KEY([idCliente])
+REFERENCES [dbo].[Clientes] ([idCliente])
+GO
+ALTER TABLE [dbo].[Citas]  WITH CHECK ADD FOREIGN KEY([idAutomovil])
+REFERENCES [dbo].[Automoviles] ([idAutomovil])
+GO
+ALTER TABLE [dbo].[Citas]  WITH CHECK ADD FOREIGN KEY([idCliente])
+REFERENCES [dbo].[Clientes] ([idCliente])
+GO
+ALTER TABLE [dbo].[Citas]  WITH CHECK ADD FOREIGN KEY([idServicio])
+REFERENCES [dbo].[Servicios] ([idServicio])
+GO
+ALTER TABLE [dbo].[Citas]  WITH CHECK ADD FOREIGN KEY([idSucursal])
+REFERENCES [dbo].[Sucursales] ([idSucursal])
+GO
+ALTER TABLE [dbo].[Clientes]  WITH CHECK ADD FOREIGN KEY([idUsuarioCliente])
+REFERENCES [dbo].[Usuarios] ([idUsuario])
+GO
+ALTER TABLE [dbo].[Reportes]  WITH CHECK ADD FOREIGN KEY([idCita])
+REFERENCES [dbo].[Citas] ([idCita])
+GO
+ALTER TABLE [dbo].[Sucursales]  WITH CHECK ADD FOREIGN KEY([idCiudadSucursal])
+REFERENCES [dbo].[Ciudades] ([idCiudad])
+GO
+ALTER TABLE [dbo].[Usuarios]  WITH CHECK ADD FOREIGN KEY([idRol])
+REFERENCES [dbo].[Roles] ([idRol])
+GO
+USE [master]
+GO
+ALTER DATABASE [MotoresBritanicos] SET  READ_WRITE 
+GO
+
+
+ALTER TABLE [dbo].[AuditoriaCitas]
+ADD [estado] BIT NOT NULL DEFAULT 1;
+GO
+
+ALTER TABLE [dbo].[Automoviles]
+ADD [estado] BIT NOT NULL DEFAULT 1;
+GO
+
+ALTER TABLE [dbo].[Citas]
+ADD [estado] BIT NOT NULL DEFAULT 1;
+GO
+
+ALTER TABLE [dbo].[Ciudades]
+ADD [estado] BIT NOT NULL DEFAULT 1;
+GO
+
+ALTER TABLE [dbo].[Clientes]
+ADD [estado] BIT NOT NULL DEFAULT 1;
+GO
+
+ALTER TABLE [dbo].[Reportes]
+ADD [estado] BIT NOT NULL DEFAULT 1;
+GO
+
+
+
+ALTER TABLE [dbo].[Servicios]
+ADD [estado] BIT NOT NULL DEFAULT 1;
+GO
+
+ALTER TABLE [dbo].[Sucursales]
+ADD [estado] BIT NOT NULL DEFAULT 1;
+GO
+
+ALTER TABLE [dbo].[Usuarios]
+ADD [estado] BIT NOT NULL DEFAULT 1;
+GO
+
+
+
+CREATE PROCEDURE [dbo].[IniciarSesionUsuario]
+    @emailUsuario        varchar(100),
+    @contrasenaUsuario        varchar(100)
+AS
+BEGIN
+
+
+SELECT idUsuario
+      ,nombreUsuario
+      ,contrasenaUsuario
+      ,emailUsuario
+	  ,estado
+      ,U.idRol
+	  ,r.nombreRol
+  FROM [dbo].[Usuarios] U
+
+    INNER   JOIN dbo.Roles R ON U.idRol = R.idRol
+    WHERE    emailUsuario = @emailUsuario
+        AND contrasenaUsuario =  @contrasenaUsuario and estado=1
+
+END
+GO
+
+CREATE PROCEDURE [dbo].[RegistrarUsuario]
+    @contrasenaUsuario		varchar(10),
+    @nombreUsuario				varchar(200),
+    @emailUsuario	varchar(200)    
+AS
+BEGIN
+
+	IF NOT EXISTS(SELECT 1 FROM dbo.Usuarios WHERE emailUsuario = @emailUsuario)
+	BEGIN
+
+INSERT INTO [dbo].[Usuarios]
+           ([nombreUsuario]
+           ,[contrasenaUsuario]
+           ,[emailUsuario]
+           ,[idRol]
+           ,[estado])
+     VALUES
+           (@nombreUsuario
+           , @contrasenaUsuario
+           ,@emailUsuario
+           ,2
+           ,1)
+
+
+
+
+	END
+
+END
+GO
