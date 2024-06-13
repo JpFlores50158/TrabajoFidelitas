@@ -28,10 +28,10 @@
                                 @using (Html.BeginForm("IniciarSesion", "Usuario"))
                                 {
                                     <div class="form-group">
-                                        @Html.TextBoxFor(m => m.emailUsuario, new { @class = "form-control form-control-user my-3", @placeholder = "Correo" })
+                                        @Html.TextBoxFor(m => m.emailUsuario, new { @class = "form-control form-control-user my-3", @placeholder = "Correo",@required="true" })
                                     </div>
                                     <div class="form-group">
-                                        @Html.PasswordFor(m => m.contrasenaUsuario, new { @class = "form-control form-control-user my-3", @placeholder = "Contraseña" })
+                                        @Html.PasswordFor(m => m.contrasenaUsuario, new { @class = "form-control form-control-user my-3", @placeholder = "Contraseña" , @required = "true" })
                                     </div>
 
                                     <input type="submit" class="btn btn-primary btn-user btn-block" value="Iniciar Sesión">
