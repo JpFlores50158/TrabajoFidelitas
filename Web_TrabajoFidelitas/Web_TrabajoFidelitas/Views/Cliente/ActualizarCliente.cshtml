@@ -1,30 +1,63 @@
-﻿
-<a class="btn btn-primary m-2 my-4" href="@Url.Action("MostrarClientes","Cliente")"><i class="bi bi-arrow-left-circle"></i> Regresar</a>
-<div class="card">
-    <div class="card-body">
-        <h3 class="card-title text-center">Actualizar</h3>
-        <hr />
-        <form class="row g-3">
-            <div class="col-12">
-                <label for="inputNanme4" class="form-label">Your Name</label>
-                <input type="text" class="form-control" id="inputNanme4">
+﻿@model Web_TrabajoFidelitas.Entidades.Cliente
+
+@{
+    ViewBag.Title = "Registrar Cliente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary ">Actualizar Cliente</h6>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+
+                        @if (ViewBag.MsjPantalla != null)
+                        {
+                            <div class="alert alert-warning" role="alert" style="text-align:center">
+                                @ViewBag.MsjPantalla
+                            </div>
+                        }
+
+                        @using (Html.BeginForm("ActualizarCliente", "Cliente", FormMethod.Post))
+                        {
+                            @Html.HiddenFor(m => m.idCliente)
+                            <div class="form-group my-4">
+                                @Html.LabelFor(m => m.nombreCliente)
+                                @Html.TextBoxFor(m => m.nombreCliente, new { @class = "form-control", @placeholder = "Nombre", @required = "true" })
+                                @Html.ValidationMessageFor(m => m.nombreCliente, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group my-4">
+                                @Html.LabelFor(m => m.telefonoCliente)
+                                @Html.TextBoxFor(m => m.telefonoCliente, new { @class = "form-control", @placeholder = "Teléfono", @type = "tel", @required = "true" })
+                                @Html.ValidationMessageFor(m => m.telefonoCliente, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group my-4">
+                                @Html.LabelFor(m => m.direccionCliente)
+                                @Html.TextBoxFor(m => m.direccionCliente, new { @class = "form-control", @placeholder = "Dirección", @required = "true" })
+                                @Html.ValidationMessageFor(m => m.direccionCliente, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group my-4">
+                                @Html.LabelFor(m => m.emailCliente)
+                                @Html.TextBoxFor(m => m.emailCliente, new { @class = "form-control", @placeholder = "Email", @type = "email", @required = "true" })
+                                @Html.ValidationMessageFor(m => m.emailCliente, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group my-4">
+                                @Html.Label("Estado")
+                                @Html.DropDownListFor(m => m.estado, new SelectList(new[] { new SelectListItem { Text = "Seleccione....", Value = "null" }, new SelectListItem { Text = "Inactivo", Value = "false" }, new SelectListItem { Text = "Activo", Value = "true" } }, "Value", "Text"), new { @class = "form-control" })
+                            </div>
+
+
+                            <input type="submit" class="btn btn-primary btn-block" value="Actualizar Cliente">
+                        }
+                    </div>
+                </div>
             </div>
-            <div class="col-12">
-                <label for="inputEmail4" class="form-label">Email</label>
-                <input type="email" class="form-control" id="inputEmail4">
-            </div>
-            <div class="col-12">
-                <label for="inputPassword4" class="form-label">Password</label>
-                <input type="password" class="form-control" id="inputPassword4">
-            </div>
-            <div class="col-12">
-                <label for="inputAddress" class="form-label">Address</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-            </div>
-            <div class="text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <button type="reset" class="btn btn-secondary">Reset</button>
-            </div>
-        </form><!-- Vertical Form -->
+        </div>
     </div>
 </div>

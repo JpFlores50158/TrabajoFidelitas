@@ -159,6 +159,7 @@
     <Compile Include="Controllers\AutomovilController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Entidades\Cliente.cs" />
     <Compile Include="Entidades\Confirmacion.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

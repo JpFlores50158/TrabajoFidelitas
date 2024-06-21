@@ -57,5 +57,69 @@ namespace Api_TrabajoFidelitas.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarUsuario", contrasenaUsuarioParameter, nombreUsuarioParameter, emailUsuarioParameter);
         }
+    
+        public virtual int AgregarCliente(string nombreCliente, Nullable<long> telefonoCliente, string direccionCliente, string emailCliente)
+        {
+            var nombreClienteParameter = nombreCliente != null ?
+                new ObjectParameter("nombreCliente", nombreCliente) :
+                new ObjectParameter("nombreCliente", typeof(string));
+    
+            var telefonoClienteParameter = telefonoCliente.HasValue ?
+                new ObjectParameter("telefonoCliente", telefonoCliente) :
+                new ObjectParameter("telefonoCliente", typeof(long));
+    
+            var direccionClienteParameter = direccionCliente != null ?
+                new ObjectParameter("direccionCliente", direccionCliente) :
+                new ObjectParameter("direccionCliente", typeof(string));
+    
+            var emailClienteParameter = emailCliente != null ?
+                new ObjectParameter("emailCliente", emailCliente) :
+                new ObjectParameter("emailCliente", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AgregarCliente", nombreClienteParameter, telefonoClienteParameter, direccionClienteParameter, emailClienteParameter);
+        }
+    
+        public virtual ObjectResult<ConsultarClientes_Result> ConsultarClientes()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultarClientes_Result>("ConsultarClientes");
+        }
+    
+        public virtual int ActualizarCliente(Nullable<long> idCliente, string nombreCliente, Nullable<long> telefonoCliente, string direccionCliente, string emailCliente, Nullable<bool> estado)
+        {
+            var idClienteParameter = idCliente.HasValue ?
+                new ObjectParameter("idCliente", idCliente) :
+                new ObjectParameter("idCliente", typeof(long));
+    
+            var nombreClienteParameter = nombreCliente != null ?
+                new ObjectParameter("nombreCliente", nombreCliente) :
+                new ObjectParameter("nombreCliente", typeof(string));
+    
+            var telefonoClienteParameter = telefonoCliente.HasValue ?
+                new ObjectParameter("telefonoCliente", telefonoCliente) :
+                new ObjectParameter("telefonoCliente", typeof(long));
+    
+            var direccionClienteParameter = direccionCliente != null ?
+                new ObjectParameter("direccionCliente", direccionCliente) :
+                new ObjectParameter("direccionCliente", typeof(string));
+    
+            var emailClienteParameter = emailCliente != null ?
+                new ObjectParameter("emailCliente", emailCliente) :
+                new ObjectParameter("emailCliente", typeof(string));
+    
+            var estadoParameter = estado.HasValue ?
+                new ObjectParameter("estado", estado) :
+                new ObjectParameter("estado", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarCliente", idClienteParameter, nombreClienteParameter, telefonoClienteParameter, direccionClienteParameter, emailClienteParameter, estadoParameter);
+        }
+    
+        public virtual ObjectResult<ConsultarCliente_Result> ConsultarCliente(Nullable<long> idCliente)
+        {
+            var idClienteParameter = idCliente.HasValue ?
+                new ObjectParameter("idCliente", idCliente) :
+                new ObjectParameter("idCliente", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultarCliente_Result>("ConsultarCliente", idClienteParameter);
+        }
     }
 }
