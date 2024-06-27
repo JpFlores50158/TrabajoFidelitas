@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using Web_TrabajoFidelitas.Entidades;
@@ -55,6 +56,20 @@ namespace Web_TrabajoFidelitas.Controllers
         public ActionResult ActualizarCliente(Cliente entidad)
         {
             var respuesta = model.ActualizarCliente(entidad);
+            if (respuesta.Codigo == 0)
+            {
+                return RedirectToAction("MostrarClientes");
+            }
+            else
+            {
+                return View();
+            }
+        }
+        [HttpGet]
+        public ActionResult EliminarCliente(long id)
+        {
+            var respuesta = model.EliminarCliente(id);
+
             if (respuesta.Codigo == 0)
             {
                 return RedirectToAction("MostrarClientes");

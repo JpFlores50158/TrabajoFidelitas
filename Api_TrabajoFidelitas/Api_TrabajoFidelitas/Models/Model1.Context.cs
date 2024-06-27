@@ -28,62 +28,6 @@ namespace Api_TrabajoFidelitas.Models
         }
     
     
-        public virtual ObjectResult<IniciarSesionUsuario_Result> IniciarSesionUsuario(string emailUsuario, string contrasenaUsuario)
-        {
-            var emailUsuarioParameter = emailUsuario != null ?
-                new ObjectParameter("emailUsuario", emailUsuario) :
-                new ObjectParameter("emailUsuario", typeof(string));
-    
-            var contrasenaUsuarioParameter = contrasenaUsuario != null ?
-                new ObjectParameter("contrasenaUsuario", contrasenaUsuario) :
-                new ObjectParameter("contrasenaUsuario", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<IniciarSesionUsuario_Result>("IniciarSesionUsuario", emailUsuarioParameter, contrasenaUsuarioParameter);
-        }
-    
-        public virtual int RegistrarUsuario(string contrasenaUsuario, string nombreUsuario, string emailUsuario)
-        {
-            var contrasenaUsuarioParameter = contrasenaUsuario != null ?
-                new ObjectParameter("contrasenaUsuario", contrasenaUsuario) :
-                new ObjectParameter("contrasenaUsuario", typeof(string));
-    
-            var nombreUsuarioParameter = nombreUsuario != null ?
-                new ObjectParameter("nombreUsuario", nombreUsuario) :
-                new ObjectParameter("nombreUsuario", typeof(string));
-    
-            var emailUsuarioParameter = emailUsuario != null ?
-                new ObjectParameter("emailUsuario", emailUsuario) :
-                new ObjectParameter("emailUsuario", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarUsuario", contrasenaUsuarioParameter, nombreUsuarioParameter, emailUsuarioParameter);
-        }
-    
-        public virtual int AgregarCliente(string nombreCliente, Nullable<long> telefonoCliente, string direccionCliente, string emailCliente)
-        {
-            var nombreClienteParameter = nombreCliente != null ?
-                new ObjectParameter("nombreCliente", nombreCliente) :
-                new ObjectParameter("nombreCliente", typeof(string));
-    
-            var telefonoClienteParameter = telefonoCliente.HasValue ?
-                new ObjectParameter("telefonoCliente", telefonoCliente) :
-                new ObjectParameter("telefonoCliente", typeof(long));
-    
-            var direccionClienteParameter = direccionCliente != null ?
-                new ObjectParameter("direccionCliente", direccionCliente) :
-                new ObjectParameter("direccionCliente", typeof(string));
-    
-            var emailClienteParameter = emailCliente != null ?
-                new ObjectParameter("emailCliente", emailCliente) :
-                new ObjectParameter("emailCliente", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AgregarCliente", nombreClienteParameter, telefonoClienteParameter, direccionClienteParameter, emailClienteParameter);
-        }
-    
-        public virtual ObjectResult<ConsultarClientes_Result> ConsultarClientes()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultarClientes_Result>("ConsultarClientes");
-        }
-    
         public virtual int ActualizarCliente(Nullable<long> idCliente, string nombreCliente, Nullable<long> telefonoCliente, string direccionCliente, string emailCliente, Nullable<bool> estado)
         {
             var idClienteParameter = idCliente.HasValue ?
@@ -113,6 +57,27 @@ namespace Api_TrabajoFidelitas.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ActualizarCliente", idClienteParameter, nombreClienteParameter, telefonoClienteParameter, direccionClienteParameter, emailClienteParameter, estadoParameter);
         }
     
+        public virtual int AgregarCliente(string nombreCliente, Nullable<long> telefonoCliente, string direccionCliente, string emailCliente)
+        {
+            var nombreClienteParameter = nombreCliente != null ?
+                new ObjectParameter("nombreCliente", nombreCliente) :
+                new ObjectParameter("nombreCliente", typeof(string));
+    
+            var telefonoClienteParameter = telefonoCliente.HasValue ?
+                new ObjectParameter("telefonoCliente", telefonoCliente) :
+                new ObjectParameter("telefonoCliente", typeof(long));
+    
+            var direccionClienteParameter = direccionCliente != null ?
+                new ObjectParameter("direccionCliente", direccionCliente) :
+                new ObjectParameter("direccionCliente", typeof(string));
+    
+            var emailClienteParameter = emailCliente != null ?
+                new ObjectParameter("emailCliente", emailCliente) :
+                new ObjectParameter("emailCliente", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AgregarCliente", nombreClienteParameter, telefonoClienteParameter, direccionClienteParameter, emailClienteParameter);
+        }
+    
         public virtual ObjectResult<ConsultarCliente_Result> ConsultarCliente(Nullable<long> idCliente)
         {
             var idClienteParameter = idCliente.HasValue ?
@@ -120,6 +85,55 @@ namespace Api_TrabajoFidelitas.Models
                 new ObjectParameter("idCliente", typeof(long));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultarCliente_Result>("ConsultarCliente", idClienteParameter);
+        }
+    
+        public virtual ObjectResult<ConsultarClientes_Result> ConsultarClientes()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultarClientes_Result>("ConsultarClientes");
+        }
+    
+        public virtual ObjectResult<ConsultarSucursales_Result> ConsultarSucursales()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ConsultarSucursales_Result>("ConsultarSucursales");
+        }
+    
+        public virtual int EliminarCliente(Nullable<long> idCliente)
+        {
+            var idClienteParameter = idCliente.HasValue ?
+                new ObjectParameter("idCliente", idCliente) :
+                new ObjectParameter("idCliente", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EliminarCliente", idClienteParameter);
+        }
+    
+        public virtual ObjectResult<IniciarSesionUsuario_Result> IniciarSesionUsuario(string emailUsuario, string contrasenaUsuario)
+        {
+            var emailUsuarioParameter = emailUsuario != null ?
+                new ObjectParameter("emailUsuario", emailUsuario) :
+                new ObjectParameter("emailUsuario", typeof(string));
+    
+            var contrasenaUsuarioParameter = contrasenaUsuario != null ?
+                new ObjectParameter("contrasenaUsuario", contrasenaUsuario) :
+                new ObjectParameter("contrasenaUsuario", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<IniciarSesionUsuario_Result>("IniciarSesionUsuario", emailUsuarioParameter, contrasenaUsuarioParameter);
+        }
+    
+        public virtual int RegistrarUsuario(string contrasenaUsuario, string nombreUsuario, string emailUsuario)
+        {
+            var contrasenaUsuarioParameter = contrasenaUsuario != null ?
+                new ObjectParameter("contrasenaUsuario", contrasenaUsuario) :
+                new ObjectParameter("contrasenaUsuario", typeof(string));
+    
+            var nombreUsuarioParameter = nombreUsuario != null ?
+                new ObjectParameter("nombreUsuario", nombreUsuario) :
+                new ObjectParameter("nombreUsuario", typeof(string));
+    
+            var emailUsuarioParameter = emailUsuario != null ?
+                new ObjectParameter("emailUsuario", emailUsuario) :
+                new ObjectParameter("emailUsuario", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("RegistrarUsuario", contrasenaUsuarioParameter, nombreUsuarioParameter, emailUsuarioParameter);
         }
     }
 }

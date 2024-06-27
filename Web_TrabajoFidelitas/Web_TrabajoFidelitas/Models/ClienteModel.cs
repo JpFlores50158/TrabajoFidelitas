@@ -66,5 +66,18 @@ namespace Web_TrabajoFidelitas.Models
                     return null;
             }
         }
+        public Confirmacion EliminarCliente(long id)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlWebApi"] + "Cliente/EliminarCliente?id=" + id;
+                var respuesta = client.DeleteAsync(url).Result;
+
+                if (respuesta.IsSuccessStatusCode)
+                    return respuesta.Content.ReadFromJsonAsync<Confirmacion>().Result;
+                else
+                    return null;
+            }
+        }
     }
 }

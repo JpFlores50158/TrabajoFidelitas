@@ -148,8 +148,39 @@ namespace Api_TrabajoFidelitas.Controllers
 
         return respuesta;
     }
+        [HttpDelete]
+        [Route("Cliente/EliminarCliente")]
+        public Confirmacion EliminarCliente(long id)
+        {
+            var respuesta = new Confirmacion();
 
+            try
+            {
+                using (var db = new MotoresBritanicosEntities())
+                {
+                    var resp = db.EliminarCliente(id);
 
+                    if (resp > 0)
+                    {
+                        respuesta.Codigo = 0;
+                        respuesta.Detalle = string.Empty;
+                    }
+                    else
+                    {
+                        respuesta.Codigo = -1;
+                        respuesta.Detalle = "El producto no se pudo eliminar";
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                respuesta.Codigo = -1;
+                respuesta.Detalle = "Se presentó un error en el sistema";
+            }
+
+            return respuesta;
+        }
+    }
 
 }
-}
+
