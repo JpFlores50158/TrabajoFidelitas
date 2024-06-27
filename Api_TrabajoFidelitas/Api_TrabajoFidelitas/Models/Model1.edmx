@@ -4,7 +4,25 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MotoresBritanicosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MotoresBritanicosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="ActualizarCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idCliente" Type="bigint" Mode="In" />
+          <Parameter Name="nombreCliente" Type="varchar" Mode="In" />
+          <Parameter Name="telefonoCliente" Type="bigint" Mode="In" />
+          <Parameter Name="direccionCliente" Type="varchar" Mode="In" />
+          <Parameter Name="emailCliente" Type="varchar" Mode="In" />
+          <Parameter Name="estado" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="AgregarCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombreCliente" Type="varchar" Mode="In" />
+          <Parameter Name="telefonoCliente" Type="bigint" Mode="In" />
+          <Parameter Name="direccionCliente" Type="varchar" Mode="In" />
+          <Parameter Name="emailCliente" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ConsultarCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idCliente" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="ConsultarClientes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="IniciarSesionUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="emailUsuario" Type="varchar" Mode="In" />
           <Parameter Name="contrasenaUsuario" Type="varchar" Mode="In" />
@@ -15,8 +33,7 @@
           <Parameter Name="emailUsuario" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="MotoresBritanicosModelStoreContainer" />
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MotoresBritanicosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -30,6 +47,24 @@
             <Parameter Name="nombreUsuario" Mode="In" Type="String" />
             <Parameter Name="emailUsuario" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="AgregarCliente">
+            <Parameter Name="nombreCliente" Mode="In" Type="String" />
+            <Parameter Name="telefonoCliente" Mode="In" Type="Int64" />
+            <Parameter Name="direccionCliente" Mode="In" Type="String" />
+            <Parameter Name="emailCliente" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ConsultarClientes" ReturnType="Collection(MotoresBritanicosModel.ConsultarClientes_Result)" />
+          <FunctionImport Name="ActualizarCliente">
+            <Parameter Name="idCliente" Mode="In" Type="Int64" />
+            <Parameter Name="nombreCliente" Mode="In" Type="String" />
+            <Parameter Name="telefonoCliente" Mode="In" Type="Int64" />
+            <Parameter Name="direccionCliente" Mode="In" Type="String" />
+            <Parameter Name="emailCliente" Mode="In" Type="String" />
+            <Parameter Name="estado" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="ConsultarCliente" ReturnType="Collection(MotoresBritanicosModel.ConsultarCliente_Result)">
+            <Parameter Name="idCliente" Mode="In" Type="Int64" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="IniciarSesionUsuario_Result">
           <Property Type="Int32" Name="idUsuario" Nullable="false" />
@@ -39,6 +74,22 @@
           <Property Type="Boolean" Name="estado" Nullable="false" />
           <Property Type="Int32" Name="idRol" Nullable="false" />
           <Property Type="String" Name="nombreRol" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="ConsultarClientes_Result">
+          <Property Type="Int32" Name="idCliente" Nullable="false" />
+          <Property Type="String" Name="nombreCliente" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="telefonoCliente" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="direccionCliente" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="emailCliente" Nullable="false" MaxLength="100" />
+          <Property Type="Boolean" Name="estado" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="ConsultarCliente_Result">
+          <Property Type="Int32" Name="idCliente" Nullable="false" />
+          <Property Type="String" Name="nombreCliente" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="telefonoCliente" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="direccionCliente" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="emailCliente" Nullable="false" MaxLength="100" />
+          <Property Type="Boolean" Name="estado" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -60,6 +111,32 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="RegistrarUsuario" FunctionName="MotoresBritanicosModel.Store.RegistrarUsuario" />
+          <FunctionImportMapping FunctionImportName="AgregarCliente" FunctionName="MotoresBritanicosModel.Store.AgregarCliente" />
+          <FunctionImportMapping FunctionImportName="ConsultarClientes" FunctionName="MotoresBritanicosModel.Store.ConsultarClientes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MotoresBritanicosModel.ConsultarClientes_Result">
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="nombreCliente" ColumnName="nombreCliente" />
+                <ScalarProperty Name="telefonoCliente" ColumnName="telefonoCliente" />
+                <ScalarProperty Name="direccionCliente" ColumnName="direccionCliente" />
+                <ScalarProperty Name="emailCliente" ColumnName="emailCliente" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ActualizarCliente" FunctionName="MotoresBritanicosModel.Store.ActualizarCliente" />
+          <FunctionImportMapping FunctionImportName="ConsultarCliente" FunctionName="MotoresBritanicosModel.Store.ConsultarCliente">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MotoresBritanicosModel.ConsultarCliente_Result">
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="nombreCliente" ColumnName="nombreCliente" />
+                <ScalarProperty Name="telefonoCliente" ColumnName="telefonoCliente" />
+                <ScalarProperty Name="direccionCliente" ColumnName="direccionCliente" />
+                <ScalarProperty Name="emailCliente" ColumnName="emailCliente" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
