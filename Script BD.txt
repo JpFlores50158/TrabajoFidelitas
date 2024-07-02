@@ -1,10 +1,90 @@
 USE [master]
 GO
-
+/****** Object:  Database [MotoresBritanicos]    Script Date: 7/1/2024 9:24:17 PM ******/
 CREATE DATABASE [MotoresBritanicos]
-
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'MotoresBritanicos', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\DATA\MotoresBritanicos.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'MotoresBritanicos_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\DATA\MotoresBritanicos_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT, LEDGER = OFF
+GO
+ALTER DATABASE [MotoresBritanicos] SET COMPATIBILITY_LEVEL = 160
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [MotoresBritanicos].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [MotoresBritanicos] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [MotoresBritanicos] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [MotoresBritanicos] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET  ENABLE_BROKER 
+GO
+ALTER DATABASE [MotoresBritanicos] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [MotoresBritanicos] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET RECOVERY FULL 
+GO
+ALTER DATABASE [MotoresBritanicos] SET  MULTI_USER 
+GO
+ALTER DATABASE [MotoresBritanicos] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [MotoresBritanicos] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [MotoresBritanicos] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [MotoresBritanicos] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [MotoresBritanicos] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [MotoresBritanicos] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+EXEC sys.sp_db_vardecimal_storage_format N'MotoresBritanicos', N'ON'
+GO
+ALTER DATABASE [MotoresBritanicos] SET QUERY_STORE = ON
+GO
+ALTER DATABASE [MotoresBritanicos] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP_POLICY = (STALE_QUERY_THRESHOLD_DAYS = 30), DATA_FLUSH_INTERVAL_SECONDS = 900, INTERVAL_LENGTH_MINUTES = 60, MAX_STORAGE_SIZE_MB = 1000, QUERY_CAPTURE_MODE = AUTO, SIZE_BASED_CLEANUP_MODE = AUTO, MAX_PLANS_PER_QUERY = 200, WAIT_STATS_CAPTURE_MODE = ON)
+GO
 USE [MotoresBritanicos]
 GO
+/****** Object:  Table [dbo].[AuditoriaCitas]    Script Date: 7/1/2024 9:24:17 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -22,7 +102,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Automoviles]    Script Date: 6/21/2024 3:32:42 PM ******/
+/****** Object:  Table [dbo].[Automoviles]    Script Date: 7/1/2024 9:24:17 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -41,7 +121,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Citas]    Script Date: 6/21/2024 3:32:42 PM ******/
+/****** Object:  Table [dbo].[Citas]    Script Date: 7/1/2024 9:24:17 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -61,7 +141,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Ciudades]    Script Date: 6/21/2024 3:32:42 PM ******/
+/****** Object:  Table [dbo].[Ciudades]    Script Date: 7/1/2024 9:24:17 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -76,7 +156,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Clientes]    Script Date: 6/21/2024 3:32:42 PM ******/
+/****** Object:  Table [dbo].[Clientes]    Script Date: 7/1/2024 9:24:17 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -94,7 +174,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Reportes]    Script Date: 6/21/2024 3:32:42 PM ******/
+/****** Object:  Table [dbo].[Reportes]    Script Date: 7/1/2024 9:24:17 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -110,7 +190,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Roles]    Script Date: 6/21/2024 3:32:42 PM ******/
+/****** Object:  Table [dbo].[Roles]    Script Date: 7/1/2024 9:24:17 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -125,7 +205,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Servicios]    Script Date: 6/21/2024 3:32:42 PM ******/
+/****** Object:  Table [dbo].[Servicios]    Script Date: 7/1/2024 9:24:17 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -142,7 +222,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Sucursales]    Script Date: 6/21/2024 3:32:42 PM ******/
+/****** Object:  Table [dbo].[Sucursales]    Script Date: 7/1/2024 9:24:17 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -159,7 +239,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Usuarios]    Script Date: 6/21/2024 3:32:42 PM ******/
+/****** Object:  Table [dbo].[Usuarios]    Script Date: 7/1/2024 9:24:17 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -176,6 +256,64 @@ PRIMARY KEY CLUSTERED
 	[idUsuario] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[Automoviles] ON 
+GO
+INSERT [dbo].[Automoviles] ([idAutomovil], [idCliente], [placa], [marca], [modelo], [ano], [estado]) VALUES (1, 1, N'78565223', N'Toyota', N'Supra', 1990, 0)
+GO
+INSERT [dbo].[Automoviles] ([idAutomovil], [idCliente], [placa], [marca], [modelo], [ano], [estado]) VALUES (2, 6, N'7856523', N'Nissan', N'GTR-R34', 1990, 0)
+GO
+INSERT [dbo].[Automoviles] ([idAutomovil], [idCliente], [placa], [marca], [modelo], [ano], [estado]) VALUES (5, 6, N'845582', N'Mitsubishi', N'Evo', 1998, 0)
+GO
+INSERT [dbo].[Automoviles] ([idAutomovil], [idCliente], [placa], [marca], [modelo], [ano], [estado]) VALUES (7, 2, N'784532', N'Kia', N'Sportage', 1990, 0)
+GO
+INSERT [dbo].[Automoviles] ([idAutomovil], [idCliente], [placa], [marca], [modelo], [ano], [estado]) VALUES (8, 1, N'12345879', N'Toyota', N'Celica', 1990, 0)
+GO
+INSERT [dbo].[Automoviles] ([idAutomovil], [idCliente], [placa], [marca], [modelo], [ano], [estado]) VALUES (9, 1, N'845582', N'Land Rover', N'4x4', 1758, 0)
+GO
+SET IDENTITY_INSERT [dbo].[Automoviles] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Ciudades] ON 
+GO
+INSERT [dbo].[Ciudades] ([idCiudad], [nombreCiudad], [estado]) VALUES (1, N'Ciudad Central', 1)
+GO
+SET IDENTITY_INSERT [dbo].[Ciudades] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Clientes] ON 
+GO
+INSERT [dbo].[Clientes] ([idCliente], [nombreCliente], [telefonoCliente], [direccionCliente], [emailCliente], [estado]) VALUES (1, N'1', N'1', N'1', N'1', 1)
+GO
+INSERT [dbo].[Clientes] ([idCliente], [nombreCliente], [telefonoCliente], [direccionCliente], [emailCliente], [estado]) VALUES (2, N'sample string 2', N'3', N'sample string 4', N'sample string 5', 1)
+GO
+INSERT [dbo].[Clientes] ([idCliente], [nombreCliente], [telefonoCliente], [direccionCliente], [emailCliente], [estado]) VALUES (5, N'1', N'1', N'1', N'1@1.com', 0)
+GO
+INSERT [dbo].[Clientes] ([idCliente], [nombreCliente], [telefonoCliente], [direccionCliente], [emailCliente], [estado]) VALUES (6, N'Erick', N'125623', N'mi casa', N'hola@gmail.com', 1)
+GO
+SET IDENTITY_INSERT [dbo].[Clientes] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Roles] ON 
+GO
+INSERT [dbo].[Roles] ([idRol], [nombreRol], [descripcionRol]) VALUES (1, N'Gerente', N'Personas con permisos completos de gestiona el sistema')
+GO
+INSERT [dbo].[Roles] ([idRol], [nombreRol], [descripcionRol]) VALUES (2, N'Ventas', N'Persona con permisos limitados para acceder y utilizar funcionalidades especificas de ventas')
+GO
+SET IDENTITY_INSERT [dbo].[Roles] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Usuarios] ON 
+GO
+INSERT [dbo].[Usuarios] ([idUsuario], [nombreUsuario], [contrasenaUsuario], [emailUsuario], [idRol], [estado]) VALUES (6, N'erickRivera', N'erickpass', N'erick@example.com', 1, 1)
+GO
+INSERT [dbo].[Usuarios] ([idUsuario], [nombreUsuario], [contrasenaUsuario], [emailUsuario], [idRol], [estado]) VALUES (7, N'luisNunez', N'luispass', N'luis@example.com', 2, 1)
+GO
+INSERT [dbo].[Usuarios] ([idUsuario], [nombreUsuario], [contrasenaUsuario], [emailUsuario], [idRol], [estado]) VALUES (8, N'sample string 2', N'sample str', N'sample string 3', 2, 1)
+GO
+INSERT [dbo].[Usuarios] ([idUsuario], [nombreUsuario], [contrasenaUsuario], [emailUsuario], [idRol], [estado]) VALUES (9, N'1', N'1', N'1@1.com', 2, 1)
+GO
+INSERT [dbo].[Usuarios] ([idUsuario], [nombreUsuario], [contrasenaUsuario], [emailUsuario], [idRol], [estado]) VALUES (10, N'Jose', N'josepass', N'jose@example.com', 2, 1)
+GO
+INSERT [dbo].[Usuarios] ([idUsuario], [nombreUsuario], [contrasenaUsuario], [emailUsuario], [idRol], [estado]) VALUES (11, N'Carlo', N'carlo', N'carlo@example.com', 2, 1)
+GO
+SET IDENTITY_INSERT [dbo].[Usuarios] OFF
 GO
 ALTER TABLE [dbo].[AuditoriaCitas] ADD  DEFAULT ((1)) FOR [estado]
 GO
@@ -222,24 +360,33 @@ GO
 ALTER TABLE [dbo].[Usuarios]  WITH CHECK ADD FOREIGN KEY([idRol])
 REFERENCES [dbo].[Roles] ([idRol])
 GO
+/****** Object:  StoredProcedure [dbo].[ActualizarAutomovil]    Script Date: 7/1/2024 9:24:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[ActualizarAutomovil]
+	@idAutomovil BIGINT,
+	@idCliente BIGINT,
+	@placa varchar(10),
+	@marca varchar(50),
+	@modelo varchar(50),
+	@ano int,
+	@estado bit
+AS
+BEGIN
 
-
-SET IDENTITY_INSERT [dbo].[Roles] ON 
+UPDATE [dbo].[Automoviles]
+   SET [idCliente] = @idCliente
+      ,[placa] = @placa
+      ,[marca] = @marca
+      ,[modelo] = @modelo
+	  ,[ano] = @ano
+      ,[estado] = @estado
+ WHERE idAutomovil = @idAutomovil
+END
 GO
-INSERT [dbo].[Roles] ([idRol], [nombreRol], [descripcionRol]) VALUES (1, N'Gerente', N'Personas con permisos completos de gestiona el sistema')
-GO
-INSERT [dbo].[Roles] ([idRol], [nombreRol], [descripcionRol]) VALUES (2, N'Ventas', N'Persona con permisos limitados para acceder y utilizar funcionalidades especificas de ventas')
-GO
-SET IDENTITY_INSERT [dbo].[Roles] OFF
-GO
-SET IDENTITY_INSERT [dbo].[Usuarios] ON 
-GO
-INSERT [dbo].[Usuarios] ([idUsuario], [nombreUsuario], [contrasenaUsuario], [emailUsuario], [idRol],[estado]) VALUES (6, N'erickRivera', N'erickpass', N'erick@example.com', 1,1)
-GO
-INSERT [dbo].[Usuarios] ([idUsuario], [nombreUsuario], [contrasenaUsuario], [emailUsuario], [idRol],[estado]) VALUES (7, N'luisNunez', N'luispass', N'luis@example.com', 2,1)
-GO
-
-/****** Object:  StoredProcedure [dbo].[ActualizarCliente]    Script Date: 6/21/2024 3:32:42 PM ******/
+/****** Object:  StoredProcedure [dbo].[ActualizarCliente]    Script Date: 7/1/2024 9:24:17 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -264,7 +411,37 @@ UPDATE [dbo].[Clientes]
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[AgregarCliente]    Script Date: 6/21/2024 3:32:42 PM ******/
+/****** Object:  StoredProcedure [dbo].[AgregarAutomovil]    Script Date: 7/1/2024 9:24:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[AgregarAutomovil]
+	@idCliente int,
+	@placa varchar(10),
+	@marca varchar(50),
+	@modelo varchar(50),
+	@ano int
+AS
+BEGIN
+
+INSERT INTO [dbo].[Automoviles]
+           ([idCliente]
+           ,[placa]
+           ,[marca]
+           ,[modelo]
+           ,[ano]
+           ,[estado])
+     VALUES
+           (@idCliente
+           ,@placa
+           ,@marca
+           ,@modelo
+		   ,@ano
+           ,1)
+END
+GO
+/****** Object:  StoredProcedure [dbo].[AgregarCliente]    Script Date: 7/1/2024 9:24:17 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -298,7 +475,47 @@ INSERT INTO [dbo].[Clientes]
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[ConsultarCliente]    Script Date: 6/21/2024 3:32:42 PM ******/
+/****** Object:  StoredProcedure [dbo].[ConsultarAutomovil]    Script Date: 7/1/2024 9:24:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[ConsultarAutomovil]
+	@idAutomovil BIGINT
+AS
+BEGIN
+SELECT [idAutomovil]
+      ,[idCliente]
+      ,[placa]
+      ,[marca]
+      ,[modelo]
+      ,[ano]
+      ,[estado]
+  FROM [dbo].[Automoviles]
+  WHERE	[idAutomovil] = @idAutomovil
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[ConsultarAutomoviles]    Script Date: 7/1/2024 9:24:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[ConsultarAutomoviles]
+AS
+BEGIN
+
+SELECT [idAutomovil]
+      ,[idCliente]
+      ,[placa]
+      ,[marca]
+      ,[modelo]
+      ,[ano]
+      ,[estado]
+  FROM [dbo].[Automoviles]
+
+END;
+GO
+/****** Object:  StoredProcedure [dbo].[ConsultarCliente]    Script Date: 7/1/2024 9:24:17 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -317,7 +534,7 @@ SELECT [idCliente]
 	WHERE	idCliente = @idCliente
 END
 GO
-/****** Object:  StoredProcedure [dbo].[ConsultarClientes]    Script Date: 6/21/2024 3:32:42 PM ******/
+/****** Object:  StoredProcedure [dbo].[ConsultarClientes]    Script Date: 7/1/2024 9:24:17 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -338,7 +555,70 @@ SELECT TOP (1000) [idCliente]
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[IniciarSesionUsuario]    Script Date: 6/21/2024 3:32:42 PM ******/
+/****** Object:  StoredProcedure [dbo].[ConsultarIdsClientes]    Script Date: 7/1/2024 9:24:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[ConsultarIdsClientes]
+AS
+BEGIN
+	SELECT idCliente 'IdsCliente', nombreCliente 'NombreCliente'
+	FROM Clientes
+	WHERE estado = 1
+END
+GO
+/****** Object:  StoredProcedure [dbo].[ConsultarSucursales]    Script Date: 7/1/2024 9:24:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[ConsultarSucursales]
+AS
+BEGIN
+
+SELECT TOP (1000) [idSucursal]
+      ,[nombreSucursal]
+      ,[direccionSucursal]
+      ,[idCiudadSucursal]
+      ,[estado]
+  FROM [MotoresBritanicos].[dbo].Sucursales
+
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[EliminarAutomovil]    Script Date: 7/1/2024 9:24:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[EliminarAutomovil]
+	@idAutomovil bigint
+AS
+BEGIN
+	UPDATE  Automoviles
+	SET		estado = 0
+	WHERE	idAutomovil = @idAutomovil
+END
+GO
+/****** Object:  StoredProcedure [dbo].[EliminarCliente]    Script Date: 7/1/2024 9:24:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[EliminarCliente]
+    @idCliente    BIGINT
+AS
+BEGIN
+
+    UPDATE dbo.Clientes
+    SET Estado = 0
+    WHERE idCliente = @idCliente
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[IniciarSesionUsuario]    Script Date: 7/1/2024 9:24:17 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -365,7 +645,7 @@ SELECT idUsuario
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[RegistrarUsuario]    Script Date: 6/21/2024 3:32:42 PM ******/
+/****** Object:  StoredProcedure [dbo].[RegistrarUsuario]    Script Date: 7/1/2024 9:24:17 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -400,4 +680,7 @@ INSERT INTO [dbo].[Usuarios]
 
 END
 GO
-
+USE [master]
+GO
+ALTER DATABASE [MotoresBritanicos] SET  READ_WRITE 
+GO

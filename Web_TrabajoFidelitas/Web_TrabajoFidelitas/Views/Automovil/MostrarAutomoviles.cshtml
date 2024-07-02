@@ -1,88 +1,90 @@
-﻿<!-- Table with stripped rows -->
-<!-- End Table with stripped rows -->
-<div class="card">
-    <div class="card-body">
+﻿@model List<Web_TrabajoFidelitas.Entidades.Automovil>
 
+@{
+    ViewBag.Title = "ConsultaAutomoviles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-        <div style="display:flex;align-items:center;" class=" justify-content-between my-2">
-            <h4>Datos Clientes</h4>
-            <a class="btn btn-secondary " href="@Url.Action("NuevoAutomovil","Automovil")">Nuevo</a>
+<div class="card shadow mb-4" style="margin-top: 86px;">
+    <div class="card-header py-3" style="display: flex; justify-content: space-between; align-items: center;">
+        <h6 class="m-0 font-weight-bold text-primary" style="text-transform: uppercase; letter-spacing: 5px; font-size: 26px;">Automoviles</h6>
+        <div>
+            <a class="btn btn-primary" href="@Url.Action("NuevoAutomovil","Automovil")"> + Agregar</a>
         </div>
-        <hr />
-        <table class="table datatable">
-            <thead>
-                <tr>
-                    <th>
-                        <b>N</b>ame
-                    </th>
-                    <th>Ext.</th>
-                    <th>City</th>
-                    <th data-type="date" data-format="YYYY/DD/MM">Start Date</th>
-                    <th>Completion</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Unity Pugh</td>
-                    <td>9958</td>
-                    <td>Curicó</td>
-                    <td>2005/02/11</td>
-                    <td>37%</td>
-                    <td style="display:flex;flex-direction:column;">
-                        <a class="btn btn-success m-1" href="@Url.Action("ActualizarAutomovil","Automovil")">  Actualizar</a>
-                        <a class="btn btn-danger m-1" href=""> Eliminar</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Theodore Duran</td>
-                    <td>8971</td>
-                    <td>Dhanbad</td>
-                    <td>1999/04/07</td>
-                    <td>97%</td>
-                    <td style="display:flex;flex-direction:column;">
-                        <a class="btn btn-success m-1" href="@Url.Action("ActualizarAutomovil","Automovil")">  Actualizar</a>
-                        <a class="btn btn-danger m-1" href=""> Eliminar</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Kylie Bishop</td>
-                    <td>3147</td>
-                    <td>Norman</td>
-                    <td>2005/09/08</td>
-                    <td>63%</td>
-                    <td style="display:flex;flex-direction:column;">
-                        <a class="btn btn-success m-1" href="@Url.Action("ActualizarAutomovil","Automovil")">  Actualizar</a>
-                        <a class="btn btn-danger m-1" href=""> Eliminar</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Willow Gilliam</td>
-                    <td>3497</td>
-                    <td>Amqui</td>
-                    <td>2009/29/11</td>
-                    <td>30%</td>
-                    <td style="display:flex;flex-direction:column;">
-                        <a class="btn btn-success m-1" href="@Url.Action("ActualizarAutomovil","Automovil")">  Actualizar</a>
-                        <a class="btn btn-danger m-1" href=""> Eliminar</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Blossom Dickerson</td>
-                    <td>5018</td>
-                    <td>Kempten</td>
-                    <td>2006/11/09</td>
-                    <td>17%</td>
-                    <td style="display:flex;flex-direction:column;">
-                        <a class="btn btn-success m-1" href="@Url.Action("ActualizarAutomovil","Automovil")">  Actualizar</a>
-                        <a class="btn btn-danger m-1" href=""> Eliminar</a>
-                    </td>
-                </tr>
-               
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="col-sm-12">
+                    <div class="col-sm-12">
+                        @if (ViewBag.MsjPantalla != null)
+                        {
+                            <div class="alert alert-warning" role="alert" style="text-align:center; margin-top: 20px; margin-bottom: 20px;">
+                                @ViewBag.MsjPantalla
+                            </div>
+                        }
 
+                        <table id="myDataTable" class="table table-bordered" style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th>Id Auto</th>
+                                    <th>Id Cliente</th>
+                                    <th>No. Placa</th>
+                                    <th>Marca</th>
+                                    <th>Modelo</th>
+                                    <th>Año</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td style="padding: 15px;">@item.idAutomovil</td>
+                                        <td style="padding: 15px;">@item.idCliente</td>
+                                        <td style="padding: 15px;">@item.placa</td>
+                                        <td style="padding: 15px;">@item.marca</td>
+                                        <td style="padding: 15px;">@item.modelo</td>
+                                        <td style="padding: 15px;">@item.ano</td>
 
+                                        @if (item.estado)
+                                        {
+                                            <td style="padding: 15px;">Activo</td>
+                                        }
+                                        else
+                                        {
+                                            <td style="padding: 15px;">Inactivo</td>
+                                        }
 
-            </tbody>
-        </table>
+                                        <td style="padding: 15px;">
+                                            <div style="text-align:center">
+                                                <a href="@Url.Action("ActualizarAutomovil","Automovil", new { id = @item.idAutomovil })" class="btn btn-sm btn-info"><i class="fa fa-pencil-square-o"></i></a>
+                                                <a href="@Url.Action("EliminarAutomovil","Automovil", new { id = @item.idAutomovil })" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+<!-- CDN de DataTables -->
+<link href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#myDataTable').DataTable({
+            language: {
+                url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json',
+            }
+        });
+    });
+</script>
