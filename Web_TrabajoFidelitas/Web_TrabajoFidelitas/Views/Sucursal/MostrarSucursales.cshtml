@@ -23,7 +23,7 @@
                         }
 
                         <div style="margin-bottom:1%; text-align:right">
-                            <a class="btn btn-primary" href="@Url.Action("NuevaSucursal","Sucursal")"> + Agregar</a>
+                            <a class="btn btn-primary" href="@Url.Action("NuevoSucursal","Sucursal")"> + Agregar</a>
                         </div>
 
                         <table id="myDataTable" class="table table-bordered" style="width: 100%;">
@@ -58,8 +58,8 @@
 
                                         <td>
                                             <div style="text-align:center">
-                                                <a href="@Url.Action("ActualizarCliente","Cliente", new { id = @item.idSucursal })" class="btn btn-sm btn-info"><i class="fa fa-pencil-square-o"></i></a>
-                                                <a href="@Url.Action("EliminarCliente","Cliente", new { id = @item.idSucursal })" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></a>
+                                                <a href="@Url.Action("ActualizarSucursal","Sucursal", new { id = @item.idSucursal })" class="btn btn-sm btn-info"><i class="fa fa-pencil-square-o"></i></a>
+                                                <a href="@Url.Action("InactivarSucursal","Sucursal", new { id = @item.idSucursal })" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></a>
                                             </div>
                                         </td>
                                     </tr>

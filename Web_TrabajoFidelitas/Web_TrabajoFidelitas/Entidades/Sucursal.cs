@@ -25,7 +25,7 @@ namespace Web_TrabajoFidelitas.Entidades
         public string Detalle { get; set; }
         public  List<Sucursal>Datos { get; set; }
 
-        public object Dato { get; set; }
+        public Sucursal Dato { get; set; }
     }
 }
 

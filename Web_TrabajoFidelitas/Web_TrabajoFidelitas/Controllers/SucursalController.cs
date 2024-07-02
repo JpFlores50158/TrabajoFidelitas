@@ -26,15 +26,59 @@ namespace Web_TrabajoFidelitas.Controllers
                 return View(new List<Sucursal>());
             }
         }
+        [HttpGet]
         public ActionResult NuevoSucursal()
         {
             return View();
         }
-        public ActionResult ActualizarSucursal()
+        [HttpPost]
+        public ActionResult NuevoSucursal(Sucursal entidad)
         {
-            return View();
+            var respuesta = model.AgregarSucursal(entidad);
+            if (respuesta.Codigo == 0)
+            {
+                return RedirectToAction("MostrarSucursales");
+            }
+            else
+            {
+                return View(new List<Sucursal>());
+            }
+        }
+        [HttpGet]
+        public ActionResult ActualizarSucursal(long id)
+        {
+            var respuesta = model.TraerSucursal(id);
+            return View(respuesta.Dato);
+        }
+        [HttpPost]
+        public ActionResult ActualizarSucursal(Sucursal entidad)
+        {
+            var respuesta = model.ActualizarSucursal(entidad);
+            if (respuesta.Codigo == 0)
+            {
+                return RedirectToAction("MostrarSucursales");
+            }
+            else
+            {
+                return View();
+            }
+        }
+   
+        [HttpGet]
+        public ActionResult InactivarSucursal(long id)
+        {
+            var respuesta = model.InactivarSucursal(id);
+
+            if (respuesta.Codigo == 0)
+            {
+                return RedirectToAction("MostrarSucursales");
+            }
+            else
+            {
+                return View();
+            }
         }
 
-       
+
     }
 }

@@ -1,30 +1,52 @@
-﻿
-<a class="btn btn-primary m-2 my-4" href="@Url.Action("MostrarSucursales","Sucursal")"><i class="bi bi-arrow-left-circle"></i> Regresar</a>
-<div class="card">
-    <div class="card-body">
-        <h3 class="card-title text-center">Actualizar</h3>
-        <hr />
-        <form class="row g-3">
-            <div class="col-12">
-                <label for="inputNanme4" class="form-label">Your Name</label>
-                <input type="text" class="form-control" id="inputNanme4">
+﻿@model Web_TrabajoFidelitas.Entidades.Sucursal
+
+@{
+    ViewBag.Title = "Actualizar Sucursal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<a class="btn btn-primary m-2 my-4" href="@Url.Action("MostrarSucursales","Sucursal")"><i class="bi bi-arrow-left-circle"></i> Regresar </a>
+<div class="card shadow mb-4">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <div class="card-body" style="margin-top: 20px;">
+                <div class="table-responsive">
+                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+
+                        @if (ViewBag.MsjPantalla != null)
+                        {
+                            <div class="alert alert-warning" role="alert" style="text-align:center">
+                                @ViewBag.MsjPantalla
+                            </div>
+                        }
+
+                        @using (Html.BeginForm("ActualizarSucursal", "Sucursal", FormMethod.Post))
+                        {
+                            @Html.HiddenFor(m => m.idSucursal)
+                    <div class="form-group my-4">
+                        @Html.Label("Nombre de la Sucursal")
+                        @Html.TextBoxFor(m => m.nombreSucursal, new { @class = "form-control", @placeholder = "Nombre de la Sucursal", @required = "true" })
+                        @Html.ValidationMessageFor(m => m.nombreSucursal, "", new { @class = "text-danger" })
+                    </div>
+                            <div class="form-group my-3">
+                                @Html.Label("Direccion de la Sucursal")
+                                @Html.TextBoxFor(m => m.direccionSucursal, new { @class = "form-control", @placeholder = "Direccion de la Sucursal", @required = "true" })
+                                @Html.ValidationMessageFor(m => m.direccionSucursal, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group my-3">
+                                @Html.Label("ID Ciudad Sucursal")
+                                @Html.TextBoxFor(m => m.idCiudadSucursal, new { @class = "form-control", @placeholder = "Ciudad de la Sucursal", @required = "true" })
+                                @Html.ValidationMessageFor(m => m.idCiudadSucursal, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div style="display: flex; align-items: center; flex-direction: column;">
+                                <input type="submit" class="btn btn-primary btn-block" value="Actualizar Sucursal" style="margin-top: 20px; margin-bottom: 20px;">
+                            </div>
+                        }
+                    </div>
+                </div>
             </div>
-            <div class="col-12">
-                <label for="inputEmail4" class="form-label">Email</label>
-                <input type="email" class="form-control" id="inputEmail4">
-            </div>
-            <div class="col-12">
-                <label for="inputPassword4" class="form-label">Password</label>
-                <input type="password" class="form-control" id="inputPassword4">
-            </div>
-            <div class="col-12">
-                <label for="inputAddress" class="form-label">Address</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-            </div>
-            <div class="text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <button type="reset" class="btn btn-secondary">Reset</button>
-            </div>
-        </form><!-- Vertical Form -->
+        </div>
     </div>
 </div>
