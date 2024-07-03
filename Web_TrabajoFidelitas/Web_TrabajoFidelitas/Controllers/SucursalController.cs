@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using Web_TrabajoFidelitas.Entidades;
@@ -29,6 +30,7 @@ namespace Web_TrabajoFidelitas.Controllers
         [HttpGet]
         public ActionResult NuevoSucursal()
         {
+            CargarViewBagCategorias();
             return View();
         }
         [HttpPost]
@@ -48,6 +50,7 @@ namespace Web_TrabajoFidelitas.Controllers
         public ActionResult ActualizarSucursal(long id)
         {
             var respuesta = model.TraerSucursal(id);
+            CargarViewBagCategorias();
             return View(respuesta.Dato);
         }
         [HttpPost]
@@ -78,6 +81,18 @@ namespace Web_TrabajoFidelitas.Controllers
                 return View();
             }
         }
+        private void CargarViewBagCategorias()
+        {
+            var respuesta = model.ConsultarCuidades();
+            var cuidades = new List<SelectListItem>();
+
+            cuidades.Add(new SelectListItem { Text = "Seleccione una categoría", Value = "" });
+            foreach (var item in respuesta.Datos)
+                cuidades.Add(new SelectListItem { Text = item.NombreCiudad, Value = item.IdCiudad.ToString() });
+
+            ViewBag.Cuidades = cuidades;
+        }
+
 
 
     }

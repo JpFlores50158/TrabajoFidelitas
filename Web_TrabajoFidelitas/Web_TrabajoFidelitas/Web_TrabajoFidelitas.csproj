@@ -162,6 +162,7 @@
     <Compile Include="Entidades\Automovil.cs" />
     <Compile Include="Entidades\Cliente.cs" />
     <Compile Include="Entidades\Confirmacion.cs" />
+    <Compile Include="Entidades\Cuidades.cs" />
     <Compile Include="Entidades\IdsClientes.cs" />
     <Compile Include="Entidades\Sucursal.cs" />
     <Compile Include="Global.asax.cs">

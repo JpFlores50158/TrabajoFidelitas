@@ -183,6 +183,42 @@ namespace Api_TrabajoFidelitas.Controllers
 
             return respuesta;
         }
+        [HttpGet]
+        [Route("Sucursal/ConsultarCuidades")]
+        public ConfirmacionCuidades ConsultarCuidades()
+        {
+            var respuesta = new ConfirmacionCuidades();
+
+            try
+            {
+                using (var db = new MotoresBritanicosEntities())
+                {
+                    var datos = db.ConsultarCuidades().ToList();
+
+                    if (datos.Count > 0)
+                    {
+
+
+                        respuesta.Codigo = 0;
+                        respuesta.Detalle = string.Empty;
+                        respuesta.Datos = datos;
+
+                    }
+                    else
+                    {
+                        respuesta.Codigo = -1;
+                        respuesta.Detalle = "No se encontro informacion";
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                respuesta.Codigo = -1;
+                respuesta.Detalle = "Se presentó un error en el sistema,InicioSesion";
+            }
+
+            return respuesta;
+        }
 
     }
 }

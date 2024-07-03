@@ -765,6 +765,17 @@ INSERT INTO [dbo].[Usuarios]
 
 END
 GO
+
+Create PROCEDURE [dbo].ConsultarCuidades
+AS
+BEGIN
+
+	SELECT * 
+  FROM [MotoresBritanicos].[dbo].[Ciudades]
+
+
+END
+GO
 USE [master]
 GO
 ALTER DATABASE [MotoresBritanicos] SET  READ_WRITE 

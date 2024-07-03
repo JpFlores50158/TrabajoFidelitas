@@ -83,7 +83,20 @@ namespace Web_TrabajoFidelitas.Models
                     return null;
             }
         }
+        public ConfirmacionCuidades ConsultarCuidades()
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlWebApi"] + "Sucursal/ConsultarCuidades";
+                var respuesta = client.GetAsync(url).Result;
 
+                if (respuesta.IsSuccessStatusCode)
+                    return respuesta.Content.ReadFromJsonAsync<ConfirmacionCuidades>().Result;
+                else
+                    return null;
+            }
+        }
+       
 
 
     }
