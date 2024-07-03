@@ -25,13 +25,15 @@
                                     <h5 class="card-title text-center pb-0 fs-4">Iniciar Sesión en tu Cuenta</h5>
                                     <p class="text-center small"></p>
                                 </div>
-                                @using (Html.BeginForm("IniciarSesion", "Usuario"))
+                                @using (Html.BeginForm("IniciarSesion", "Usuario", FormMethod.Post, new { @class = "row g-3 needs-validation", novalidate = "novalidate" }))
                                 {
                                     <div class="form-group">
-                                        @Html.TextBoxFor(m => m.emailUsuario, new { @class = "form-control form-control-user my-3", @placeholder = "Correo",@required="true" })
+                                        @Html.TextBoxFor(m => m.emailUsuario, new { @class = "form-control form-control-user my-3", @placeholder = "Correo Electrónico", @required = "true", @type = "email", @maxlength = "50" })
+                                        <div class="invalid-feedback">Por favor, introduce una dirección de correo electrónico válida.</div>
                                     </div>
                                     <div class="form-group">
-                                        @Html.PasswordFor(m => m.contrasenaUsuario, new { @class = "form-control form-control-user my-3", @placeholder = "Contraseña" , @required = "true" })
+                                        @Html.PasswordFor(m => m.contrasenaUsuario, new { @class = "form-control form-control-user my-3", @placeholder = "Contraseña", @required = "true", @type = "password", @maxlength = "15" })
+                                        <div class="invalid-feedback">Por favor, introduce una contraseña con mínimo 8 y máximo 15 caracteres</div>
                                     </div>
 
                                     <input type="submit" class="btn btn-primary btn-user btn-block" value="Iniciar Sesión">

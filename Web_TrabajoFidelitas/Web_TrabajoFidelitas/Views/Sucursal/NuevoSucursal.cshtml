@@ -21,29 +21,31 @@
                             </div>
                         }
 
-                        @using (Html.BeginForm("NuevoSucursal", "Sucursal", FormMethod.Post))
+                        @using (Html.BeginForm("NuevoSucursal", "Sucursal", FormMethod.Post, new { @class = "row g-3 needs-validation", novalidate = "novalidate" }))
                         {
                             <div class="form-group my-3">
                                 @Html.Label("Nombre de la Sucursal")
-                                @Html.TextBoxFor(m => m.nombreSucursal, new { @class = "form-control", @placeholder = "Nombre de la Sucursal", @required = "true" })
+                                @Html.TextBoxFor(m => m.nombreSucursal, new { @class = "form-control", @placeholder = "Nombre", @required = "true", @type = "text", @maxlength = "100" })
                                 @Html.ValidationMessageFor(m => m.nombreSucursal, "", new { @class = "text-danger" })
+                                <div class="invalid-feedback">Por favor, escriba el nombre de la sucursal respectiva</div>
                             </div>
                       
                             <div class="form-group my-3">
                                 @Html.Label("Direccion de la Sucursal")
-                                @Html.TextBoxFor(m => m.direccionSucursal, new { @class = "form-control", @placeholder = "Direccion de la Sucursal", @required = "true" })
+                                @Html.TextBoxFor(m => m.direccionSucursal, new { @class = "form-control", @placeholder = "Dirección", @required = "true", @type = "text", @maxlength = "255" })
                                 @Html.ValidationMessageFor(m => m.direccionSucursal, "", new { @class = "text-danger" })
+                                <div class="invalid-feedback">Por favor, escriba la dirección de la sucursal respectiva</div>
                             </div>
                             <div class="form-group my-3">
-                                @Html.Label("ID de la Sucursal")
+                                @Html.Label("ID de la Ciudad")
                                 @Html.TextBoxFor(m => m.idCiudadSucursal, new { @class = "form-control", @placeholder = "ID de la Sucursal", @required = "true" })
                                 @Html.ValidationMessageFor(m => m.idCiudadSucursal, "", new { @class = "text-danger" })
+                                <div class="invalid-feedback">Por favor, escoga un id respectivo</div>
                             </div>
 
                             <div style="display: flex; align-items: center; flex-direction: column;">
                                 <input type="submit" class="btn btn-primary btn-block" value="Registrar Sucursal" style="margin-top: 20px; margin-bottom: 20px;">
                             </div>
-
                         }
                     </div>
                 </div>

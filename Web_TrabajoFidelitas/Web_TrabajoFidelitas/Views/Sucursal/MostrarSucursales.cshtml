@@ -5,26 +5,24 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Sucursal</h6>
+<div class="card shadow mb-4" style="margin-top: 86px;">
+    <div class="card-header py-3" style="display: flex; justify-content: space-between; align-items: center;">
+        <h6 class="m-0 font-weight-bold text-primary" style="text-transform: uppercase; letter-spacing: 5px; font-size: 26px;">Sucursales</h6>
+        <div>
+            <a class="btn btn-primary" href="@Url.Action("NuevoSucursal","Sucursal")"> + Agregar</a>
+        </div>
     </div>
     <div class="card-body">
         <div class="table-responsive">
             <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                 <div class="col-sm-12">
                     <div class="col-sm-12">
-
                         @if (ViewBag.MsjPantalla != null)
                         {
-                            <div class="alert alert-warning" role="alert" style="text-align:center">
+                            <div class="alert alert-warning" role="alert" style="text-align:center; margin-top: 20px; margin-bottom: 20px;">
                                 @ViewBag.MsjPantalla
                             </div>
                         }
-
-                        <div style="margin-bottom:1%; text-align:right">
-                            <a class="btn btn-primary" href="@Url.Action("NuevoSucursal","Sucursal")"> + Agregar</a>
-                        </div>
 
                         <table id="myDataTable" class="table table-bordered" style="width: 100%;">
                             <thead>
@@ -66,8 +64,6 @@
                                 }
                             </tbody>
                         </table>
-
-
                     </div>
                 </div>
             </div>

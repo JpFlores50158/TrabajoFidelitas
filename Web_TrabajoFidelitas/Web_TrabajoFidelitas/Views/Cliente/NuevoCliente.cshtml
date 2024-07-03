@@ -5,16 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<a class="btn btn-primary m-2 my-4" href="@Url.Action("MostrarClientes","Cliente")"><i class="bi bi-arrow-left-circle"></i> Regresar </a>
 <div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Registrar Cliente</h6>
-    </div>
-
     <div class="row">
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
-            <div class="card-body">
-                <div class="table-responsive">
+            <div class="card-body" style="margin-top: 20px;">
+                <div class="table-responsive" style="overflow-x: hidden;">
                     <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
 
                         @if (ViewBag.MsjPantalla != null)
@@ -24,31 +21,36 @@
                             </div>
                         }
 
-                        @using (Html.BeginForm("NuevoCliente", "Cliente", FormMethod.Post))
+                        @using (Html.BeginForm("NuevoCliente", "Cliente", FormMethod.Post, new { @class = "row g-3 needs-validation", novalidate = "novalidate" }))
                         {
                             <div class="form-group my-4">
-                                @Html.LabelFor(m => m.nombreCliente)
-                                @Html.TextBoxFor(m => m.nombreCliente, new { @class = "form-control", @placeholder = "Nombre", @required = "true" })
+                                @Html.Label("Nombre del Cliente")
+                                @Html.TextBoxFor(m => m.nombreCliente, new { @class = "form-control", @placeholder = "Nombre", @required = "true", @type = "text", @maxlength = "15" })
                                 @Html.ValidationMessageFor(m => m.nombreCliente, "", new { @class = "text-danger" })
+                                <div class="invalid-feedback">Por favor, ingrese el nombre del cliente</div>
                             </div>
                             <div class="form-group my-4">
-                                @Html.LabelFor(m => m.telefonoCliente)
-                                @Html.TextBoxFor(m => m.telefonoCliente, new { @class = "form-control", @placeholder = "Teléfono", @type = "tel", @required = "true" })
+                                @Html.Label("Teléfono del Cliente")
+                                @Html.TextBoxFor(m => m.telefonoCliente, new { @class = "form-control", @placeholder = "Teléfono", @required = "true", @type = "tel", })
                                 @Html.ValidationMessageFor(m => m.telefonoCliente, "", new { @class = "text-danger" })
+                                <div class="invalid-feedback">Por favor, ingrese el teléfono del cliente con su formato</div>
                             </div>
                             <div class="form-group my-4">
-                                @Html.LabelFor(m => m.direccionCliente)
-                                @Html.TextBoxFor(m => m.direccionCliente, new { @class = "form-control", @placeholder = "Dirección", @required = "true" })
+                                @Html.Label("Dirección Exacta del Cliente")
+                                @Html.TextBoxFor(m => m.direccionCliente, new { @class = "form-control", @placeholder = "Dirección", @required = "true", @type = "text", @maxlength = "255" })
                                 @Html.ValidationMessageFor(m => m.direccionCliente, "", new { @class = "text-danger" })
+                                <div class="invalid-feedback">Por favor, ingrese la dirección del cliente</div>
                             </div>
                             <div class="form-group my-4">
-                                @Html.LabelFor(m => m.emailCliente)
-                                @Html.TextBoxFor(m => m.emailCliente, new { @class = "form-control", @placeholder = "Email", @type = "email", @required = "true" })
+                                @Html.Label("Correo Electrónico del Cliente")
+                                @Html.TextBoxFor(m => m.emailCliente, new { @class = "form-control", @placeholder = "Email", @required = "true", @type = "email", @maxlength = "30" })
                                 @Html.ValidationMessageFor(m => m.emailCliente, "", new { @class = "text-danger" })
+                                <div class="invalid-feedback">Por favor, ingrese el correo del cliente con el formato de un correo electrónico</div>
                             </div>
-                           
 
-                            <input type="submit" class="btn btn-primary btn-block" value="Registrar Cliente">
+                            <div style="display: flex; align-items: center; flex-direction: column;">
+                                <input type="submit" class="btn btn-primary btn-block" value="Registrar Cliente" style="margin-top: 20px; margin-bottom: 20px;">
+                            </div>
                         }
                     </div>
                 </div>
