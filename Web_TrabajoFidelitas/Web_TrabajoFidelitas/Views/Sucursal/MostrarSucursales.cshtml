@@ -32,8 +32,10 @@
                                     <th>Direccion Sucursal</th>
                                     <th>Id de la direccion</th>
                                     <th>Estado</th>
-                                    <th>Acciones</th>
-
+                                    @if (Session["RolUsuario"].ToString() == "1")
+                                    {
+                                        <th>Acciones</th>
+                                    }
                                 </tr>
                             </thead>
                             <tbody>
@@ -44,7 +46,7 @@
                                         <td>@item.nombreSucursal</td>
                                         <td>@item.direccionSucursal</td>
                                         <td>@item.idCiudadSucursal</td>
-                                        
+
 
                                         @if (item.estado)
                                         {
@@ -54,13 +56,15 @@
                                         {
                                             <td>Inactivo</td>
                                         }
-
-                                        <td>
-                                            <div style="text-align:center">
-                                                <a href="@Url.Action("ActualizarSucursal","Sucursal", new { id = @item.idSucursal })" class="btn btn-sm btn-info"><i class="fa fa-pencil-square-o"></i></a>
-                                                <a href="@Url.Action("InactivarSucursal","Sucursal", new { id = @item.idSucursal })" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></a>
-                                            </div>
-                                        </td>
+                                        @if (Session["RolUsuario"].ToString() == "1")
+                                        {
+                                            <td>
+                                                <div style="text-align:center">
+                                                    <a href="@Url.Action("ActualizarSucursal", "Sucursal", new { id = @item.idSucursal })" class="btn btn-sm btn-info"><i class="fa fa-pencil-square-o"></i></a>
+                                                    <a href="@Url.Action("InactivarSucursal", "Sucursal", new { id = @item.idSucursal })" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></a>
+                                                </div>
+                                            </td>
+                                        }
                                     </tr>
                                 }
                             </tbody>

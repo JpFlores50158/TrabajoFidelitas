@@ -17,12 +17,12 @@
             <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                 <div class="col-sm-12">
                     <div class="col-sm-12">
-                        @if (ViewBag.MsjPantalla != null)
+                        @*@if (ViewBag.MsjPantalla != null)
                         {
                             <div class="alert alert-warning" role="alert" style="text-align:center; margin-top: 20px; margin-bottom: 20px;">
                                 @ViewBag.MsjPantalla
                             </div>
-                        }
+                        }*@
 
                         <table id="myDataTable" class="table table-bordered" style="width: 100%;">
                             <thead>
@@ -34,8 +34,11 @@
                                     <th>Modelo</th>
                                     <th>Año</th>
                                     <th>Estado</th>
-                                    <th>Acciones</th>
-                                </tr>
+                                    @if (Session["RolUsuario"].ToString() == "1")
+                                    {
+                                        <th>Acciones</th>
+                                    }
+                                    </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model)
@@ -56,13 +59,15 @@
                                         {
                                             <td style="padding: 15px;">Inactivo</td>
                                         }
-
-                                        <td style="padding: 15px;">
-                                            <div style="text-align:center">
-                                                <a href="@Url.Action("ActualizarAutomovil","Automovil", new { id = @item.idAutomovil })" class="btn btn-sm btn-info"><i class="fa fa-pencil-square-o"></i></a>
-                                                <a href="@Url.Action("EliminarAutomovil","Automovil", new { id = @item.idAutomovil })" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></a>
-                                            </div>
-                                        </td>
+                                        @if (Session["RolUsuario"].ToString() == "1")
+                                        {
+                                            <td style="padding: 15px;">
+                                                <div style="text-align:center">
+                                                    <a href="@Url.Action("ActualizarAutomovil", "Automovil", new { id = @item.idAutomovil })" class="btn btn-sm btn-info"><i class="fa fa-pencil-square-o"></i></a>
+                                                    <a href="@Url.Action("EliminarAutomovil", "Automovil", new { id = @item.idAutomovil })" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></a>
+                                                </div>
+                                            </td>
+                                        }
                                     </tr>
                                 }
                             </tbody>

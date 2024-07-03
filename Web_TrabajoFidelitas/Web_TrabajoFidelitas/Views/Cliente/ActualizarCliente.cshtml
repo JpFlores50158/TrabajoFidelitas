@@ -25,8 +25,8 @@
                         {
                             @Html.HiddenFor(m => m.idCliente)
                             <div class="form-group my-4">
-                                @Html.Label("Nombre del Cliente")
-                                @Html.TextBoxFor(m => m.nombreCliente, new { @class = "form-control", @placeholder = "Nombre", @required = "true", @type = "text", @maxlength = "15" })
+                                @Html.Label("Nombre Completo del Cliente")
+                                @Html.TextBoxFor(m => m.nombreCliente, new { @class = "form-control", @placeholder = "Nombre", @required = "true", @type = "text", @maxlength = "100" })
                                 @Html.ValidationMessageFor(m => m.nombreCliente, "", new { @class = "text-danger" })
                                 <div class="invalid-feedback">Por favor, ingrese el nombre del cliente</div>
                             </div>
