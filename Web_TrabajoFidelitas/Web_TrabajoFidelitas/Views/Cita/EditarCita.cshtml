@@ -1,0 +1,67 @@
+﻿@model Web_TrabajoFidelitas.Entidades.Citas
+
+@{
+    ViewBag.Title = "EditarCita";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<a class="btn btn-primary m-2 my-4" href="@Url.Action("MostrarCitas","Cita")"><i class="bi bi-arrow-left-circle"></i> Regresar </a>
+<div class="card shadow mb-4">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <div class="card-body" style="margin-top: 20px;">
+                <div class="table-responsive">
+                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+
+                        @if (ViewBag.MsjPantalla != null)
+                        {
+                            <div class="alert alert-warning" role="alert" style="text-align:center">
+                                @ViewBag.MsjPantalla
+                            </div>
+                        }
+
+                        @using (Html.BeginForm("EditarCita", "Cita", FormMethod.Post))
+                        {
+                            @Html.HiddenFor(m => m.idCita)
+                            <div class="form-group my-4">
+                                @Html.Label("Id Cliente")
+                                @Html.TextBoxFor(m => m.idCliente, new { @class = "form-control", @placeholder = "Id Cliente", @required = "true" })
+                                @Html.ValidationMessageFor(m => m.idCliente, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group my-3">
+                                @Html.Label("Id Automovil")
+                                @Html.TextBoxFor(m => m.idAutomovil, new { @class = "form-control", @placeholder = "Id Automovil", @required = "true" })
+                                @Html.ValidationMessageFor(m => m.idAutomovil, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group my-3">
+                                @Html.Label("ID Ciudad Sucursal")
+                                @Html.TextBoxFor(m => m.idSucursal, new { @class = "form-control", @placeholder = "Ciudad de la Sucursal", @required = "true" })
+                                @Html.ValidationMessageFor(m => m.idSucursal, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group my-3">
+                                @Html.Label("ID Servicio")
+                                @Html.TextBoxFor(m => m.idServicio, new { @class = "form-control", @placeholder = "ID Servicio", @required = "true" })
+                                @Html.ValidationMessageFor(m => m.idServicio, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group my-3">
+                                @Html.Label("Fecha")
+                                @Html.TextBoxFor(m => m.fechaHora, new { @class = "form-control", @placeholder = "Fecha", @required = "true" })
+                                @Html.ValidationMessageFor(m => m.fechaHora, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group my-3">
+                                @Html.Label("Estado")
+                                @Html.TextBoxFor(m => m.estado, new { @class = "form-control", @placeholder = "Estado", @required = "true" })
+                                @Html.ValidationMessageFor(m => m.estado, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div style="display: flex; align-items: center; flex-direction: column;">
+                                <input type="submit" class="btn btn-primary btn-block" value="Actualizar Sucursal" style="margin-top: 20px; margin-bottom: 20px;">
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

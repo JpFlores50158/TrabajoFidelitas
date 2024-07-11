@@ -151,6 +151,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\Citascontroller.cs" />
     <Compile Include="Controllers\SucursalController.cs" />
     <Compile Include="Controllers\ReporteController.cs" />
     <Compile Include="Controllers\AuditoriaController.cs" />
@@ -160,6 +161,7 @@
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Entidades\Automovil.cs" />
+    <Compile Include="Entidades\Citas.cs" />
     <Compile Include="Entidades\Cliente.cs" />
     <Compile Include="Entidades\Confirmacion.cs" />
     <Compile Include="Entidades\Cuidades.cs" />
@@ -168,6 +170,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CitasModel.cs" />
     <Compile Include="Models\FiltroSeguridad.cs" />
     <Compile Include="Models\SucursalModel.cs" />
     <Compile Include="Models\AutomovilModel.cs" />
@@ -622,13 +625,14 @@
     <Content Include="Views\Sucursal\ActualizarSucursal.cshtml" />
     <Content Include="Views\Cita\MostrarCitas.cshtml" />
     <Content Include="Views\Cita\NuevoCita.cshtml" />
-    <Content Include="Views\Cita\ActualizarCita.cshtml" />
+    <Content Include="Views\Cita\EditarCita.cshtml" />
     <Content Include="Views\Reporte\MostrarReportes.cshtml" />
     <Content Include="Views\Usuario\MostrarCitaUsuario.cshtml" />
     <Content Include="Views\Usuario\RecuperarAcceso.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Citascontroller\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

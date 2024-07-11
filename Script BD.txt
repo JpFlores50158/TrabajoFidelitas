@@ -780,3 +780,60 @@ USE [master]
 GO
 ALTER DATABASE [MotoresBritanicos] SET  READ_WRITE 
 GO
+
+
+ALTER PROCEDURE [dbo].[TraerCita]
+
+AS
+BEGIN
+    SELECT * FROM Citas
+END;
+
+GO
+
+ALTER PROCEDURE [dbo].[sp_EliminarCita]
+    @idCita bigint
+AS
+BEGIN
+    UPDATE Citas SET Estado = 0
+    WHERE idCita = @idCita;
+
+END;
+
+GO
+
+ALTER PROCEDURE [dbo].[EditarCita]
+    @idCita INT,
+    @idCliente INT,
+    @idAutomovil INT,
+    @idSucursal INT,
+    @idServicio INT,
+    @fechaHora DATETIME,
+    @comentarios VARCHAR(MAX),
+    @estado bit
+AS
+BEGIN
+    UPDATE [MotoresBritanicos].[dbo].[Citas]
+    SET
+        idCliente = @idCliente,
+        idAutomovil = @idAutomovil,
+        idSucursal = @idSucursal,
+        idServicio = @idServicio,
+        fechaHora = @fechaHora,
+        comentarios = @comentarios,
+        estado = @estado
+    WHERE
+        idCita = @idCita;
+END;
+
+GO
+
+ALTER PROCEDURE [dbo].[ConsultarCita]
+    @idCita Bigint
+AS
+BEGIN
+   SELECT * FROM Citas WHERE idCita = @idCita 
+
+END;
+
+GO
