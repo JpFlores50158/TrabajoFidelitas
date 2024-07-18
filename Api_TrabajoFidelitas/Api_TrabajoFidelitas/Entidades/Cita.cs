@@ -16,6 +16,11 @@ namespace Api_TrabajoFidelitas.Entidades
         public string comentarios { get; set; }
         public bool estado { get; set; }
 
+        public string nombreSucursal { get; set; }
+        public string placa { get; set; }
+        public string nombreServicio { get; set; }
+        public string nombreCliente { get; set; }
+
 
 
 

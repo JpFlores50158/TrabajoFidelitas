@@ -166,6 +166,7 @@
     <Compile Include="Entidades\Confirmacion.cs" />
     <Compile Include="Entidades\Cuidades.cs" />
     <Compile Include="Entidades\IdsClientes.cs" />
+    <Compile Include="Entidades\Servicios.cs" />
     <Compile Include="Entidades\Sucursal.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -174,7 +175,6 @@
     <Compile Include="Models\FiltroSeguridad.cs" />
     <Compile Include="Models\SucursalModel.cs" />
     <Compile Include="Models\AutomovilModel.cs" />
-    <Compile Include="Models\CitaModel.cs" />
     <Compile Include="Models\ClienteModel.cs" />
     <Compile Include="Models\ReporteModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
@@ -629,10 +629,10 @@
     <Content Include="Views\Reporte\MostrarReportes.cshtml" />
     <Content Include="Views\Usuario\MostrarCitaUsuario.cshtml" />
     <Content Include="Views\Usuario\RecuperarAcceso.cshtml" />
+    <Content Include="Views\Cita\Calendario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Citascontroller\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

@@ -13,7 +13,8 @@
             <div class="card-body" style="margin-top: 20px;">
                 <div class="table-responsive">
                     <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-
+                        <h3>Editar Cita</h3>
+                        <hr />
                         @if (ViewBag.MsjPantalla != null)
                         {
                             <div class="alert alert-warning" role="alert" style="text-align:center">
@@ -24,35 +25,36 @@
                         @using (Html.BeginForm("EditarCita", "Cita", FormMethod.Post))
                         {
                             @Html.HiddenFor(m => m.idCita)
-                            <div class="form-group my-4">
-                                @Html.Label("Id Cliente")
-                                @Html.TextBoxFor(m => m.idCliente, new { @class = "form-control", @placeholder = "Id Cliente", @required = "true" })
-                                @Html.ValidationMessageFor(m => m.idCliente, "", new { @class = "text-danger" })
-                            </div>
                             <div class="form-group my-3">
                                 @Html.Label("Id Automovil")
-                                @Html.TextBoxFor(m => m.idAutomovil, new { @class = "form-control", @placeholder = "Id Automovil", @required = "true" })
+                                @Html.DropDownListFor(m => m.idAutomovil, ViewBag.Automoviles as List<SelectListItem>, new { @class = "form-control form-control-user", @required = "true" })
                                 @Html.ValidationMessageFor(m => m.idAutomovil, "", new { @class = "text-danger" })
                             </div>
                             <div class="form-group my-3">
                                 @Html.Label("ID Ciudad Sucursal")
-                                @Html.TextBoxFor(m => m.idSucursal, new { @class = "form-control", @placeholder = "Ciudad de la Sucursal", @required = "true" })
+
+                                @Html.DropDownListFor(m => m.idSucursal, ViewBag.Sucursales as List<SelectListItem>, new { @class = "form-control form-control-user", @required = "true" })
                                 @Html.ValidationMessageFor(m => m.idSucursal, "", new { @class = "text-danger" })
                             </div>
                             <div class="form-group my-3">
                                 @Html.Label("ID Servicio")
-                                @Html.TextBoxFor(m => m.idServicio, new { @class = "form-control", @placeholder = "ID Servicio", @required = "true" })
+                                @Html.DropDownListFor(m => m.idServicio, ViewBag.Servicios as List<SelectListItem>, new { @class = "form-control form-control-user", @required = "true" })
                                 @Html.ValidationMessageFor(m => m.idServicio, "", new { @class = "text-danger" })
                             </div>
                             <div class="form-group my-3">
                                 @Html.Label("Fecha")
-                                @Html.TextBoxFor(m => m.fechaHora, new { @class = "form-control", @placeholder = "Fecha", @required = "true" })
+                                @Html.TextBoxFor(m => m.fechaHora, new { @class = "form-control", @placeholder = "Fecha", @required = "true", @min = "2024-01-01T07:00", @max = "2024-12-31T17:00", @step = "1800" })
                                 @Html.ValidationMessageFor(m => m.fechaHora, "", new { @class = "text-danger" })
                             </div>
                             <div class="form-group my-3">
+                                @Html.Label("Comentarios")
+                                @Html.TextBoxFor(m => m.comentarios, new { @class = "form-control", @placeholder = "Comentarios", @required = "true" })
+                                @Html.ValidationMessageFor(m => m.comentarios, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group my-3">
                                 @Html.Label("Estado")
-                                @Html.TextBoxFor(m => m.estado, new { @class = "form-control", @placeholder = "Estado", @required = "true" })
-                                @Html.ValidationMessageFor(m => m.estado, "", new { @class = "text-danger" })
+
+                                @Html.DropDownListFor(m => m.estado, new SelectList(new[] { new SelectListItem { Text = "Seleccione....", Value = "null" }, new SelectListItem { Text = "Cancelada", Value = "false" }, new SelectListItem { Text = "Activo", Value = "true" } }, "Value", "Text"), new { @class = "form-control" })
                             </div>
 
                             <div style="display: flex; align-items: center; flex-direction: column;">

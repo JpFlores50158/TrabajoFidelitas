@@ -1,30 +1,69 @@
-﻿
-<a class="btn btn-primary m-2 my-4" href="@Url.Action("MostrarCitas","Cita")"><i class="bi bi-arrow-left-circle"></i> Regresar</a>
-<div class="card">
-    <div class="card-body">
-        <h3 class="card-title text-center">Nuevo</h3>
-        <hr />
-        <form class="row g-3">
-            <div class="col-12">
-                <label for="inputNanme4" class="form-label">Your Name</label>
-                <input type="text" class="form-control" id="inputNanme4">
+﻿@model Web_TrabajoFidelitas.Entidades.Citas
+
+@{
+    ViewBag.Title = "EditarCita";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<a class="btn btn-primary m-2 my-4" href="@Url.Action("MostrarCitas","Cita")"><i class="bi bi-arrow-left-circle"></i> Regresar </a>
+<div class="card shadow mb-4">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <div class="card-body" style="margin-top: 20px;">
+                <div class="table-responsive">
+                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                        <h3>Agregar Cita</h3>
+                        <hr />
+                        @if (ViewBag.MsjPantalla != null)
+                        {
+                            <div class="alert alert-warning" role="alert" style="text-align:center">
+                                @ViewBag.MsjPantalla
+                            </div>
+                        }
+
+                        @using (Html.BeginForm("NuevoCita", "Cita", FormMethod.Post))
+                        {
+                            @Html.HiddenFor(m => m.idCita)
+
+                            <div class="form-group my-3">
+                                @Html.Label("Placa automovil")
+                                @Html.DropDownListFor(m => m.idAutomovil, ViewBag.Automoviles as List<SelectListItem>, new { @class = "form-control form-control-user", @required = "true" })
+                                @Html.ValidationMessageFor(m => m.idAutomovil, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group my-3">
+                                @Html.Label("Tipo Sucursal")
+                                @Html.DropDownListFor(m => m.idSucursal, ViewBag.Sucursales as List<SelectListItem>, new { @class = "form-control form-control-user", @required = "true" })
+                                @Html.ValidationMessageFor(m => m.idSucursal, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group my-3">
+                                @Html.Label("Tipo Servicio")
+                                @Html.DropDownListFor(m => m.idServicio, ViewBag.Servicios as List<SelectListItem>, new { @class = "form-control form-control-user", @required = "true" })
+                                @Html.ValidationMessageFor(m => m.idServicio, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group my-3">
+                                @Html.Label("Fecha")
+                                @Html.TextBoxFor(m => m.fechaHora, new { @class = "form-control", @placeholder = "Fecha", @required = "true", @type = "date" ,@min = DateTime.Now.ToString("yyyy-MM-dd")})
+                                @Html.ValidationMessageFor(m => m.fechaHora, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group my-3">
+                                @Html.Label("Hora")
+                                @Html.DropDownListFor(m => m.HoraSeleccionada, ViewBag.Horas as List<SelectListItem>, new { @class = "form-control form-control-user", @required = "true" })
+                                @Html.ValidationMessageFor(m => m.HoraSeleccionada, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group my-3">
+                                @Html.Label("Comentarios")
+                                @Html.TextBoxFor(m => m.comentarios, new { @class = "form-control", @placeholder = "Comentarios", @required = "true" })
+                                @Html.ValidationMessageFor(m => m.comentarios, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div style="display: flex; align-items: center; flex-direction: column;">
+                                <input type="submit" class="btn btn-primary btn-block" value="Agregar" style="margin-top: 20px; margin-bottom: 20px;">
+                            </div>
+                        }
+                    </div>
+                </div>
             </div>
-            <div class="col-12">
-                <label for="inputEmail4" class="form-label">Email</label>
-                <input type="email" class="form-control" id="inputEmail4">
-            </div>
-            <div class="col-12">
-                <label for="inputPassword4" class="form-label">Password</label>
-                <input type="password" class="form-control" id="inputPassword4">
-            </div>
-            <div class="col-12">
-                <label for="inputAddress" class="form-label">Address</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-            </div>
-            <div class="text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <button type="reset" class="btn btn-secondary">Reset</button>
-            </div>
-        </form><!-- Vertical Form -->
+        </div>
     </div>
 </div>

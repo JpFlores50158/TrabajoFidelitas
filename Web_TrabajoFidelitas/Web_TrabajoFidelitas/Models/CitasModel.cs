@@ -54,7 +54,7 @@ namespace Web_TrabajoFidelitas.Models
             }
         }
 
-        public ConfirmacionCita sp_EliminarCita(long id)
+        public ConfirmacionCita InactivarCita(long id)
         {
             using (var client = new HttpClient())
             {
@@ -66,7 +66,59 @@ namespace Web_TrabajoFidelitas.Models
                     return null;
             }
         }
+        public ConfirmacionCita EliminarCita(long id)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlWebApi"] + "Citas/EliminarCitaTotal?id=" + id;
+                var respuesta = client.DeleteAsync(url).Result;
+                if (respuesta.IsSuccessStatusCode)
+                    return respuesta.Content.ReadFromJsonAsync<ConfirmacionCita>().Result;
+                else
+                    return null;
+            }
+        }
 
+        public ConfirmacionCita Agregarcita(Citas entidad)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlWebApi"] + "Citas/AgregarCita";
+                JsonContent jsonEntidad = JsonContent.Create(entidad);
+                var respuesta = client.PostAsync(url, jsonEntidad).Result;
+
+                if (respuesta.IsSuccessStatusCode)
+                    return respuesta.Content.ReadFromJsonAsync<ConfirmacionCita>().Result;
+                else
+                    return null;
+            }
+        }
+        public ConfirmacionServicios ConsultarServicios()
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlWebApi"] + "Servicios/ConsultarServicios";
+                var respuesta = client.GetAsync(url).Result;
+
+                if (respuesta.IsSuccessStatusCode)
+                    return respuesta.Content.ReadFromJsonAsync<ConfirmacionServicios>().Result;
+                else
+                    return null;
+            }
+        }
+        public ConfirmacionCita ConsultarCitaporSucursal(int idSucursal)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlWebApi"] + "Citas/ConsultarCitasPorSucursal?idSucursal=" + idSucursal;
+                var respuesta = client.GetAsync(url).Result;
+
+                if (respuesta.IsSuccessStatusCode)
+                    return respuesta.Content.ReadFromJsonAsync<ConfirmacionCita>().Result;
+                else
+                    return null;
+            }
+        }
 
     }
 

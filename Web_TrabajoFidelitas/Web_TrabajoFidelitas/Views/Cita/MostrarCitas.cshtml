@@ -23,18 +23,21 @@
                         }
 
                         <div style="margin-bottom:1%; text-align:right">
-                            <a class="btn btn-primary" href="@Url.Action("NuevoSucursal","Sucursal")"> + Agregar</a>
+                            <a class="btn btn-primary" href="@Url.Action("NuevoCita", "Cita")"> + Agregar</a>
                         </div>
 
                         <table id="myDataTable" class="table table-bordered" style="width: 100%;">
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Nombre de la Sucursal</th>
-                                    <th>Direccion Sucursal</th>
-                                    <th>Id de la direccion</th>
+                                    <th>Nombre cliente</th>
+                                    <th>Placa</th>
+                                    <th>Sucursal</th>
+                                    <th>Tipo Servicio</th>
+                                    <th>Fecha Hora</th>
+                                    <th>Comentarios</th>
                                     <th>Estado</th>
-
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -42,27 +45,27 @@
                                 {
                                     <tr>
                                         <td>@item.idCita</td>
-                                        <td>@item.idCliente</td>
-                                        <td>@item.idAutomovil</td>
-                                        <td>@item.idSucursal</td>
-                                        <td>@item.idServicio</td>
+                                        <td>@item.nombreCliente</td>
+                                        <td>@item.placa</td>
+                                        <td>@item.nombreSucursal</td>
+                                        <td>@item.nombreServicio</td>
                                         <td>@item.fechaHora</td>
                                         <td>@item.comentarios</td>
-                                        <td>@item.estado</td>
 
                                         @if (item.estado)
                                         {
-                                            <td>Activo</td>
+                                            <td style="background-color: #ADFFAA ">Activa</td>
                                         }
                                         else
                                         {
-                                            <td>Inactivo</td>
+                                            <td style="background-color: #FFAAAA ">Cancelada</td>
                                         }
 
                                         <td>
-                                            <div style="text-align:center">
-                                                <a href="@Url.Action("EditarCita","Cita", new { id = @item.idCita })" class="btn btn-sm btn-info"><i class="fa fa-pencil-square-o"></i></a>
-                                                <a href="@Url.Action("InactivarCita","Cita", new { id = @item.idCita })" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></a>
+                                            <div style="display:flex">
+                                                <a href="@Url.Action("EditarCita", "Cita", new { id = @item.idCita })" class="btn btn-sm btn-info mx-1"><i class="fa fa-pencil-square-o"></i></a>
+                                                <a href="@Url.Action("InactivarCita", "Cita", new { id = @item.idCita })" class="btn btn-sm btn-warning"><i class="fa fa-ban"></i></a>
+                                                <a href="@Url.Action("EliminarCita", "Cita", new { id = @item.idCita })" class="btn btn-sm btn-danger mx-1"><i class="fa fa-trash"></i></a>
                                             </div>
                                         </td>
                                     </tr>
@@ -70,8 +73,31 @@
                             </tbody>
                         </table>
 
-
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <div class="container">
+            <div class="card">
+                <div class="card-body">
+                    @using (Html.BeginForm("Calendario", "Cita", FormMethod.Get))
+                    {
+                        <div class="form-group my-3 text-center">
+                            @Html.Label("Sucursal para el calendario", new { @class = "my-3" })
+                            @Html.DropDownList("idSucursal", ViewBag.Sucursales as List<SelectListItem>, new { @class = "form-control form-control-user", @required = "true" })
+                            @Html.ValidationMessage("idSucursal", "", new { @class = "text-danger" })
+                        </div>
+
+                        <div style="display: flex; align-items: center; flex-direction: column;">
+                            <input type="submit" class="btn btn-primary btn-block" value="Consultar Calendario" style="margin-top: 20px; margin-bottom: 20px;">
+                        </div>
+                    }
                 </div>
             </div>
         </div>
@@ -92,3 +118,13 @@
         });
     });
 </script>
+
+<style>
+    .estado-activo {
+        background-color: #d4edda; /* Verde claro */
+    }
+
+    .estado-cancelado {
+        background-color: #f8d7da; /* Rojo claro */
+    }
+</style>

@@ -15,6 +15,11 @@ namespace Web_TrabajoFidelitas.Entidades
         public DateTime fechaHora { get; set; }
         public string comentarios { get; set; }
         public bool estado { get; set; }
+        public string nombreSucursal { get; set; }
+        public string placa { get; set; }
+        public string nombreServicio { get; set; }
+        public string nombreCliente { get; set; }
+        public int HoraSeleccionada { get; set; }
     }
 
     public class ConfirmacionCita
