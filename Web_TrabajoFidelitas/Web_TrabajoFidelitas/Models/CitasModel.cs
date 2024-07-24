@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Web;
 using Web_TrabajoFidelitas.Entidades;
+using WebGrease.Activities;
 
 namespace Web_TrabajoFidelitas.Models
 {
@@ -119,7 +120,7 @@ namespace Web_TrabajoFidelitas.Models
                     return null;
             }
         }
-            public Confirmacion ConfirmacionCita(Usuario entidad)
+            public Confirmacion ConfirmacionCita(Citas entidad)
         {
             // LLAMAR A LA API
             using (var client = new HttpClient())
@@ -131,6 +132,20 @@ namespace Web_TrabajoFidelitas.Models
 
                 if (respuesta.IsSuccessStatusCode)
                     return respuesta.Content.ReadFromJsonAsync<Confirmacion>().Result;
+                else
+                    return null;
+            }
+        }
+
+        public ConfirmacionServicios ConsultarServicio(long id)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlWebApi"] + "Servicios/TraerServicio?id="+id;
+                var respuesta = client.GetAsync(url).Result;
+
+                if (respuesta.IsSuccessStatusCode)
+                    return respuesta.Content.ReadFromJsonAsync<ConfirmacionServicios>().Result;
                 else
                     return null;
             }

@@ -15,6 +15,7 @@ namespace Api_TrabajoFidelitas.Entidades
         public DateTime fechaHora { get; set;}
         public string comentarios { get; set; }
         public bool estado { get; set; }
+        public string correoElect { get; set; }
 
         public string nombreSucursal { get; set; }
         public string placa { get; set; }

@@ -13,10 +13,11 @@ namespace Web_TrabajoFidelitas.Controllers
     public class CitaController : Controller
     {
         AuditoriaModel modelA = new AuditoriaModel();
+        ClienteModel modelCl = new ClienteModel();
         CitasModel model = new CitasModel();
         SucursalModel modelSu = new SucursalModel();
         AutomovilModel modelAu = new AutomovilModel();
-     
+
         [HttpGet]
         public ActionResult MostrarCitas()
         {
@@ -61,7 +62,19 @@ namespace Web_TrabajoFidelitas.Controllers
                 au.Usuario = Session["NombreUsuario"].ToString();
                 modelA.AgregarAuditoria(au);
 
-                //var mandar = MODELADO.ConfirmacionCita();
+                var cliente = modelCl.ConsultarCliente(entidad.idCliente);
+                entidad.correoElect = cliente.Dato.emailCliente;
+
+                var sucursal = modelSu.TraerSucursal(entidad.idSucursal);
+                entidad.nombreSucursal = sucursal.Dato.nombreSucursal;
+
+                var servicio = model.ConsultarServicio(entidad.idServicio);
+                entidad.nombreServicio = servicio.Dato.NombreServicio;
+
+                var placa = modelAu.ConsultarAutomovil(entidad.idAutomovil);
+                entidad.placa = placa.Dato.placa;
+
+                var mandar = MODELADO.ConfirmacionCita(entidad);
 
                 return RedirectToAction("MostrarCitas");
             }

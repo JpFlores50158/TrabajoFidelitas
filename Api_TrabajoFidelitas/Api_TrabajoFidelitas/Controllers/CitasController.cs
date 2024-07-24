@@ -22,6 +22,8 @@ namespace Api_TrabajoFidelitas.Controllers
 {
     public class CitasController : ApiController
     {
+        UtilitariosCorreo modeloCorreo = new UtilitariosCorreo();
+
         [HttpGet]
         [Route("Citas/TraerCita")]
         public ConfirmacionCita TraerCita()
@@ -265,29 +267,26 @@ namespace Api_TrabajoFidelitas.Controllers
 
         [Route("Citas/ConfirmacionCita")]
         [HttpPost]
-        public Confirmacion ConfirmacionCita(Usuario entidad)
+        public Confirmacion ConfirmacionCita(Cita entidad)
         {
             var respuesta = new Confirmacion();
 
-            //string rutaHTML = AppDomain.CurrentDomain.BaseDirectory + "CorreoElec.html";
-            //string contenidoHTML = File.ReadAllText(rutaHTML);
+            string rutaHTML = AppDomain.CurrentDomain.BaseDirectory + "CorreoElec.html";
+            string contenidoHTML = File.ReadAllText(rutaHTML);
 
-            //contenidoHTML = contenidoHTML.Replace("@@Nombre", entidad.nombreUsuario);
-            //contenidoHTML = contenidoHTML.Replace("@@Correo", entidad.emailUsuario);
-            //contenidoHTML = contenidoHTML.Replace("@@Vencimiento", datos.Vencimiento.ToString("dd/MM/yyyy HH:mm:ss tt"));
+            contenidoHTML = contenidoHTML.Replace("@@Nombre", entidad.nombreCliente);
+            contenidoHTML = contenidoHTML.Replace("@@Fecha", entidad.fechaHora.ToString("dd/MM/yyyy"));
+            contenidoHTML = contenidoHTML.Replace("@@Sucursal", entidad.nombreSucursal);
+            contenidoHTML = contenidoHTML.Replace("@@Servicio", entidad.nombreServicio);
+            contenidoHTML = contenidoHTML.Replace("@@Placa", entidad.placa);
+            contenidoHTML = contenidoHTML.Replace("@@Comentario", entidad.comentarios);
 
+            //MANDAR EL CORREO
+            modeloCorreo.EnviarCorreo(entidad.correoElect, "Confirmación de Cita", contenidoHTML);
 
-
-            ////MANDAR EL CORREO
-            //model.EnviarCorreo(datos.CorreoElectronico, "Acceso Temporal", contenidoHTML);
-
-            //respuesta.Codigo = 0;
-            //respuesta.Detalle = string.Empty;
+            respuesta.Codigo = 0;
+            respuesta.Detalle = string.Empty;
             return respuesta;
         }
     }
-
-}
-
-
 }

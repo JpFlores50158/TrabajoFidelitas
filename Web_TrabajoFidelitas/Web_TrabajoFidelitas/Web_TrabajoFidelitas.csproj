@@ -201,6 +201,9 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Compile Include="Entidades\Usuario.cs" />
+    <Content Include="CorreoElec.html" />
+    <Content Include="Estilos\assets\css\Correo.css" />
+    <Content Include="Estilos\assets\img\Logo-Grupo-Motores-Britanicos.jpg" />
     <Content Include="Estilos\assets\css\style.css" />
     <Content Include="Estilos\assets\img\Grupo-Motores-Britanicos-2.png" />
     <Content Include="Estilos\assets\js\main.js" />

@@ -47,5 +47,40 @@ namespace Api_TrabajoFidelitas.Controllers
 
             return respuesta;
         }
+
+        [HttpGet]
+        [Route("Servicios/TraerServicio")]
+        public ConfirmacionServicios TraerServicio(long id)
+        {
+            var respuesta = new ConfirmacionServicios();
+
+            try
+            {
+                using (var db = new MotoresBritanicosEntities())
+                {
+                    var datos = db.TraerServicio(Convert.ToInt32(id)).FirstOrDefault();
+
+                    if (datos != null)
+                    {
+                        respuesta.Codigo = 0;
+                        respuesta.Detalle = string.Empty;
+                        respuesta.Dato = datos;
+
+                    }
+                    else
+                    {
+                        respuesta.Codigo = -1;
+                        respuesta.Detalle = "No se encontro información";
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                respuesta.Codigo = -1;
+                respuesta.Detalle = "Se presentó un error en el sistema,InicioSesion";
+            }
+
+            return respuesta;
+        }
     }
 }
