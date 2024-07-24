@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using Web_TrabajoFidelitas.Entidades;
@@ -43,6 +44,8 @@ namespace Web_TrabajoFidelitas.Controllers
         [HttpPost]
         public ActionResult NuevoCita(Citas entidad)
         {
+            CitasModel MODELADO = new CitasModel();
+
             var consulta = modelAu.ConsultarAutomovil(entidad.idAutomovil);
             entidad.idCliente = consulta.Dato.idCliente;
 
@@ -57,6 +60,9 @@ namespace Web_TrabajoFidelitas.Controllers
                 au.Action = "INSERT";
                 au.Usuario = Session["NombreUsuario"].ToString();
                 modelA.AgregarAuditoria(au);
+
+                //var mandar = MODELADO.ConfirmacionCita();
+
                 return RedirectToAction("MostrarCitas");
             }
             else

@@ -7,6 +7,17 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Mail;
+using System.Security.Cryptography;
+using System.Web.Http;
+
 namespace Api_TrabajoFidelitas.Controllers
 {
     public class CitasController : ApiController
@@ -252,7 +263,31 @@ namespace Api_TrabajoFidelitas.Controllers
             return respuesta;
         }
 
+        [Route("Citas/ConfirmacionCita")]
+        [HttpPost]
+        public Confirmacion ConfirmacionCita(Usuario entidad)
+        {
+            var respuesta = new Confirmacion();
+
+            //string rutaHTML = AppDomain.CurrentDomain.BaseDirectory + "CorreoElec.html";
+            //string contenidoHTML = File.ReadAllText(rutaHTML);
+
+            //contenidoHTML = contenidoHTML.Replace("@@Nombre", entidad.nombreUsuario);
+            //contenidoHTML = contenidoHTML.Replace("@@Correo", entidad.emailUsuario);
+            //contenidoHTML = contenidoHTML.Replace("@@Vencimiento", datos.Vencimiento.ToString("dd/MM/yyyy HH:mm:ss tt"));
+
+
+
+            ////MANDAR EL CORREO
+            //model.EnviarCorreo(datos.CorreoElectronico, "Acceso Temporal", contenidoHTML);
+
+            //respuesta.Codigo = 0;
+            //respuesta.Detalle = string.Empty;
+            return respuesta;
+        }
     }
+
+}
 
 
 }

@@ -119,7 +119,22 @@ namespace Web_TrabajoFidelitas.Models
                     return null;
             }
         }
+            public Confirmacion ConfirmacionCita(Usuario entidad)
+        {
+            // LLAMAR A LA API
+            using (var client = new HttpClient())
+            {
 
+                string url = ConfigurationManager.AppSettings["urlWebApi"] + "Citas/ConfirmacionCita";
+                JsonContent jsonEntidad = JsonContent.Create(entidad);
+                var respuesta = client.PostAsync(url, jsonEntidad).Result;
+
+                if (respuesta.IsSuccessStatusCode)
+                    return respuesta.Content.ReadFromJsonAsync<Confirmacion>().Result;
+                else
+                    return null;
+            }
+        }
     }
 
        
