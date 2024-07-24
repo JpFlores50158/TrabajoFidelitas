@@ -13,13 +13,15 @@ namespace Web_TrabajoFidelitas.Controllers
     public class AutomovilController : Controller
     {
         AutomovilModel model = new AutomovilModel();
-
+        AuditoriaModel modelA = new AuditoriaModel();
         [HttpGet]
         public ActionResult MostrarAutomoviles()
         {
             var respuesta = model.ConsultarAutomoviles();
             if (respuesta.Codigo == 0)
             {
+            
+
                 return View(respuesta.Datos);
             } else 
             {
@@ -44,6 +46,11 @@ namespace Web_TrabajoFidelitas.Controllers
             var respuesta = model.AgregarAutomovil(entidad);
             if (respuesta.Codigo == 0)
             {
+                Auditoria au = new Auditoria();
+                au.TableName = "Automoviles";
+                au.Action = "INSERT";
+                au.Usuario = Session["NombreUsuario"].ToString();
+                modelA.AgregarAuditoria(au);
                 return RedirectToAction("MostrarAutomoviles");
             }
             else
@@ -68,6 +75,11 @@ namespace Web_TrabajoFidelitas.Controllers
             var respuesta = model.ActualizarAutomovil(entidad);
             if (respuesta.Codigo == 0)
             {
+                Auditoria au = new Auditoria();
+                au.TableName = "Automoviles";
+                au.Action = "UPDATE";
+                au.Usuario = Session["NombreUsuario"].ToString();
+                modelA.AgregarAuditoria(au);
                 return RedirectToAction("MostrarAutomoviles");
             }
             else
@@ -85,6 +97,11 @@ namespace Web_TrabajoFidelitas.Controllers
 
             if (respuesta.Codigo == 0)
             {
+                Auditoria au = new Auditoria();
+                au.TableName = "Automoviles";
+                au.Action = "DELETE";
+                au.Usuario = Session["NombreUsuario"].ToString();
+                modelA.AgregarAuditoria(au);
                 return RedirectToAction("MostrarAutomoviles", "Automovil");
             }
             else

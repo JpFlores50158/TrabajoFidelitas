@@ -13,6 +13,7 @@ namespace Web_TrabajoFidelitas.Controllers
     public class ClienteController : Controller
     {
         ClienteModel model = new ClienteModel();
+        AuditoriaModel modelA = new AuditoriaModel();
 
         [HttpGet]
         public ActionResult MostrarClientes()
@@ -37,6 +38,11 @@ namespace Web_TrabajoFidelitas.Controllers
             var respuesta = model.AgregarCliente(entidad);
             if (respuesta.Codigo == 0)
             {
+                Auditoria au = new Auditoria();
+                au.TableName = "Clientes";
+                au.Action = "INSERT";
+                au.Usuario = Session["NombreUsuario"].ToString();
+                modelA.AgregarAuditoria(au);
                 return RedirectToAction("MostrarClientes");
             }
             else
@@ -58,6 +64,11 @@ namespace Web_TrabajoFidelitas.Controllers
             var respuesta = model.ActualizarCliente(entidad);
             if (respuesta.Codigo == 0)
             {
+                Auditoria au = new Auditoria();
+                au.TableName = "Clientes";
+                au.Action = "UPDATE";
+                au.Usuario = Session["NombreUsuario"].ToString();
+                modelA.AgregarAuditoria(au);
                 return RedirectToAction("MostrarClientes");
             }
             else
@@ -69,10 +80,18 @@ namespace Web_TrabajoFidelitas.Controllers
         public ActionResult EliminarCliente(long id)
         {
             var respuesta = model.EliminarCliente(id);
-
+            
             if (respuesta.Codigo == 0)
             {
+                
+                Auditoria au = new Auditoria();
+                au.TableName = "Clientes";
+                au.Action = "DELETE";
+                au.Usuario = Session["NombreUsuario"].ToString();
+                
+                var Autoria = modelA.AgregarAuditoria(au);
                 return RedirectToAction("MostrarClientes");
+              
             }
             else
             {

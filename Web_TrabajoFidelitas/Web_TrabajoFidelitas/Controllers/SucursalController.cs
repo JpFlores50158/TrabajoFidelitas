@@ -13,13 +13,14 @@ namespace Web_TrabajoFidelitas.Controllers
     public class SucursalController : Controller
     {
         SucursalModel model = new SucursalModel();
-
+        AuditoriaModel modelA = new AuditoriaModel();
         [HttpGet]
         public ActionResult MostrarSucursales()
         {
             var respuesta = model.ConsultarSucursal();
             if (respuesta.Codigo == 0)
             {
+              
                 return View(respuesta.Datos);
             }
             else
@@ -39,6 +40,11 @@ namespace Web_TrabajoFidelitas.Controllers
             var respuesta = model.AgregarSucursal(entidad);
             if (respuesta.Codigo == 0)
             {
+                Auditoria au = new Auditoria();
+                au.TableName = "Citas";
+                au.Action = "INSERT";
+                au.Usuario = Session["NombreUsuario"].ToString();
+                modelA.AgregarAuditoria(au);
                 return RedirectToAction("MostrarSucursales");
             }
             else
@@ -59,6 +65,11 @@ namespace Web_TrabajoFidelitas.Controllers
             var respuesta = model.ActualizarSucursal(entidad);
             if (respuesta.Codigo == 0)
             {
+                Auditoria au = new Auditoria();
+                au.TableName = "Citas";
+                au.Action = "UPDATE";
+                au.Usuario = Session["NombreUsuario"].ToString();
+                modelA.AgregarAuditoria(au);
                 return RedirectToAction("MostrarSucursales");
             }
             else
@@ -74,6 +85,11 @@ namespace Web_TrabajoFidelitas.Controllers
 
             if (respuesta.Codigo == 0)
             {
+                Auditoria au = new Auditoria();
+                au.TableName = "Citas";
+                au.Action = "DELETE";
+                au.Usuario = Session["NombreUsuario"].ToString();
+                modelA.AgregarAuditoria(au);
                 return RedirectToAction("MostrarSucursales");
             }
             else

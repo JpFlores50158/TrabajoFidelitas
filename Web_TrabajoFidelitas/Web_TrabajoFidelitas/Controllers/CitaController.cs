@@ -11,6 +11,7 @@ namespace Web_TrabajoFidelitas.Controllers
     [FiltroSeguridad]
     public class CitaController : Controller
     {
+        AuditoriaModel modelA = new AuditoriaModel();
         CitasModel model = new CitasModel();
         SucursalModel modelSu = new SucursalModel();
         AutomovilModel modelAu = new AutomovilModel();
@@ -22,6 +23,7 @@ namespace Web_TrabajoFidelitas.Controllers
             if (respuesta.Codigo == 0)
             {
                 CargarViewBagSucursal();
+             
                 return View(respuesta.Datos);
             }
             else
@@ -50,6 +52,11 @@ namespace Web_TrabajoFidelitas.Controllers
             var respuesta = model.Agregarcita(entidad);
             if (respuesta.Codigo == 0)
             {
+                Auditoria au = new Auditoria();
+                au.TableName = "Citas";
+                au.Action = "INSERT";
+                au.Usuario = Session["NombreUsuario"].ToString();
+                modelA.AgregarAuditoria(au);
                 return RedirectToAction("MostrarCitas");
             }
             else
@@ -80,6 +87,11 @@ namespace Web_TrabajoFidelitas.Controllers
             var respuesta = model.Editarcita(entidad);
             if (respuesta.Codigo == 0)
             {
+                Auditoria au = new Auditoria();
+                au.TableName = "Citas";
+                au.Action = "UPDATE";
+                au.Usuario = Session["NombreUsuario"].ToString();
+                modelA.AgregarAuditoria(au);
                 return RedirectToAction("MostrarCitas");
             }
             else
@@ -99,6 +111,11 @@ namespace Web_TrabajoFidelitas.Controllers
 
             if (respuesta.Codigo == 0)
             {
+                Auditoria au = new Auditoria();
+                au.TableName = "Citas";
+                au.Action = "DELETE";
+                au.Usuario = Session["NombreUsuario"].ToString();
+                modelA.AgregarAuditoria(au);
                 return RedirectToAction("MostrarCitas");
             }
             else
@@ -121,6 +138,11 @@ namespace Web_TrabajoFidelitas.Controllers
 
             if (respuesta.Codigo == 0)
             {
+                Auditoria au = new Auditoria();
+                au.TableName = "Citas";
+                au.Action = "DELETE";
+                au.Usuario = Session["NombreUsuario"].ToString();
+                modelA.AgregarAuditoria(au);
                 return RedirectToAction("MostrarCitas");
             }
             else

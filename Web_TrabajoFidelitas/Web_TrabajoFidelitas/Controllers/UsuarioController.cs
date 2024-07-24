@@ -14,7 +14,7 @@ namespace Web_TrabajoFidelitas.Controllers
 
         UsuarioModel modelo = new UsuarioModel();
 
-
+        AuditoriaModel modelA = new AuditoriaModel();
         [HttpGet]
         public ActionResult IniciarSesion()
         {
@@ -28,6 +28,10 @@ namespace Web_TrabajoFidelitas.Controllers
 
             if (respuesta.Codigo == 0)
             {
+                Auditoria au = new Auditoria();
+                au.TableName = "Citas";
+                au.Action = "InactivarSucursal";
+                modelA.AgregarAuditoria(au);
                 Session["NombreUsuario"] = respuesta.Dato.nombreUsuario;
                 Session["RolUsuario"] = respuesta.Dato.idRol;
                 Session["NombreRol"] = respuesta.Dato.nombreRol;
