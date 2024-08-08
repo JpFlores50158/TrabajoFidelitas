@@ -9,7 +9,7 @@ namespace Api_TrabajoFidelitas.Entidades
     {
         public int idRol { get; set; }
         public string nombreRol { get; set; }
-       
+
     }
     public class ConfirmacionRol
     {

@@ -7,13 +7,13 @@ namespace Api_TrabajoFidelitas.Entidades
 {
     public class Reporte
     {
-        public DateTime Fecha  { get; set; }
+        public DateTime Fecha { get; set; }
         public int CantidadCitas { get; set; }
         public string NombreSucursal { get; set; }
         public string NombreServicio { get; set; }
         public string Placa { get; set; }
     }
-    public class ConfirmacionReporte 
+    public class ConfirmacionReporte
     {
 
         public int Codigo { get; set; }

@@ -127,7 +127,7 @@ namespace Api_TrabajoFidelitas.Controllers
             {
                 using (var db = new MotoresBritanicosEntities())
                 {
-                    var resp = db.ActualizarSucursal(entidad.idSucursal, entidad.nombreSucursal, entidad.direccionSucursal, entidad.idCiudadSucursal,entidad.estado);
+                    var resp = db.ActualizarSucursal(entidad.idSucursal, entidad.nombreSucursal, entidad.direccionSucursal, entidad.idCiudadSucursal, entidad.estado);
 
                     if (resp > 0)
                     {

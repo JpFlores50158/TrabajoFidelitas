@@ -20,7 +20,7 @@ namespace Api_TrabajoFidelitas.Entidades
         public decimal PrecioServicio { get; set; }
         public DateTime FechaHora { get; set; }
         public string Comentarios { get; set; }
-        
+
     }
     public class ConfirmacionPaCitas
     {

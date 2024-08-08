@@ -26,15 +26,15 @@ namespace Api_TrabajoFidelitas.Controllers
 
                     if (datos != null)
                     {
-                       
-                       
-                            respuesta.Codigo = 0;
-                            respuesta.Detalle = string.Empty;
-                            respuesta.Dato = datos;
-                        
-                      
-                            
-                        
+
+
+                        respuesta.Codigo = 0;
+                        respuesta.Detalle = string.Empty;
+                        respuesta.Dato = datos;
+
+
+
+
                     }
                     else
                     {
@@ -62,7 +62,7 @@ namespace Api_TrabajoFidelitas.Controllers
             {
                 using (var db = new MotoresBritanicosEntities())
                 {
-                    var resp = db.RegistrarUsuario(entidad.contrasenaUsuario,entidad.nombreUsuario,entidad.emailUsuario);
+                    var resp = db.RegistrarUsuario(entidad.contrasenaUsuario, entidad.nombreUsuario, entidad.emailUsuario);
 
                     if (resp > 0)
                     {
@@ -168,13 +168,13 @@ namespace Api_TrabajoFidelitas.Controllers
                 {
                     var resp = db.EliminarUsuario(id);
 
-                    if (resp>0)
+                    if (resp > 0)
                     {
 
 
                         respuesta.Codigo = 0;
                         respuesta.Detalle = string.Empty;
-                      
+
 
                     }
                     else

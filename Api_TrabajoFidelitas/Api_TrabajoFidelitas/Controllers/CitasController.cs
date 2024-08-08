@@ -9,11 +9,11 @@ using System.Web.Http;
 
 using System.IO;
 
-using System.Web.Http.Cors;
+
 
 namespace Api_TrabajoFidelitas.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    
     public class CitasController : ApiController
     {
         UtilitariosCorreo modeloCorreo = new UtilitariosCorreo();
@@ -166,7 +166,7 @@ namespace Api_TrabajoFidelitas.Controllers
             {
                 using (var db = new MotoresBritanicosEntities())
                 {
-                    var resp = db.AgregarCita(entidad.idCliente, entidad.idAutomovil, entidad.idSucursal, entidad.idServicio,entidad.fechaHora, entidad.comentarios);
+                    var resp = db.AgregarCita(entidad.idCliente, entidad.idAutomovil, entidad.idSucursal, entidad.idServicio, entidad.fechaHora, entidad.comentarios);
 
                     if (resp > 0)
                     {
@@ -279,10 +279,11 @@ namespace Api_TrabajoFidelitas.Controllers
             {
                 modeloCorreo.EnviarCorreo(entidad.correoElect, "Confirmación de Cita", contenidoHTML);
             }
-            else {
+            else
+            {
                 modeloCorreo.EnviarCorreo(entidad.correoElect, "Cambio de Cita", contenidoHTML);
             }
-            
+
 
             respuesta.Codigo = 0;
             respuesta.Detalle = string.Empty;
@@ -359,44 +360,44 @@ namespace Api_TrabajoFidelitas.Controllers
 
             return respuesta;
         }
-            [Route("Citas/ConsultarCitaPorMes")]
-            [HttpGet]
-            public ConfirmacionPaCitas ConsultarCitasPorMes(DateTime fecha)
+        [Route("Citas/ConsultarCitaPorMes")]
+        [HttpGet]
+        public ConfirmacionPaCitas ConsultarCitasPorMes(DateTime fecha)
+        {
+            var respuesta = new ConfirmacionPaCitas();
+
+            try
             {
-                var respuesta = new ConfirmacionPaCitas();
-
-                try
+                using (var db = new MotoresBritanicosEntities())
                 {
-                    using (var db = new MotoresBritanicosEntities())
-                    {
-                        var datos = db.CitasPorMes(fecha).ToList();
+                    var datos = db.CitasPorMes(fecha).ToList();
 
-                        if (datos != null)
-                        {
-                            respuesta.Codigo = 0;
-                            respuesta.Detalle = string.Empty;
-                            respuesta.Datos = datos;
-                        }
-                        else
-                        {
-                            respuesta.Codigo = -1;
-                            respuesta.Detalle = "No se encontró la información respectiva";
-                        }
+                    if (datos != null)
+                    {
+                        respuesta.Codigo = 0;
+                        respuesta.Detalle = string.Empty;
+                        respuesta.Datos = datos;
+                    }
+                    else
+                    {
+                        respuesta.Codigo = -1;
+                        respuesta.Detalle = "No se encontró la información respectiva";
                     }
                 }
-                catch (Exception)
-                {
-                    respuesta.Codigo = -1;
-                    respuesta.Detalle = "Se presentó un error en el sistema";
-                }
-
-                return respuesta;
+            }
+            catch (Exception)
+            {
+                respuesta.Codigo = -1;
+                respuesta.Detalle = "Se presentó un error en el sistema";
             }
 
-       
-            [Route("Citas/ConsultarCitaPorSemana")]
-            [HttpGet]
-            public ConfirmacionPaCitas ConsultarCitasPorSemana(DateTime fecha)
+            return respuesta;
+        }
+
+
+        [Route("Citas/ConsultarCitaPorSemana")]
+        [HttpGet]
+        public ConfirmacionPaCitas ConsultarCitasPorSemana(DateTime fecha)
         {
             var respuesta = new ConfirmacionPaCitas();
 
@@ -429,7 +430,7 @@ namespace Api_TrabajoFidelitas.Controllers
         }
         [Route("Citas/CitasPorDia")]
         [HttpGet]
-        public ConfirmacionReporte CitasPorDia(DateTime FechaInicio,DateTime FechaFin)
+        public ConfirmacionReporte CitasPorDia(DateTime FechaInicio, DateTime FechaFin)
         {
             var respuesta = new ConfirmacionReporte();
 
@@ -437,7 +438,7 @@ namespace Api_TrabajoFidelitas.Controllers
             {
                 using (var db = new MotoresBritanicosEntities())
                 {
-                    var datos = db.ObtenerCitasPorDia(FechaInicio,FechaFin).ToList();
+                    var datos = db.ObtenerCitasPorDia(FechaInicio, FechaFin).ToList();
 
                     if (datos != null)
                     {
@@ -461,7 +462,7 @@ namespace Api_TrabajoFidelitas.Controllers
             return respuesta;
         }
 
-       
+
         [Route("Citas/CitasDeLaSemanaActual")]
         [HttpGet]
         public ConfirmacionCita CitasDeLaSemanaActual()

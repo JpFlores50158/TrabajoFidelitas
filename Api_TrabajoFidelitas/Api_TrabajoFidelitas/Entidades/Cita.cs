@@ -22,8 +22,8 @@ namespace Api_TrabajoFidelitas.Entidades
         public string nombreServicio { get; set; }
         public string nombreCliente { get; set; }
 
-
         public string correotipo { get; set; }
+
 
     }
 
