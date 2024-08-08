@@ -25,12 +25,15 @@ namespace Web_TrabajoFidelitas.Controllers
             if (respuesta.Codigo == 0)
             {
                 CargarViewBagSucursal();
-             
+                CargarViewBagSucursalNombre();
+
+
                 return View(respuesta.Datos);
             }
             else
             {
                 CargarViewBagSucursal();
+                CargarViewBagSucursalNombre();
                 return View(new List<Citas>());
             }
         }
@@ -213,6 +216,17 @@ namespace Web_TrabajoFidelitas.Controllers
                 sucursales.Add(new SelectListItem { Text = item.nombreSucursal, Value = item.idSucursal.ToString() });
 
             ViewBag.Sucursales = sucursales;
+        }
+        private void CargarViewBagSucursalNombre()
+        {
+            var respuesta = modelSu.ConsultarSucursal();
+            var sucursales = new List<SelectListItem>();
+
+            sucursales.Add(new SelectListItem { Text = "Seleccione una sucursal", Value = "" });
+            foreach (var item in respuesta.Datos)
+                sucursales.Add(new SelectListItem { Text = item.nombreSucursal, Value = item.nombreSucursal.ToString() });
+
+            ViewBag.SucursalesNombre = sucursales;
         }
         private void CargarViewBagAutomovil()
         {
