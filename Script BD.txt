@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [MotoresBritanicos]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  Database [MotoresBritanicos]    Script Date: 8/8/2024 9:19:21 AM ******/
 CREATE DATABASE [MotoresBritanicos]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -84,7 +84,7 @@ ALTER DATABASE [MotoresBritanicos] SET QUERY_STORE (OPERATION_MODE = READ_WRITE,
 GO
 USE [MotoresBritanicos]
 GO
-/****** Object:  Table [dbo].[AuditLog]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  Table [dbo].[AuditLog]    Script Date: 8/8/2024 9:19:21 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -101,7 +101,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Automoviles]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  Table [dbo].[Automoviles]    Script Date: 8/8/2024 9:19:21 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -120,7 +120,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Citas]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  Table [dbo].[Citas]    Script Date: 8/8/2024 9:19:21 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -140,7 +140,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Ciudades]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  Table [dbo].[Ciudades]    Script Date: 8/8/2024 9:19:21 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -155,7 +155,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Clientes]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  Table [dbo].[Clientes]    Script Date: 8/8/2024 9:19:21 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -173,7 +173,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Reportes]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  Table [dbo].[Reportes]    Script Date: 8/8/2024 9:19:21 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -189,7 +189,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Roles]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  Table [dbo].[Roles]    Script Date: 8/8/2024 9:19:21 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -204,7 +204,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Servicios]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  Table [dbo].[Servicios]    Script Date: 8/8/2024 9:19:21 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -221,7 +221,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Sucursales]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  Table [dbo].[Sucursales]    Script Date: 8/8/2024 9:19:21 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -238,7 +238,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Usuarios]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  Table [dbo].[Usuarios]    Script Date: 8/8/2024 9:19:21 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -256,17 +256,9 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-SET IDENTITY_INSERT [dbo].[AuditLog] ON 
-GO
-INSERT [dbo].[AuditLog] ([AuditID], [TableName], [Action], [Usuario], [ActionTime]) VALUES (1, N'Citas', N'InactivarSucursal', NULL, CAST(N'2024-07-24T17:32:19.743' AS DateTime))
-GO
-INSERT [dbo].[AuditLog] ([AuditID], [TableName], [Action], [Usuario], [ActionTime]) VALUES (2, N'Citas', N'InactivarSucursal', NULL, CAST(N'2024-07-24T17:32:55.227' AS DateTime))
-GO
-SET IDENTITY_INSERT [dbo].[AuditLog] OFF
-GO
 SET IDENTITY_INSERT [dbo].[Automoviles] ON 
 GO
-INSERT [dbo].[Automoviles] ([idAutomovil], [idCliente], [placa], [marca], [modelo], [ano], [estado]) VALUES (1009, 8, N'ABC123', N'Land Rover', N'Discovery', 2020, 0)
+INSERT [dbo].[Automoviles] ([idAutomovil], [idCliente], [placa], [marca], [modelo], [ano], [estado]) VALUES (1009, 8, N'ABC123', N'Land Rover', N'Discovery', 2020, 1)
 GO
 INSERT [dbo].[Automoviles] ([idAutomovil], [idCliente], [placa], [marca], [modelo], [ano], [estado]) VALUES (1011, 9, N'1', N'1', N'1', 1, 0)
 GO
@@ -278,9 +270,19 @@ SET IDENTITY_INSERT [dbo].[Automoviles] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Citas] ON 
 GO
-INSERT [dbo].[Citas] ([idCita], [idCliente], [idAutomovil], [idSucursal], [idServicio], [fechaHora], [comentarios], [estado]) VALUES (10, 8, 1009, 3, 1, CAST(N'2024-07-25T07:00:00.000' AS DateTime), N'algo', 1)
+INSERT [dbo].[Citas] ([idCita], [idCliente], [idAutomovil], [idSucursal], [idServicio], [fechaHora], [comentarios], [estado]) VALUES (10, 8, 1009, 3, 4, CAST(N'2024-07-30T07:00:00.000' AS DateTime), N'algo', 1)
 GO
-INSERT [dbo].[Citas] ([idCita], [idCliente], [idAutomovil], [idSucursal], [idServicio], [fechaHora], [comentarios], [estado]) VALUES (11, 11, 1013, 3, 4, CAST(N'2024-07-30T13:00:00.000' AS DateTime), N'algo', 1)
+INSERT [dbo].[Citas] ([idCita], [idCliente], [idAutomovil], [idSucursal], [idServicio], [fechaHora], [comentarios], [estado]) VALUES (11, 8, 1009, 3, 4, CAST(N'2024-07-30T13:00:00.000' AS DateTime), N'algo', 1)
+GO
+INSERT [dbo].[Citas] ([idCita], [idCliente], [idAutomovil], [idSucursal], [idServicio], [fechaHora], [comentarios], [estado]) VALUES (15, 8, 1009, 3, 1, CAST(N'2024-08-09T07:00:00.000' AS DateTime), N'a', 1)
+GO
+INSERT [dbo].[Citas] ([idCita], [idCliente], [idAutomovil], [idSucursal], [idServicio], [fechaHora], [comentarios], [estado]) VALUES (16, 11, 1013, 3, 2, CAST(N'2024-08-09T09:00:00.000' AS DateTime), N'a', 1)
+GO
+INSERT [dbo].[Citas] ([idCita], [idCliente], [idAutomovil], [idSucursal], [idServicio], [fechaHora], [comentarios], [estado]) VALUES (17, 8, 1012, 5, 1, CAST(N'2024-08-07T09:00:00.000' AS DateTime), N'1', 1)
+GO
+INSERT [dbo].[Citas] ([idCita], [idCliente], [idAutomovil], [idSucursal], [idServicio], [fechaHora], [comentarios], [estado]) VALUES (18, 8, 1009, 4, 3, CAST(N'2024-08-09T15:00:00.000' AS DateTime), N'123', 1)
+GO
+INSERT [dbo].[Citas] ([idCita], [idCliente], [idAutomovil], [idSucursal], [idServicio], [fechaHora], [comentarios], [estado]) VALUES (19, 8, 1009, 3, 4, CAST(N'2024-08-31T09:00:00.000' AS DateTime), N'N/A', 1)
 GO
 SET IDENTITY_INSERT [dbo].[Citas] OFF
 GO
@@ -308,9 +310,9 @@ SET IDENTITY_INSERT [dbo].[Clientes] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Roles] ON 
 GO
-INSERT [dbo].[Roles] ([idRol], [nombreRol], [descripcionRol]) VALUES (1, N'Gerente', N'Personas con permisos completos de gestiona el sistema')
+INSERT [dbo].[Roles] ([idRol], [nombreRol], [descripcionRol]) VALUES (1, N'Admin', N'Personas con permisos completos de gestiona el sistema')
 GO
-INSERT [dbo].[Roles] ([idRol], [nombreRol], [descripcionRol]) VALUES (2, N'Ventas', N'Persona con permisos limitados para acceder y utilizar funcionalidades especificas de ventas')
+INSERT [dbo].[Roles] ([idRol], [nombreRol], [descripcionRol]) VALUES (2, N'Usuario', N'Persona con permisos limitados para acceder y utilizar funcionalidades especificas de ventas')
 GO
 SET IDENTITY_INSERT [dbo].[Roles] OFF
 GO
@@ -342,13 +344,7 @@ INSERT [dbo].[Usuarios] ([idUsuario], [nombreUsuario], [contrasenaUsuario], [ema
 GO
 INSERT [dbo].[Usuarios] ([idUsuario], [nombreUsuario], [contrasenaUsuario], [emailUsuario], [idRol], [estado]) VALUES (7, N'luisNunez', N'luispass', N'luis@example.com', 2, 1)
 GO
-INSERT [dbo].[Usuarios] ([idUsuario], [nombreUsuario], [contrasenaUsuario], [emailUsuario], [idRol], [estado]) VALUES (8, N'sample string 2', N'sample str', N'sample string 3', 2, 1)
-GO
-INSERT [dbo].[Usuarios] ([idUsuario], [nombreUsuario], [contrasenaUsuario], [emailUsuario], [idRol], [estado]) VALUES (9, N'1', N'1', N'1@1.com', 2, 1)
-GO
-INSERT [dbo].[Usuarios] ([idUsuario], [nombreUsuario], [contrasenaUsuario], [emailUsuario], [idRol], [estado]) VALUES (10, N'Jose', N'josepass', N'jose@example.com', 2, 1)
-GO
-INSERT [dbo].[Usuarios] ([idUsuario], [nombreUsuario], [contrasenaUsuario], [emailUsuario], [idRol], [estado]) VALUES (11, N'Carlo', N'carlo', N'carlo@example.com', 2, 1)
+INSERT [dbo].[Usuarios] ([idUsuario], [nombreUsuario], [contrasenaUsuario], [emailUsuario], [idRol], [estado]) VALUES (10, N'joseFlo', N'josepass', N'jose@example.com', 2, 0)
 GO
 SET IDENTITY_INSERT [dbo].[Usuarios] OFF
 GO
@@ -394,7 +390,7 @@ GO
 ALTER TABLE [dbo].[Usuarios]  WITH CHECK ADD FOREIGN KEY([idRol])
 REFERENCES [dbo].[Roles] ([idRol])
 GO
-/****** Object:  StoredProcedure [dbo].[ActualizarAutomovil]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  StoredProcedure [dbo].[ActualizarAutomovil]    Script Date: 8/8/2024 9:19:22 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -421,7 +417,7 @@ UPDATE [dbo].[Automoviles]
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[ActualizarCliente]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  StoredProcedure [dbo].[ActualizarCliente]    Script Date: 8/8/2024 9:19:22 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -447,7 +443,7 @@ UPDATE [dbo].[Clientes]
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[ActualizarSucursal]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  StoredProcedure [dbo].[ActualizarSucursal]    Script Date: 8/8/2024 9:19:22 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -456,20 +452,46 @@ CREATE PROCEDURE [dbo].[ActualizarSucursal]
     @idSucursal int,
     @nombreSucursal varchar(100),
     @direccionSucursal varchar(255),
-    @idCiudadSucursal int
+    @idCiudadSucursal int,
+	@estado bit
 AS
 BEGIN
     UPDATE [dbo].[Sucursales]
     SET 
         nombreSucursal = @nombreSucursal,
         direccionSucursal = @direccionSucursal,
-        idCiudadSucursal = @idCiudadSucursal
+        idCiudadSucursal = @idCiudadSucursal,
+		estado = @estado
     WHERE
         idSucursal = @idSucursal;
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[AddAuditLog]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  StoredProcedure [dbo].[ActualizarUsuario]    Script Date: 8/8/2024 9:19:22 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+Create PROCEDURE [dbo].[ActualizarUsuario]
+    @idUsuario bigint,
+    @nombreUsuario varchar(50),
+    @contrasena varchar(50),
+	@email varchar(100),
+    @idRol int,
+	@estado bit
+AS
+BEGIN
+   UPDATE [dbo].[Usuarios]
+   SET [nombreUsuario] = @nombreUsuario
+      ,[contrasenaUsuario] =@contrasena
+      ,[emailUsuario] = @email
+      ,[idRol] =@idRol
+      ,[estado] = @estado
+ WHERE idUsuario = @idUsuario;
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[AddAuditLog]    Script Date: 8/8/2024 9:19:22 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -487,7 +509,7 @@ BEGIN
     VALUES (@TableName, @Action, @Usuario, GETDATE());
 END
 GO
-/****** Object:  StoredProcedure [dbo].[AgregarAutomovil]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  StoredProcedure [dbo].[AgregarAutomovil]    Script Date: 8/8/2024 9:19:22 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -518,7 +540,7 @@ INSERT INTO [dbo].[Automoviles]
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[AgregarCita]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  StoredProcedure [dbo].[AgregarCita]    Script Date: 8/8/2024 9:19:22 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -566,7 +588,7 @@ BEGIN
 END;
 
 GO
-/****** Object:  StoredProcedure [dbo].[AgregarCliente]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  StoredProcedure [dbo].[AgregarCliente]    Script Date: 8/8/2024 9:19:22 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -601,7 +623,7 @@ INSERT INTO [dbo].[Clientes]
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[AgregarSucursal]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  StoredProcedure [dbo].[AgregarSucursal]    Script Date: 8/8/2024 9:19:22 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -625,7 +647,231 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[ConsultarAutomovil]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  StoredProcedure [dbo].[CitasDeLaSemanaActual]    Script Date: 8/8/2024 9:19:22 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+Create PROCEDURE [dbo].[CitasDeLaSemanaActual]
+AS
+BEGIN
+    -- Obtener la fecha de inicio y fin de la semana actual
+    DECLARE @InicioSemana DATE;
+    DECLARE @FinSemana DATE;
+
+    -- Suponiendo que la semana comienza el domingo
+    SET @InicioSemana = DATEADD(WEEK, DATEDIFF(WEEK, 0, GETDATE()), 0);
+    SET @FinSemana = DATEADD(DAY, 6, @InicioSemana);
+
+    SELECT 
+        ci.*,
+        s.nombreSucursal AS nombreSucursal,
+        a.placa AS placa,
+        se.nombreServicio AS nombreServicio,
+        c.nombreCliente AS nombreCliente
+    FROM 
+        Citas ci
+        INNER JOIN Sucursales s ON ci.idSucursal = s.idSucursal
+        INNER JOIN Automoviles a ON ci.idAutomovil = a.idAutomovil
+        INNER JOIN Servicios se ON ci.idServicio = se.idServicio
+        INNER JOIN Clientes c ON ci.idCliente = c.idCliente
+    WHERE 
+        CAST(ci.fechaHora AS DATE) BETWEEN @InicioSemana AND @FinSemana
+    ORDER BY 
+        ci.fechaHora;
+END
+GO
+/****** Object:  StoredProcedure [dbo].[CitasPorAuto]    Script Date: 8/8/2024 9:19:22 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[CitasPorAuto]
+AS
+BEGIN
+    SELECT 
+        A.Placa AS Placa,
+        COUNT(C.idCita) AS CantidadCitas
+    FROM 
+        dbo.Citas C
+    INNER JOIN 
+        dbo.Automoviles A ON C.idAutomovil = A.idAutomovil
+    GROUP BY 
+        A.Placa
+    ORDER BY 
+        COUNT(C.idCita) DESC;
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[CitasPorMes]    Script Date: 8/8/2024 9:19:22 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- Procedimiento para contar las citas por mes (se le brinda el usuario)
+CREATE PROCEDURE [dbo].[CitasPorMes]
+   @fecha date
+AS
+BEGIN
+    SELECT 
+        C.idCita,
+        Cl.nombreCliente,
+        Cl.telefonoCliente,
+        Cl.emailCliente,
+        A.placa,
+        A.marca,
+        A.modelo,
+        A.ano,
+        S.nombreSucursal, 
+        Se.nombreServicio,
+        Se.precioServicio,
+        C.fechaHora,
+        C.comentarios
+        
+    FROM 
+        dbo.Citas C
+        JOIN dbo.Clientes Cl ON C.idCliente = Cl.idCliente
+        JOIN dbo.Automoviles A ON C.idAutomovil = A.idAutomovil
+        JOIN dbo.Sucursales S ON C.idSucursal = S.idSucursal
+        JOIN dbo.Ciudades Ci ON S.idCiudadSucursal = Ci.idCiudad
+        JOIN dbo.Servicios Se ON C.idServicio = Se.idServicio
+        LEFT JOIN dbo.Reportes R ON C.idCita = R.idCita
+    WHERE 
+        MONTH(C.fechaHora) = MONTH(@fecha)
+        AND YEAR(C.fechaHora) = YEAR(@fecha)
+    ORDER BY 
+        C.fechaHora;
+END
+GO
+/****** Object:  StoredProcedure [dbo].[CitasPorSede]    Script Date: 8/8/2024 9:19:22 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- Procedimiento para contar las citas por sede (se le brinda el usuario)
+CREATE PROCEDURE [dbo].[CitasPorSede]
+    @idSucursal bigint
+AS
+begin
+	SELECT 
+        C.idCita,
+        Cl.nombreCliente,
+        Cl.telefonoCliente,
+        Cl.emailCliente,
+        A.placa,
+        A.marca,
+        A.modelo,
+        A.ano,
+        S.nombreSucursal, 
+        Se.nombreServicio,
+        Se.precioServicio,
+        C.fechaHora,
+        C.comentarios
+        
+    FROM 
+        dbo.Citas C
+        JOIN dbo.Clientes Cl ON C.idCliente = Cl.idCliente
+        JOIN dbo.Automoviles A ON C.idAutomovil = A.idAutomovil
+        JOIN dbo.Sucursales S ON C.idSucursal = S.idSucursal
+        JOIN dbo.Ciudades Ci ON S.idCiudadSucursal = Ci.idCiudad
+        JOIN dbo.Servicios Se ON C.idServicio = Se.idServicio
+        LEFT JOIN dbo.Reportes R ON C.idCita = R.idCita
+		WHERE 
+       C.idSucursal = @idSucursal
+    ORDER BY 
+        C.fechaHora;
+    
+END
+GO
+/****** Object:  StoredProcedure [dbo].[CitasPorSemana]    Script Date: 8/8/2024 9:19:22 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- Procedimiento para contar las citas semanalmente (se le brinda el usuario)
+CREATE PROCEDURE [dbo].[CitasPorSemana]
+   @fecha date
+AS
+BEGIN
+    SELECT 
+        C.idCita,
+        Cl.nombreCliente,
+        Cl.telefonoCliente,
+        Cl.emailCliente,
+        A.placa,
+        A.marca,
+        A.modelo,
+        A.ano,
+        S.nombreSucursal, 
+        Se.nombreServicio,
+        Se.precioServicio,
+        C.fechaHora,
+        C.comentarios
+        
+    FROM 
+        dbo.Citas C
+        JOIN dbo.Clientes Cl ON C.idCliente = Cl.idCliente
+        JOIN dbo.Automoviles A ON C.idAutomovil = A.idAutomovil
+        JOIN dbo.Sucursales S ON C.idSucursal = S.idSucursal
+        JOIN dbo.Ciudades Ci ON S.idCiudadSucursal = Ci.idCiudad
+        JOIN dbo.Servicios Se ON C.idServicio = Se.idServicio
+        LEFT JOIN dbo.Reportes R ON C.idCita = R.idCita
+    WHERE 
+        DATEPART(YEAR, C.fechaHora) = DATEPART(YEAR, @fecha)
+        AND DATEPART(WEEK, C.fechaHora) = DATEPART(WEEK, @fecha)
+    ORDER BY 
+        C.fechaHora;
+END
+GO
+/****** Object:  StoredProcedure [dbo].[CitasPorServicio]    Script Date: 8/8/2024 9:19:22 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[CitasPorServicio]
+AS
+BEGIN
+    -- Seleccionar el conteo de citas agrupado por tipo de servicio
+    SELECT 
+        Se.nombreServicio AS NombreServicio,
+        COUNT(C.idCita) AS CantidadCitas
+    FROM 
+        dbo.Citas C
+        JOIN dbo.Servicios Se ON C.idServicio = Se.idServicio
+    GROUP BY 
+        Se.nombreServicio
+    ORDER BY 
+        CantidadCitas DESC;
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[CitasPorSucursal]    Script Date: 8/8/2024 9:19:22 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[CitasPorSucursal]
+AS
+BEGIN
+    -- Seleccionar el conteo de citas agrupado por sucursal
+    SELECT 
+        S.nombreSucursal,
+        COUNT(C.idCita) AS cantidadCitas
+    FROM 
+        dbo.Citas C
+        JOIN dbo.Sucursales S ON C.idSucursal = S.idSucursal
+    GROUP BY 
+        S.nombreSucursal
+    ORDER BY 
+        cantidadCitas DESC;
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[ConsultarAutomovil]    Script Date: 8/8/2024 9:19:22 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -646,7 +892,7 @@ SELECT [idAutomovil]
 END;
 
 GO
-/****** Object:  StoredProcedure [dbo].[ConsultarAutomoviles]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  StoredProcedure [dbo].[ConsultarAutomoviles]    Script Date: 8/8/2024 9:19:22 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -667,7 +913,7 @@ SELECT [idAutomovil]
 END;
 
 GO
-/****** Object:  StoredProcedure [dbo].[ConsultarCita]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  StoredProcedure [dbo].[ConsultarCita]    Script Date: 8/8/2024 9:19:22 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -682,7 +928,7 @@ BEGIN
 END;
 
 GO
-/****** Object:  StoredProcedure [dbo].[ConsultarCitas]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  StoredProcedure [dbo].[ConsultarCitas]    Script Date: 8/8/2024 9:19:22 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -706,7 +952,7 @@ FROM
 END;
 
 GO
-/****** Object:  StoredProcedure [dbo].[ConsultarCitasporSucursal]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  StoredProcedure [dbo].[ConsultarCitasporSucursal]    Script Date: 8/8/2024 9:19:22 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -733,7 +979,7 @@ BEGIN
 END;
 
 GO
-/****** Object:  StoredProcedure [dbo].[ConsultarCliente]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  StoredProcedure [dbo].[ConsultarCliente]    Script Date: 8/8/2024 9:19:22 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -753,7 +999,7 @@ SELECT [idCliente]
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[ConsultarClientes]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  StoredProcedure [dbo].[ConsultarClientes]    Script Date: 8/8/2024 9:19:22 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -775,7 +1021,7 @@ SELECT TOP (1000) [idCliente]
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[ConsultarCuidades]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  StoredProcedure [dbo].[ConsultarCuidades]    Script Date: 8/8/2024 9:19:22 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -791,7 +1037,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[ConsultarIdsClientes]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  StoredProcedure [dbo].[ConsultarIdsClientes]    Script Date: 8/8/2024 9:19:22 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -806,7 +1052,18 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[ConsultarServicios]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  StoredProcedure [dbo].[consultarRoles]    Script Date: 8/8/2024 9:19:22 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ create procedure [dbo].[consultarRoles]
+ as
+ begin 
+  select * from Roles;
+  end
+GO
+/****** Object:  StoredProcedure [dbo].[ConsultarServicios]    Script Date: 8/8/2024 9:19:22 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -820,7 +1077,7 @@ BEGIN
 END;
 
 GO
-/****** Object:  StoredProcedure [dbo].[ConsultarSucursales]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  StoredProcedure [dbo].[ConsultarSucursales]    Script Date: 8/8/2024 9:19:22 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -829,18 +1086,50 @@ CREATE PROCEDURE [dbo].[ConsultarSucursales]
 AS
 BEGIN
 
-SELECT TOP (1000) [idSucursal]
-      ,[nombreSucursal]
-      ,[direccionSucursal]
-      ,[idCiudadSucursal]
-      ,[estado]
-  FROM [MotoresBritanicos].[dbo].Sucursales
+SELECT s.*,
+c.nombreCiudad as nombreCiudad
+  FROM [MotoresBritanicos].[dbo].Sucursales s
+   INNER   JOIN dbo.Ciudades C ON s.idCiudadSucursal = C.idCiudad
 
 
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[EditarCita]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  StoredProcedure [dbo].[ConsultarUsuario]    Script Date: 8/8/2024 9:19:22 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create procedure [dbo].[ConsultarUsuario]
+ @idUsuario bigint
+as
+begin 
+ select * from usuarios where idUsuario = @idUsuario;
+ end 
+GO
+/****** Object:  StoredProcedure [dbo].[ConsultarUsuarios]    Script Date: 8/8/2024 9:19:22 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[ConsultarUsuarios]
+AS
+BEGIN
+    SELECT 
+        u.idUsuario ,
+        u.nombreUsuario ,
+        u.emailUsuario ,
+        r.nombreRol AS NombreRol,
+        u.estado 
+    FROM 
+        Usuarios u
+    INNER JOIN 
+        Roles r ON u.idRol = r.idRol
+    ORDER BY 
+        u.nombreUsuario;
+END
+GO
+/****** Object:  StoredProcedure [dbo].[EditarCita]    Script Date: 8/8/2024 9:19:22 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -887,7 +1176,7 @@ BEGIN
 END;
 
 GO
-/****** Object:  StoredProcedure [dbo].[EliminarAutomovil]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  StoredProcedure [dbo].[EliminarAutomovil]    Script Date: 8/8/2024 9:19:22 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -902,7 +1191,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[EliminarCitaTotal]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  StoredProcedure [dbo].[EliminarCitaTotal]    Script Date: 8/8/2024 9:19:22 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -916,7 +1205,7 @@ BEGIN
 END;
 
 GO
-/****** Object:  StoredProcedure [dbo].[EliminarCliente]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  StoredProcedure [dbo].[EliminarCliente]    Script Date: 8/8/2024 9:19:22 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -933,7 +1222,23 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[GetAuditLog]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  StoredProcedure [dbo].[EliminarUsuario]    Script Date: 8/8/2024 9:19:22 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+Create PROCEDURE [dbo].[EliminarUsuario]
+    @idUsuario bigint
+   
+AS
+BEGIN
+
+
+DELETE FROM [dbo].[Usuarios]
+ WHERE idUsuario = @idUsuario;
+END
+GO
+/****** Object:  StoredProcedure [dbo].[GetAuditLog]    Script Date: 8/8/2024 9:19:22 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -948,7 +1253,7 @@ SELECT[AuditID]
   FROM [MotoresBritanicos].[dbo].[AuditLog]
  END
 GO
-/****** Object:  StoredProcedure [dbo].[InactivarSucursal]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  StoredProcedure [dbo].[InactivarSucursal]    Script Date: 8/8/2024 9:19:22 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -964,7 +1269,23 @@ END
 
 
 GO
-/****** Object:  StoredProcedure [dbo].[IniciarSesionUsuario]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  StoredProcedure [dbo].[InactivarUsuario]    Script Date: 8/8/2024 9:19:22 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+Create PROCEDURE [dbo].[InactivarUsuario]
+    @idUsuario bigint
+   
+AS
+BEGIN
+   UPDATE [dbo].[Usuarios]
+   SET 
+      [estado] = 0
+ WHERE idUsuario = @idUsuario;
+END
+GO
+/****** Object:  StoredProcedure [dbo].[IniciarSesionUsuario]    Script Date: 8/8/2024 9:19:22 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -992,7 +1313,31 @@ SELECT idUsuario
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[ObtenerSucursalPorId]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  StoredProcedure [dbo].[ObtenerCitasPorDia]    Script Date: 8/8/2024 9:19:22 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[ObtenerCitasPorDia]
+    @fechaInicio DATE,
+    @fechaFin DATE
+AS
+BEGIN
+    SELECT 
+        CAST(C.fechaHora AS DATE) AS Fecha,
+        COUNT(C.idCita) AS CantidadCitas
+    FROM 
+        dbo.Citas C
+    WHERE 
+        C.fechaHora BETWEEN @fechaInicio AND @fechaFin
+    GROUP BY 
+        CAST(C.fechaHora AS DATE)
+    ORDER BY 
+        Fecha;
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[ObtenerSucursalPorId]    Script Date: 8/8/2024 9:19:22 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1015,7 +1360,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[RegistrarUsuario]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  StoredProcedure [dbo].[RegistrarUsuario]    Script Date: 8/8/2024 9:19:22 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1051,7 +1396,42 @@ INSERT INTO [dbo].[Usuarios]
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[sp_EliminarCita]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  StoredProcedure [dbo].[SelectAllCitas]    Script Date: 8/8/2024 9:19:22 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+Create PROCEDURE [dbo].[SelectAllCitas]
+AS
+BEGIN
+    SELECT 
+        C.idCita,
+        Cl.nombreCliente,
+        Cl.telefonoCliente,
+        Cl.emailCliente,
+        A.placa,
+        A.marca,
+        A.modelo,
+        A.ano,
+        S.nombreSucursal, 
+        Se.nombreServicio,
+        Se.precioServicio,
+        C.fechaHora,
+        C.comentarios
+       
+    FROM 
+        dbo.Citas C
+        JOIN dbo.Clientes Cl ON C.idCliente = Cl.idCliente
+        JOIN dbo.Automoviles A ON C.idAutomovil = A.idAutomovil
+        JOIN dbo.Sucursales S ON C.idSucursal = S.idSucursal
+        JOIN dbo.Ciudades Ci ON S.idCiudadSucursal = Ci.idCiudad
+        JOIN dbo.Servicios Se ON C.idServicio = Se.idServicio
+        LEFT JOIN dbo.Reportes R ON C.idCita = R.idCita
+    ORDER BY 
+        C.fechaHora;
+END
+GO
+/****** Object:  StoredProcedure [dbo].[sp_EliminarCita]    Script Date: 8/8/2024 9:19:22 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1066,7 +1446,7 @@ BEGIN
 END;
 
 GO
-/****** Object:  StoredProcedure [dbo].[TraerCita]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  StoredProcedure [dbo].[TraerCita]    Script Date: 8/8/2024 9:19:22 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1090,7 +1470,7 @@ FROM
 END;
 
 GO
-/****** Object:  StoredProcedure [dbo].[TraerServicio]    Script Date: 7/24/2024 5:33:49 PM ******/
+/****** Object:  StoredProcedure [dbo].[TraerServicio]    Script Date: 8/8/2024 9:19:22 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
