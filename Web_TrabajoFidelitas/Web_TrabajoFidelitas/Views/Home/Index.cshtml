@@ -22,18 +22,13 @@
         </div>
     </div>
 }
-<div class="m-3">
 
-    <div class="d-grid gap-2 mt-3">
-        <button class="btn btn-primary" style="height:60px" type="button">Registrar Cita</button>
-    </div>
-</div>
 
 <section class="section dashboard">
     <div class="row">
 
         <!-- Left side columns -->
-        <div class="col-lg-8">
+        <div class="col-lg-12">
             <div class="row">
 
                 <!-- Sales Card -->
@@ -50,7 +45,7 @@
                                     <i class="bi bi-pencil-square"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <h6>145</h6>
+                                    <h6> @ViewBag.CantCitas</h6>
                                 </div>
                             </div>
                         </div>
@@ -70,7 +65,8 @@
                                     <i class="ri ri-car-fill"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <h6>264</h6>
+                                    <h6>@ViewBag.CantAutos</h6>
+
 
 
                                 </div>
@@ -85,14 +81,14 @@
                     <div class="card info-card customers-card">
 
                         <div class="card-body">
-                            <h5 class="card-title">Empleados </h5>
+                            <h5 class="card-title">Clientes </h5>
 
                             <div class="d-flex align-items-center">
                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                     <i class="bi bi-people"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <h6>1244</h6>
+                                    <h6>@ViewBag.CantClientes</h6>
 
 
 
@@ -102,143 +98,65 @@
                         </div>
                     </div>
 
-                </div><!-- End Customers Card -->
-                <!-- Reports -->
-                <div class="col-12">
-                    <div class="card">
+                </div>
 
-                        <div class="filter">
-                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                <li class="dropdown-header text-start">
-                                    <h6>Filter</h6>
-                                </li>
-
-                                <li><a class="dropdown-item" href="#">Today</a></li>
-                                <li><a class="dropdown-item" href="#">This Month</a></li>
-                                <li><a class="dropdown-item" href="#">This Year</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="card-body">
-                            <h5 class="card-title">Reportes <span>/Today</span></h5>
-
-                            <!-- Line Chart -->
-                            <div id="reportsChart"></div>
-
-                            <script>
-                                document.addEventListener("DOMContentLoaded", () => {
-                                    new ApexCharts(document.querySelector("#reportsChart"), {
-                                        series: [{
-                                            name: 'Defender',
-                                            data: [31, 40, 28, 51, 42, 82, 56],
-                                        }, {
-                                            name: 'Discovery',
-                                            data: [11, 32, 45, 32, 34, 52, 41]
-                                        }, {
-                                            name: 'Velar',
-                                            data: [15, 11, 32, 18, 9, 24, 11]
-                                        }],
-                                        chart: {
-                                            height: 350,
-                                            type: 'area',
-                                            toolbar: {
-                                                show: false
-                                            },
-                                        },
-                                        markers: {
-                                            size: 4
-                                        },
-                                        colors: ['#4154f1', '#2eca6a', '#ff771d'],
-                                        fill: {
-                                            type: "gradient",
-                                            gradient: {
-                                                shadeIntensity: 1,
-                                                opacityFrom: 0.3,
-                                                opacityTo: 0.4,
-                                                stops: [0, 90, 100]
-                                            }
-                                        },
-                                        dataLabels: {
-                                            enabled: false
-                                        },
-                                        stroke: {
-                                            curve: 'smooth',
-                                            width: 2
-                                        },
-                                        xaxis: {
-                                            type: 'datetime',
-                                            categories: ["2018-02-19T00:00:00.000Z", "2018-04-9T01:30:00.000Z", "2018-06-20T02:30:00.000Z", "2018-08-19T03:30:00.000Z", "2019-01-29T04:30:00.000Z", "2019-4-17T05:30:00.000Z", "2019-6-11T06:30:00.000Z"]
-                                        },
-                                        tooltip: {
-                                            x: {
-                                                format: 'dd/MM/yy HH:mm'
-                                            },
-                                        }
-                                    }).render();
-                                });
-                            </script>
-                            <!-- End Line Chart -->
-
-                        </div>
-
+                <div class="row">
+                    <div class="col-md-3">
+                        <a class="btn btn-success">EXCEL TOTAL CITAS</a>
                     </div>
-                </div><!-- End Reports -->
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Seleccione una sucursal</h3>
+                            </div>
+                            <div class="card-body">
+                                @using (Html.BeginForm("docker", "Reporte", FormMethod.Get))
+                                {
+                                    <div class="form-group my-3 text-center">
+                                        @Html.Label("Seleccione una sucursal", new { @class = "my-3" })
+                                        @Html.DropDownList("idSucursal", ViewBag.Sucursales as List<SelectListItem>, new { @class = "form-control form-control-user", @required = "true" })
+                                        @Html.ValidationMessage("idSucursal", "", new { @class = "text-danger" })
+                                    </div>
 
+                                    <div style="display: flex; align-items: center; flex-direction: column;">
+                                        <input type="submit" class="btn btn-primary btn-block" value="EXCEL SUCURSAL" style="margin-top: 20px; margin-bottom: 20px;">
+                                    </div>
+                                }
+                            </div>
 
-            </div>
-        </div><!-- End Left side columns -->
-        <!-- Right side columns -->
-        <div class="col-lg-4">
-            <div class="card-body pb-0">
-                <h5 class="card-title">Reporte de Citas <span>| Este Mes</span></h5>
+                        </div>
+                    </div>
 
-                <div id="appointmentChart" style="min-height: 400px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);" class="echart" _echarts_instance_="ec_1712879168955">
-                    <div style="position: relative; width: 330px; height: 400px; padding: 0px; margin: 0px; border-width: 0px;">
-                        <canvas data-zr-dom-id="zr_0" width="412" height="500" style="position: absolute; left: 0px; top: 0px; width: 330px; height: 400px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>CARGAR MESES POR DROPDOWN</h3>
+                            </div>
+                            <div class="card-body">
+                                @using (Html.BeginForm("docker", "Reporte", FormMethod.Get))
+                                {
+                                    <div class="form-group my-3 text-center">
+                                        @Html.Label("CARGAR MESES POR DROPDOWN", new { @class = "my-3" })
+                                        @Html.DropDownList("idSucursal", ViewBag.Sucursales as List<SelectListItem>, new { @class = "form-control form-control-user", @required = "true" })
+                                        @Html.ValidationMessage("idSucursal", "", new { @class = "text-danger" })
+                                    </div>
+
+                                    <div style="display: flex; align-items: center; flex-direction: column;">
+                                        <input type="submit" class="btn btn-primary btn-block" value=" EXCEL MES" style="margin-top: 20px; margin-bottom: 20px;">
+                                    </div>
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="date"/>
+                        <a class="btn btn-success">EXCEL TOTAL CITAS</a>
                     </div>
                 </div>
 
-                <script>
-                    document.addEventListener("DOMContentLoaded", () => {
-                        var appointmentChart = echarts.init(document.querySelector("#appointmentChart")).setOption({
-                            legend: {
-                                data: ['Citas Programadas', 'Citas Realizadas']
-                            },
-                            radar: {
-                                indicator: [
-                                    { name: 'Mantenimiento', max: 100 },
-                                    { name: 'Reparaciones', max: 100 },
-                                    { name: 'Ventas de Autos', max: 100 },
-                                    { name: 'Atención al Cliente', max: 100 },
-                                    { name: 'Servicios de Limpieza', max: 100 },
-                                    { name: 'Diagnósticos', max: 100 }
-                                ]
-                            },
-                            series: [{
-                                name: 'Programación vs Realización',
-                                type: 'radar',
-                                data: [
-                                    {
-                                        value: [80, 60, 50, 70, 55, 65], // Citas programadas
-                                        name: 'Citas Programadas'
-                                    },
-                                    {
-                                        value: [75, 50, 45, 65, 50, 60], // Citas realizadas
-                                        name: 'Citas Realizadas'
-                                    }
-                                ]
-                            }]
-                        });
-                    });
-                </script>
-            </div>
-        </div>
 
 
-
-
-
-    </div><!-- End Right side columns -->
+            </div><!-- End Right side columns -->
     </div>
 </section>

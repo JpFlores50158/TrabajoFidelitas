@@ -150,6 +150,19 @@ namespace Web_TrabajoFidelitas.Models
                     return null;
             }
         }
+        public ConfirmacionCita CitaSemanaActual()
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlWebApi"] + "Citas/CitasDeLaSemanaActual";
+                var respuesta = client.GetAsync(url).Result;
+
+                if (respuesta.IsSuccessStatusCode)
+                    return respuesta.Content.ReadFromJsonAsync<ConfirmacionCita>().Result;
+                else
+                    return null;
+            }
+        }
     }
 
        

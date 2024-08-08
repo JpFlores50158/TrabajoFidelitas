@@ -91,6 +91,30 @@
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <div class="container">
+            <div class="card">
+                <div class="card-body">
+                    @using (Html.BeginForm("Calendario", "Cita", FormMethod.Get))
+                    {
+                        <div class="form-group my-3 text-center">
+                            @Html.Label("Sucursal para el calendario", new { @class = "my-3" })
+                            @Html.DropDownList("idSucursal", ViewBag.Sucursales as List<SelectListItem>, new { @class = "form-control form-control-user", @required = "true" })
+                            @Html.ValidationMessage("idSucursal", "", new { @class = "text-danger" })
+                        </div>
+
+                        <div style="display: flex; align-items: center; flex-direction: column;">
+                            <input type="submit" class="btn btn-primary btn-block" value="Consultar Calendario" style="margin-top: 20px; margin-bottom: 20px;">
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <!-- CDN de DataTables -->
 <link href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" rel="stylesheet">

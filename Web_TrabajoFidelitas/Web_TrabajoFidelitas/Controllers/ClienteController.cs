@@ -86,7 +86,7 @@ namespace Web_TrabajoFidelitas.Controllers
                 
                 Auditoria au = new Auditoria();
                 au.TableName = "Clientes";
-                au.Action = "DELETE";
+                au.Action = "INACTIVAR";
                 au.Usuario = Session["NombreUsuario"].ToString();
                 
                 var Autoria = modelA.AgregarAuditoria(au);

@@ -13,7 +13,7 @@
             <div class="card-body" style="margin-top: 20px;">
                 <div class="table-responsive">
                     <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                        <h3>Agregar Cita</h3>
+                        <h3>Editar Cita</h3>
                         <hr />
                         @if (ViewBag.MsjPantalla != null)
                         {
@@ -28,27 +28,27 @@
 
                             <div class="form-group my-3">
                                 @Html.Label("Placa automovil")
-                                @Html.DropDownListFor(m => m.idAutomovil, ViewBag.Automoviles as List<SelectListItem>, new { @class = "form-control form-control-user", @required = "true" })
+                                @Html.DropDownListFor(m => m.idAutomovil, ViewBag.Automoviles as List<SelectListItem>, "Seleccione un automóvil", new { @class = "form-control", @id = "automovilSelect" })
                                 @Html.ValidationMessageFor(m => m.idAutomovil, "", new { @class = "text-danger" })
                             </div>
                             <div class="form-group my-3">
                                 @Html.Label("Tipo Sucursal")
-                                @Html.DropDownListFor(m => m.idSucursal, ViewBag.Sucursales as List<SelectListItem>, new { @class = "form-control form-control-user", @required = "true" })
+                                @Html.DropDownListFor(m => m.idSucursal, ViewBag.Sucursales as List<SelectListItem>, "Seleccione una sucursal", new { @class = "form-control", @id = "sucursalSelect" })
                                 @Html.ValidationMessageFor(m => m.idSucursal, "", new { @class = "text-danger" })
                             </div>
                             <div class="form-group my-3">
                                 @Html.Label("Tipo Servicio")
-                                @Html.DropDownListFor(m => m.idServicio, ViewBag.Servicios as List<SelectListItem>, new { @class = "form-control form-control-user", @required = "true" })
+                                @Html.DropDownListFor(m => m.idServicio, ViewBag.Servicios as List<SelectListItem>, "Seleccione un servicio", new { @class = "form-control", @id = "servicioSelect" })
                                 @Html.ValidationMessageFor(m => m.idServicio, "", new { @class = "text-danger" })
                             </div>
                             <div class="form-group my-3">
                                 @Html.Label("Fecha")
-                                @Html.TextBoxFor(m => m.fechaHora, new { @class = "form-control", @placeholder = "Fecha", @required = "true", @type = "date" ,@min = DateTime.Now.ToString("yyyy-MM-dd")})
+                                @Html.TextBoxFor(m => m.fechaHora, new { @class = "form-control", @placeholder = "Fecha", @required = "true", @type = "date", @min = DateTime.Now.ToString("yyyy-MM-dd") })
                                 @Html.ValidationMessageFor(m => m.fechaHora, "", new { @class = "text-danger" })
                             </div>
                             <div class="form-group my-3">
                                 @Html.Label("Hora")
-                                @Html.DropDownListFor(m => m.HoraSeleccionada, ViewBag.Horas as List<SelectListItem>, new { @class = "form-control form-control-user", @required = "true" })
+                                @Html.DropDownListFor(m => m.HoraSeleccionada, ViewBag.Horas as List<SelectListItem>, "Seleccione una hora", new { @class = "form-control", @id = "horaSelect" })
                                 @Html.ValidationMessageFor(m => m.HoraSeleccionada, "", new { @class = "text-danger" })
                             </div>
                             <div class="form-group my-3">
@@ -58,7 +58,7 @@
                             </div>
 
                             <div style="display: flex; align-items: center; flex-direction: column;">
-                                <input type="submit" class="btn btn-primary btn-block" value="Agregar" style="margin-top: 20px; margin-bottom: 20px;">
+                                <input type="submit" class="btn btn-primary btn-block" value="Guardar" style="margin-top: 20px; margin-bottom: 20px;">
                             </div>
                         }
                     </div>
@@ -67,3 +67,38 @@
         </div>
     </div>
 </div>
+
+<!-- Incluir jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- Incluir Select2 CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+
+<!-- Incluir Select2 JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+<!-- Tu código JavaScript -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#automovilSelect').select2({
+            placeholder: "Seleccione un automóvil",
+            allowClear: true
+        });
+
+        $('#sucursalSelect').select2({
+            placeholder: "Seleccione una sucursal",
+            allowClear: true
+        });
+
+        $('#servicioSelect').select2({
+            placeholder: "Seleccione un servicio",
+            allowClear: true
+        });
+
+        $('#horaSelect').select2({
+            placeholder: "Seleccione una hora",
+            allowClear: true
+        });
+    });
+</script>
+

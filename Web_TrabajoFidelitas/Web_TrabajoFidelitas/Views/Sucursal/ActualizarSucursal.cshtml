@@ -13,7 +13,8 @@
             <div class="card-body" style="margin-top: 20px;">
                 <div class="table-responsive">
                     <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-
+                        <h3>Actualizar Sucursal</h3>
+                        <hr />
                         @if (ViewBag.MsjPantalla != null)
                         {
                             <div class="alert alert-warning" role="alert" style="text-align:center">
@@ -42,6 +43,11 @@
                                 @Html.DropDownListFor(m => m.idCiudadSucursal, ViewBag.Cuidades as List<SelectListItem>, new { @class = "form-control form-control-user", @required = "true" })
                                 @Html.ValidationMessageFor(m => m.idCiudadSucursal, "", new { @class = "text-danger" })
                                 <div class="invalid-feedback">Por favor, escoga un id respectivo</div>
+                            </div>
+                            <div class="form-group my-3">
+                                @Html.Label("   Estado")
+
+                                @Html.DropDownListFor(m => m.estado, new SelectList(new[] { new SelectListItem { Text = "Seleccione....", Value = "null" }, new SelectListItem { Text = "Inactivo", Value = "false" }, new SelectListItem { Text = "Activo", Value = "true" } }, "Value", "Text"), new { @class = "form-control" })
                             </div>
 
                             <div style="display: flex; align-items: center; flex-direction: column;">

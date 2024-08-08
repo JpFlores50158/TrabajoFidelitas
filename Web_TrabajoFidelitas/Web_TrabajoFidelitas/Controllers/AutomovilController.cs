@@ -99,7 +99,7 @@ namespace Web_TrabajoFidelitas.Controllers
             {
                 Auditoria au = new Auditoria();
                 au.TableName = "Automoviles";
-                au.Action = "DELETE";
+                au.Action = "INACTIVAR";
                 au.Usuario = Session["NombreUsuario"].ToString();
                 modelA.AgregarAuditoria(au);
                 return RedirectToAction("MostrarAutomoviles", "Automovil");

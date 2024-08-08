@@ -17,6 +17,8 @@ namespace Api_TrabajoFidelitas.Entidades
         public int idCiudadSucursal { get; set; }
 
         public bool estado { get; set; }
+
+        public string nombreCiudad { get; set; }
     }
 
     public class ConfirmacionSucursal

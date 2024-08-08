@@ -16,7 +16,7 @@ namespace Web_TrabajoFidelitas.Entidades
 
         public string DescripcionServicio { get; set; }
 
-        public bool Estado { get; set; }
+        public bool estado { get; set; }
     }
     public class ConfirmacionServicios
     {

@@ -1,79 +1,60 @@
 ﻿@model Web_TrabajoFidelitas.Entidades.Usuario
 
 @{
-    ViewBag.Title = "RegistrarUsuario";
-    Layout = "~/Views/Shared/_LayoutExterno.cshtml";
+    ViewBag.Title = "Registrar Usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<main>
-    <div class="container">
+<a class="btn btn-primary m-2 my-4" href="@Url.Action("MostrarUsuarios","Usuario")"><i class="bi bi-arrow-left-circle"></i> Regresar </a>
+<div class="card shadow mb-4">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <div class="card-body" style="margin-top: 20px;">
+                <div class="table-responsive">
+                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
 
-        <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
-
-                        <div class="d-flex justify-content-center py-4">
-                            <a href="index.html" class="logo d-flex align-items-center w-auto">
-                                <img src="~/Estilos/assets/img/Grupo-Motores-Britanicos-2.png" alt="Logo">
-                            </a>
-                        </div><!-- Fin Logo -->
-
-                        <div class="card mb-3">
-
-                            <div class="card-body">
-
-                                <div class="pt-4 pb-2">
-                                    <h5 class="card-title text-center pb-0 fs-4">Crear una Cuenta</h5>
-                                    <p class="text-center small"></p>
-                                </div>
-
-                                @using (Html.BeginForm("RegistrarUsuario", "Usuario", FormMethod.Post, new { @class = "row g-3 needs-validation", novalidate = "novalidate" }))
-                                {
-                                    <div class="col-12">
-                                        @Html.Label("Nombre de Usuario", new { @class = "form-label" })
-                                        @Html.TextBoxFor(m => m.nombreUsuario, new { @class = "form-control", @id = "yourName", @required = "required", @maxlength = "20" })
-                                        <div class="invalid-feedback">Por favor, ingresa tu nombre de usuario</div>
-                                    </div>
-
-                                    <div class="col-12">
-                                        @Html.Label("Correo Electrónico", new { @class = "form-label" })
-                                        @Html.TextBoxFor(m => m.emailUsuario, new { @class = "form-control", @type = "email", @id = "yourEmail", @required = "required", @maxlength = "50" })
-                                        <div class="invalid-feedback">Por favor, introduce una dirección de correo electrónico válida</div>
-                                    </div>
-
-                                    <div class="col-12">
-                                        @Html.Label("Contraseña", new { @class = "form-label" })
-                                        <div class="input-group has-validation">
-                                            <span class="input-group-text" id="inputGroupPrepend"></span>
-                                            @Html.PasswordFor(m => m.contrasenaUsuario, new { @class = "form-control", @id = "yourPassword", @required = "required", @maxlength = "15", @minlength = "8" })
-                                            <div class="invalid-feedback">Por favor, ingresa una contraseña válida de mínimo 8 y máximo 15 caracteres</div>
-                                        </div>
-                                    </div>
-
-                                  
-
-                                    
-                                    <div class="col-12">
-                                        <button class="btn btn-primary w-100" type="submit">Crear Cuenta</button>
-                                    </div>
-                                    <div class="col-12">
-                                        <p class="small mb-0">¿Ya tienes cuenta? <a href="@Url.Action("IniciarSesion","Usuario")">Iniciar sesión</a></p>
-                                    </div>
-                                }
-
+                        @if (ViewBag.MsjPantalla != null)
+                        {
+                            <div class="alert alert-warning" role="alert" style="text-align:center">
+                                @ViewBag.MsjPantalla
                             </div>
-                        </div>
+                        }
 
-                        <div class="credits">
-                            Diseñado por <a href="https://bootstrapmade.com/">BootstrapMade</a>
-                        </div>
+                        @using (Html.BeginForm("RegistrarUsuario", "Usuario", FormMethod.Post, new { @class = "row g-3 needs-validation", novalidate = "novalidate" }))
+                        {
+                            <div class="col-12">
+                                @Html.Label("Nombre de Usuario", new { @class = "form-label" })
+                                @Html.TextBoxFor(m => m.nombreUsuario, new { @class = "form-control", @id = "yourName", @required = "required", @maxlength = "20" })
+                                <div class="invalid-feedback">Por favor, ingresa tu nombre de usuario</div>
+                            </div>
 
+                            <div class="col-12">
+                                @Html.Label("Correo Electrónico", new { @class = "form-label" })
+                                @Html.TextBoxFor(m => m.emailUsuario, new { @class = "form-control", @type = "email", @id = "yourEmail", @required = "required", @maxlength = "50" })
+                                <div class="invalid-feedback">Por favor, introduce una dirección de correo electrónico válida</div>
+                            </div>
+
+                            <div class="col-12">
+                                @Html.Label("Contraseña", new { @class = "form-label" })
+                                <div class="input-group has-validation">
+                                   
+                                    @Html.TextBoxFor(m => m.contrasenaUsuario, new { @class = "form-control", @id = "yourPassword", @required = "required", @maxlength = "15", @minlength = "8" })
+                                    <div class="invalid-feedback">Por favor, ingresa una contraseña válida de mínimo 8 y máximo 15 caracteres</div>
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div style="display: flex; align-items: center; flex-direction: column;">
+                                <input type="submit" class="btn btn-primary btn-block" value="Registar Usuario" style="margin-top: 20px; margin-bottom: 20px;">
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
-
-        </section>
-
+        </div>
     </div>
-</main><!-- Fin #main -->
+</div>

@@ -10,6 +10,7 @@ using Web_TrabajoFidelitas.Models;
 namespace Web_TrabajoFidelitas.Controllers
 {
     [FiltroSeguridad]
+    [FiltroAdmin]
     public class CitaController : Controller
     {
         AuditoriaModel modelA = new AuditoriaModel();
@@ -64,7 +65,7 @@ namespace Web_TrabajoFidelitas.Controllers
                 au.Action = "INSERT";
                 au.Usuario = Session["NombreUsuario"].ToString();
                 modelA.AgregarAuditoria(au);
-
+                entidad.correotipo = "Confirmacion";
                 var cliente = modelCl.ConsultarCliente(entidad.idCliente);
                 entidad.correoElect = cliente.Dato.emailCliente;
 
@@ -104,6 +105,7 @@ namespace Web_TrabajoFidelitas.Controllers
         [HttpPost]
         public ActionResult EditarCita(Citas entidad)
         {
+            CitasModel MODELADO = new CitasModel();
             var consulta = modelAu.ConsultarAutomovil(entidad.idAutomovil);
             entidad.idCliente = consulta.Dato.idCliente;
             var respuesta = model.Editarcita(entidad);
@@ -114,6 +116,23 @@ namespace Web_TrabajoFidelitas.Controllers
                 au.Action = "UPDATE";
                 au.Usuario = Session["NombreUsuario"].ToString();
                 modelA.AgregarAuditoria(au);
+                if (entidad.estado) {
+                    entidad.correotipo = "Edicion";
+                    var cliente = modelCl.ConsultarCliente(entidad.idCliente);
+                    entidad.correoElect = cliente.Dato.emailCliente;
+
+                    var sucursal = modelSu.TraerSucursal(entidad.idSucursal);
+                    entidad.nombreSucursal = sucursal.Dato.nombreSucursal;
+
+                    var servicio = model.ConsultarServicio(entidad.idServicio);
+                    entidad.nombreServicio = servicio.Dato.NombreServicio;
+
+                    var placa = modelAu.ConsultarAutomovil(entidad.idAutomovil);
+                    entidad.placa = placa.Dato.placa;
+
+                    var mandar = MODELADO.ConfirmacionCita(entidad);
+                }
+               
                 return RedirectToAction("MostrarCitas");
             }
             else
@@ -135,7 +154,7 @@ namespace Web_TrabajoFidelitas.Controllers
             {
                 Auditoria au = new Auditoria();
                 au.TableName = "Citas";
-                au.Action = "DELETE";
+                au.Action = "INACTIVAR";
                 au.Usuario = Session["NombreUsuario"].ToString();
                 modelA.AgregarAuditoria(au);
                 return RedirectToAction("MostrarCitas");
@@ -212,7 +231,7 @@ namespace Web_TrabajoFidelitas.Controllers
             var sucursales = new List<SelectListItem>();
 
             sucursales.Add(new SelectListItem { Text = "Seleccione una sucursal", Value = "" });
-            foreach (var item in respuesta.Datos)
+            foreach (var item in respuesta.Datos.Where(a => a.estado))
                 sucursales.Add(new SelectListItem { Text = item.nombreSucursal, Value = item.idSucursal.ToString() });
 
             ViewBag.Sucursales = sucursales;
@@ -223,7 +242,7 @@ namespace Web_TrabajoFidelitas.Controllers
             var sucursales = new List<SelectListItem>();
 
             sucursales.Add(new SelectListItem { Text = "Seleccione una sucursal", Value = "" });
-            foreach (var item in respuesta.Datos)
+            foreach (var item in respuesta.Datos.Where(a => a.estado))
                 sucursales.Add(new SelectListItem { Text = item.nombreSucursal, Value = item.nombreSucursal.ToString() });
 
             ViewBag.SucursalesNombre = sucursales;
@@ -234,8 +253,10 @@ namespace Web_TrabajoFidelitas.Controllers
             var automoviles = new List<SelectListItem>();
 
             automoviles.Add(new SelectListItem { Text = "Seleccione un automovil", Value = "" });
-            foreach (var item in respuesta.Datos)
+            foreach (var item in respuesta.Datos.Where(a => a.estado))
+            {
                 automoviles.Add(new SelectListItem { Text = item.placa, Value = item.idAutomovil.ToString() });
+            }
 
             ViewBag.Automoviles = automoviles;
         }
@@ -245,7 +266,7 @@ namespace Web_TrabajoFidelitas.Controllers
             var Servicios = new List<SelectListItem>();
 
             Servicios.Add(new SelectListItem { Text = "Seleccione un servicio", Value = "" });
-            foreach (var item in respuesta.Datos)
+            foreach (var item in respuesta.Datos.Where(a => a.estado))
                 Servicios.Add(new SelectListItem { Text = item.NombreServicio, Value = item.IdServicio.ToString() });
 
             ViewBag.Servicios = Servicios;

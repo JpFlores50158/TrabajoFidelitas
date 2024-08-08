@@ -27,6 +27,11 @@
     <link href="~/Estilos/assets/vendor/simple-datatables/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css" rel="stylesheet" />
+    <!-- Agregar CSS de Select2 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css" rel="stylesheet" />
+
+    
+
 
 
     <!-- Template Main CSS File -->
@@ -177,6 +182,11 @@
                     <span>Auditoria</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("MostrarUsuarios","Usuario")">
+                    <span>Usuario</span>
+                </a>
+            </li>
         </ul>
     </aside><!-- End Sidebar-->
 
@@ -202,9 +212,6 @@
         </div>
     </footer><!-- End Footer -->
     <!-- Enlace para abrir el modal -->
-    <a href="#" class="btn btn-primary position-fixed start-0 middle-aligned" data-bs-toggle="modal" data-bs-target="#conversationModal">
-        <i class="bi bi-chat-dots-fill"></i>
-    </a>
 
 
 
@@ -212,7 +219,7 @@
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
-    
+
     <script src="~/Estilos/assets/vendor/apexcharts/apexcharts.min.js"></script>
     <script src="~/Estilos/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/Estilos/assets/vendor/chart.js/chart.umd.js"></script>
@@ -221,6 +228,7 @@
     <script src="~/Estilos/assets/vendor/simple-datatables/simple-datatables.js"></script>
     <script src="~/Estilos/assets/vendor/tinymce/tinymce.min.js"></script>
     <script src="~/Estilos/assets/vendor/php-email-form/validate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
 
     <!-- Template Main JS File -->

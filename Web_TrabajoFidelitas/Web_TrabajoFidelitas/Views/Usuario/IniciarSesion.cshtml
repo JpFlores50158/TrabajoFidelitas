@@ -25,6 +25,13 @@
                                     <h5 class="card-title text-center pb-0 fs-4">Iniciar Sesión en tu Cuenta</h5>
                                     <p class="text-center small"></p>
                                 </div>
+                                @if (ViewBag.MsjPantalla != null)
+                                {
+                                    <div class="alert alert-warning" role="alert" style="text-align:center">
+                                        @ViewBag.MsjPantalla
+                                    </div>
+                                }
+
                                 @using (Html.BeginForm("IniciarSesion", "Usuario", FormMethod.Post, new { @class = "row g-3 needs-validation", novalidate = "novalidate" }))
                                 {
                                     <div class="form-group">
@@ -39,12 +46,7 @@
                                     <input type="submit" class="btn btn-primary btn-user btn-block" value="Iniciar Sesión">
 
 
-                                    <div class="col-12">
-                                        <p class="small mb-0">¿No tienes cuenta? <a href="@Url.Action("RegistrarUsuario","Usuario")">Crear una cuenta</a></p>
-                                    </div>
-                                    <div class="col-12">
-                                        <p class="small mb-0">Recuperar Acceso <a href="@Url.Action("RecuperarAcceso","Usuario")">Recuperar acceso</a></p>
-                                    </div>
+
                                 }
 
                             </div>

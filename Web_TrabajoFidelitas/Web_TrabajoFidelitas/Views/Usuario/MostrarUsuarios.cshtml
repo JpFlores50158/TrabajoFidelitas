@@ -1,15 +1,15 @@
-﻿@model List<Web_TrabajoFidelitas.Entidades.Sucursal>
+﻿@model List<Web_TrabajoFidelitas.Entidades.Usuario>
 
 @{
-    ViewBag.Title = "ConsultarSucursal";
+    ViewBag.Title = "ConsultarUsuario";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="card shadow mb-4" style="margin-top: 86px;">
     <div class="card-header py-3" style="display: flex; justify-content: space-between; align-items: center;">
-        <h6 class="m-0 font-weight-bold text-primary" style="text-transform: uppercase; letter-spacing: 5px; font-size: 26px;">Sucursales</h6>
+        <h6 class="m-0 font-weight-bold text-primary" style="text-transform: uppercase; letter-spacing: 5px; font-size: 26px;">Usuarios</h6>
         <div>
-            <a class="btn btn-primary" href="@Url.Action("NuevoSucursal","Sucursal")"> + Agregar</a>
+            <a class="btn btn-primary" href="@Url.Action("RegistrarUsuario","Usuario")"> + Agregar</a>
         </div>
     </div>
     <div class="card-body">
@@ -28,9 +28,9 @@
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Nombre de la Sucursal</th>
-                                    <th>Direccion Sucursal</th>
-                                    <th>Cuidad</th>
+                                    <th>Nombre del Usuario</th>
+                                    <th>Email</th>
+                                    <th>Nombre del Rol</th>
                                     <th>Estado</th>
                                     @if (Session["RolUsuario"].ToString() == "1")
                                     {
@@ -42,11 +42,10 @@
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td>@item.idSucursal</td>
-                                        <td>@item.nombreSucursal</td>
-                                        <td>@item.direccionSucursal</td>
-                                        <td>@item.nombreCiudad</td>
-
+                                        <td>@item.idUsuario</td>
+                                        <td>@item.nombreUsuario</td>
+                                        <td>@item.emailUsuario</td>
+                                        <td>@item.nombreRol</td>
 
                                         @if (item.estado)
                                         {
@@ -60,8 +59,9 @@
                                         {
                                             <td>
                                                 <div style="text-align:center">
-                                                    <a href="@Url.Action("ActualizarSucursal", "Sucursal", new { id = @item.idSucursal })" class="btn btn-sm btn-info"><i class="fa fa-pencil-square-o"></i></a>
-                                                    <a href="@Url.Action("InactivarSucursal", "Sucursal", new { id = @item.idSucursal })" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></a>
+                                                    <a href="@Url.Action("ActualizarUsuario", "Usuario", new { id = @item.idUsuario })" class="btn btn-sm btn-info"><i class="fa fa-pencil-square-o"></i></a>
+                                                    <a href="@Url.Action("InactivarUsuario", "Usuario", new { id = @item.idUsuario })" class="btn btn-sm btn-warning"><i class="fa fa-ban"></i></a>
+                                                    <a href="@Url.Action("EliminarUsuario", "Usuario", new { id = @item.idUsuario })" class="btn btn-sm btn-danger mx-1"><i class="fa fa-trash"></i></a>
                                                 </div>
                                             </td>
                                         }

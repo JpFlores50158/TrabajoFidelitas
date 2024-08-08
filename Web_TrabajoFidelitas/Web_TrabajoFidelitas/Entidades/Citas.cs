@@ -21,6 +21,8 @@ namespace Web_TrabajoFidelitas.Entidades
         public string nombreCliente { get; set; }
         public int HoraSeleccionada { get; set; }
         public string correoElect { get; set; }
+
+        public string correotipo { get; set; }
     }
 
     public class ConfirmacionCita

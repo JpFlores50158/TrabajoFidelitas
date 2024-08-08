@@ -5,23 +5,17 @@ using System.Web;
 
 namespace Api_TrabajoFidelitas.Entidades
 {
-    public class Usuario
+    public class Rol
     {
-        public long idUsuario { get; set; }
-        public string nombreUsuario { get; set; }
-        public string emailUsuario { get; set; }
-        public string contrasenaUsuario { get; set; }
-        public bool estado { get; set; }
-        public long idRol { get; set; }
+        public int idRol { get; set; }
         public string nombreRol { get; set; }
-
+       
     }
-    public class ConfirmacionUsuarios
+    public class ConfirmacionRol
     {
         public int Codigo { get; set; }
         public string Detalle { get; set; }
         public object Datos { get; set; }
         public object Dato { get; set; }
     }
-
 }

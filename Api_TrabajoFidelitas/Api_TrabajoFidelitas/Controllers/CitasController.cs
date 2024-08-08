@@ -1,25 +1,19 @@
 ﻿using Api_TrabajoFidelitas.Entidades;
 using Api_TrabajoFidelitas.Models;
 using System;
-using System.Collections.Generic;
+
 using System.Linq;
-using System.Net;
-using System.Net.Http;
+
 using System.Web.Http;
 
-using System;
-using System.Collections.Generic;
-using System.Configuration;
+
 using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Net.Mail;
-using System.Security.Cryptography;
-using System.Web.Http;
+
+using System.Web.Http.Cors;
 
 namespace Api_TrabajoFidelitas.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class CitasController : ApiController
     {
         UtilitariosCorreo modeloCorreo = new UtilitariosCorreo();
@@ -273,7 +267,7 @@ namespace Api_TrabajoFidelitas.Controllers
 
             string rutaHTML = AppDomain.CurrentDomain.BaseDirectory + "CorreoElec.html";
             string contenidoHTML = File.ReadAllText(rutaHTML);
-
+            contenidoHTML = contenidoHTML.Replace("@@Tipo", entidad.correotipo);
             contenidoHTML = contenidoHTML.Replace("@@Nombre", entidad.nombreCliente);
             contenidoHTML = contenidoHTML.Replace("@@Fecha", entidad.fechaHora.ToString("dd/MM/yyyy"));
             contenidoHTML = contenidoHTML.Replace("@@Sucursal", entidad.nombreSucursal);
@@ -281,11 +275,323 @@ namespace Api_TrabajoFidelitas.Controllers
             contenidoHTML = contenidoHTML.Replace("@@Placa", entidad.placa);
             contenidoHTML = contenidoHTML.Replace("@@Comentario", entidad.comentarios);
 
-            //MANDAR EL CORREO
-            modeloCorreo.EnviarCorreo(entidad.correoElect, "Confirmación de Cita", contenidoHTML);
+            if (entidad.correotipo == "Confirmacion")
+            {
+                modeloCorreo.EnviarCorreo(entidad.correoElect, "Confirmación de Cita", contenidoHTML);
+            }
+            else {
+                modeloCorreo.EnviarCorreo(entidad.correoElect, "Cambio de Cita", contenidoHTML);
+            }
+            
 
             respuesta.Codigo = 0;
             respuesta.Detalle = string.Empty;
+            return respuesta;
+        }
+
+
+        [HttpGet]
+        [Route("Citas/TodasCitas")]
+        public ConfirmacionPaCitas TodasCitas()
+        {
+            var respuesta = new ConfirmacionPaCitas();
+
+            try
+            {
+                using (var db = new MotoresBritanicosEntities())
+                {
+                    var datos = db.SelectAllCitas().ToList();
+
+                    if (datos.Count > 0)
+                    {
+
+
+                        respuesta.Codigo = 0;
+                        respuesta.Detalle = string.Empty;
+                        respuesta.Datos = datos;
+
+                    }
+                    else
+                    {
+                        respuesta.Codigo = -1;
+                        respuesta.Detalle = "No se encontro informacion";
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                respuesta.Codigo = -1;
+                respuesta.Detalle = "Se presentó un error en el sistema,InicioSesion";
+            }
+
+            return respuesta;
+        }
+        [Route("Citas/ConsultarCitaPorSucursal")]
+        [HttpGet]
+        public ConfirmacionPaCitas ConsultarCitasPorSucursal(long idSucursal)
+        {
+            var respuesta = new ConfirmacionPaCitas();
+
+            try
+            {
+                using (var db = new MotoresBritanicosEntities())
+                {
+                    var datos = db.CitasPorSede(idSucursal).ToList();
+
+                    if (datos != null)
+                    {
+                        respuesta.Codigo = 0;
+                        respuesta.Detalle = string.Empty;
+                        respuesta.Datos = datos;
+                    }
+                    else
+                    {
+                        respuesta.Codigo = -1;
+                        respuesta.Detalle = "No se encontró la información respectiva";
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                respuesta.Codigo = -1;
+                respuesta.Detalle = "Se presentó un error en el sistema";
+            }
+
+            return respuesta;
+        }
+            [Route("Citas/ConsultarCitaPorMes")]
+            [HttpGet]
+            public ConfirmacionPaCitas ConsultarCitasPorMes(DateTime fecha)
+            {
+                var respuesta = new ConfirmacionPaCitas();
+
+                try
+                {
+                    using (var db = new MotoresBritanicosEntities())
+                    {
+                        var datos = db.CitasPorMes(fecha).ToList();
+
+                        if (datos != null)
+                        {
+                            respuesta.Codigo = 0;
+                            respuesta.Detalle = string.Empty;
+                            respuesta.Datos = datos;
+                        }
+                        else
+                        {
+                            respuesta.Codigo = -1;
+                            respuesta.Detalle = "No se encontró la información respectiva";
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    respuesta.Codigo = -1;
+                    respuesta.Detalle = "Se presentó un error en el sistema";
+                }
+
+                return respuesta;
+            }
+
+       
+            [Route("Citas/ConsultarCitaPorSemana")]
+            [HttpGet]
+            public ConfirmacionPaCitas ConsultarCitasPorSemana(DateTime fecha)
+        {
+            var respuesta = new ConfirmacionPaCitas();
+
+            try
+            {
+                using (var db = new MotoresBritanicosEntities())
+                {
+                    var datos = db.CitasPorSemana(fecha).ToList();
+
+                    if (datos != null)
+                    {
+                        respuesta.Codigo = 0;
+                        respuesta.Detalle = string.Empty;
+                        respuesta.Datos = datos;
+                    }
+                    else
+                    {
+                        respuesta.Codigo = -1;
+                        respuesta.Detalle = "No se encontró la información respectiva";
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                respuesta.Codigo = -1;
+                respuesta.Detalle = "Se presentó un error en el sistema";
+            }
+
+            return respuesta;
+        }
+        [Route("Citas/CitasPorDia")]
+        [HttpGet]
+        public ConfirmacionReporte CitasPorDia(DateTime FechaInicio,DateTime FechaFin)
+        {
+            var respuesta = new ConfirmacionReporte();
+
+            try
+            {
+                using (var db = new MotoresBritanicosEntities())
+                {
+                    var datos = db.ObtenerCitasPorDia(FechaInicio,FechaFin).ToList();
+
+                    if (datos != null)
+                    {
+                        respuesta.Codigo = 0;
+                        respuesta.Detalle = string.Empty;
+                        respuesta.Datos = datos;
+                    }
+                    else
+                    {
+                        respuesta.Codigo = -1;
+                        respuesta.Detalle = "No se encontró la información respectiva";
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                respuesta.Codigo = -1;
+                respuesta.Detalle = "Se presentó un error en el sistema";
+            }
+
+            return respuesta;
+        }
+
+       
+        [Route("Citas/CitasDeLaSemanaActual")]
+        [HttpGet]
+        public ConfirmacionCita CitasDeLaSemanaActual()
+        {
+            var respuesta = new ConfirmacionCita();
+
+            try
+            {
+                using (var db = new MotoresBritanicosEntities())
+                {
+                    var datos = db.CitasDeLaSemanaActual().ToList();
+
+                    if (datos != null)
+                    {
+                        respuesta.Codigo = 0;
+                        respuesta.Detalle = string.Empty;
+                        respuesta.Datos = datos;
+                    }
+                    else
+                    {
+                        respuesta.Codigo = -1;
+                        respuesta.Detalle = "No se encontró la información respectiva";
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                respuesta.Codigo = -1;
+                respuesta.Detalle = "Se presentó un error en el sistema";
+            }
+
+            return respuesta;
+        }
+        [Route("Citas/CitasPorSucursal")]
+        [HttpGet]
+        public ConfirmacionReporte CitasPorSucursal()
+        {
+            var respuesta = new ConfirmacionReporte();
+
+            try
+            {
+                using (var db = new MotoresBritanicosEntities())
+                {
+                    var datos = db.CitasPorSucursal().ToList();
+
+                    if (datos != null)
+                    {
+                        respuesta.Codigo = 0;
+                        respuesta.Detalle = string.Empty;
+                        respuesta.Datos = datos;
+                    }
+                    else
+                    {
+                        respuesta.Codigo = -1;
+                        respuesta.Detalle = "No se encontró la información respectiva";
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                respuesta.Codigo = -1;
+                respuesta.Detalle = "Se presentó un error en el sistema";
+            }
+
+            return respuesta;
+        }
+        [Route("Citas/CitasPorServicio")]
+        [HttpGet]
+        public ConfirmacionReporte CitasPorServicio()
+        {
+            var respuesta = new ConfirmacionReporte();
+
+            try
+            {
+                using (var db = new MotoresBritanicosEntities())
+                {
+                    var datos = db.CitasPorServicio().ToList();
+
+                    if (datos != null)
+                    {
+                        respuesta.Codigo = 0;
+                        respuesta.Detalle = string.Empty;
+                        respuesta.Datos = datos;
+                    }
+                    else
+                    {
+                        respuesta.Codigo = -1;
+                        respuesta.Detalle = "No se encontró la información respectiva";
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                respuesta.Codigo = -1;
+                respuesta.Detalle = "Se presentó un error en el sistema";
+            }
+
+            return respuesta;
+        }
+        [Route("Citas/CitasPorAuto")]
+        [HttpGet]
+        public ConfirmacionReporte CitasPorAuto()
+        {
+            var respuesta = new ConfirmacionReporte();
+
+            try
+            {
+                using (var db = new MotoresBritanicosEntities())
+                {
+                    var datos = db.CitasPorAuto().ToList();
+
+                    if (datos != null)
+                    {
+                        respuesta.Codigo = 0;
+                        respuesta.Detalle = string.Empty;
+                        respuesta.Datos = datos;
+                    }
+                    else
+                    {
+                        respuesta.Codigo = -1;
+                        respuesta.Detalle = "No se encontró la información respectiva";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                respuesta.Codigo = -1;
+                respuesta.Detalle = $"Se presentó un error en el sistema: {ex.Message}";
+            }
+
             return respuesta;
         }
     }
