@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 using Web_TrabajoFidelitas.Entidades;
 using Web_TrabajoFidelitas.Models;
 
@@ -18,6 +19,7 @@ namespace Web_TrabajoFidelitas.Controllers
         CitasModel model = new CitasModel();
         SucursalModel modelSu = new SucursalModel();
         AutomovilModel modelAu = new AutomovilModel();
+        ServiciosModel modelSe = new ServiciosModel();
 
         [HttpGet]
         public ActionResult MostrarCitas()
@@ -27,14 +29,16 @@ namespace Web_TrabajoFidelitas.Controllers
             {
                 CargarViewBagSucursal();
                 CargarViewBagSucursalNombre();
-
-
+                CargarViewBagServicioNombre();
+               
                 return View(respuesta.Datos);
             }
             else
             {
                 CargarViewBagSucursal();
                 CargarViewBagSucursalNombre();
+                CargarViewBagServicioNombre();
+   
                 return View(new List<Citas>());
             }
         }
@@ -42,7 +46,7 @@ namespace Web_TrabajoFidelitas.Controllers
         {
             CargarViewBagAutomovil();
             CargarViewBagSucursal();
-            CargarViewBagServicios();
+            CargarViewBagServicio();
             CargarViewBagHoras();
             return View();
         }
@@ -87,7 +91,7 @@ namespace Web_TrabajoFidelitas.Controllers
                 ViewBag.MsjPantalla = "Debe seleccionar una hora entre 7am y 5pm, o ya hay una cita programada en esta hora.";
                 CargarViewBagAutomovil();
                 CargarViewBagSucursal();
-                CargarViewBagServicios();
+                CargarViewBagServicio();
                 CargarViewBagHoras(); // Asegúrate de cargar las opciones para el DropDownList de horas
                 return View();
             }
@@ -99,7 +103,7 @@ namespace Web_TrabajoFidelitas.Controllers
             var respuesta = model.ConsultarCita(id);
             CargarViewBagAutomovil();
             CargarViewBagSucursal();
-            CargarViewBagServicios();
+            CargarViewBagServicio();
             return View(respuesta.Dato);
         }
         [HttpPost]
@@ -140,7 +144,7 @@ namespace Web_TrabajoFidelitas.Controllers
                 ViewBag.MsjPantalla = "Tiene que ser de 7am a 5pm o ya hay una cita en esta hora ";
                 CargarViewBagAutomovil();
                 CargarViewBagSucursal();
-                CargarViewBagServicios();
+                CargarViewBagServicioNombre();
                 return View();
             }
         }
@@ -260,17 +264,29 @@ namespace Web_TrabajoFidelitas.Controllers
 
             ViewBag.Automoviles = automoviles;
         }
-        private void CargarViewBagServicios()
+        private void CargarViewBagServicioNombre()
         {
             var respuesta = model.ConsultarServicios();
-            var Servicios = new List<SelectListItem>();
+            var servicio = new List<SelectListItem>();
 
-            Servicios.Add(new SelectListItem { Text = "Seleccione un servicio", Value = "" });
+            servicio.Add(new SelectListItem { Text = "Seleccione un servicio", Value = "" });
             foreach (var item in respuesta.Datos.Where(a => a.estado))
-                Servicios.Add(new SelectListItem { Text = item.NombreServicio, Value = item.IdServicio.ToString() });
+                servicio.Add(new SelectListItem { Text = item.NombreServicio, Value = item.NombreServicio.ToString() });
 
-            ViewBag.Servicios = Servicios;
+            ViewBag.ServiciosNombre = servicio;
         }
+        private void CargarViewBagServicio()
+        {
+            var respuesta = model.ConsultarServicios();
+            var servicio = new List<SelectListItem>();
+
+            servicio.Add(new SelectListItem { Text = "Seleccione un servicio", Value = "" });
+            foreach (var item in respuesta.Datos.Where(a => a.estado))
+                servicio.Add(new SelectListItem { Text = item.NombreServicio, Value = item.IdServicio.ToString() });
+
+            ViewBag.Servicios = servicio;
+        }
+
         private void CargarViewBagHoras()
         {
             // Crear una lista de SelectListItem para las horas disponibles (de 7am a 5pm)

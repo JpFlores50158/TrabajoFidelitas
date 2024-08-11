@@ -12,8 +12,10 @@ namespace Api_TrabajoFidelitas.Controllers
     public class ServiciosController : ApiController
     {
         [HttpGet]
-        [Route("Servicios/ConsultarServicios")]
-        public ConfirmacionServicios TraerCita()
+        [Route("Servicio/ConsultarServicios")]
+        public ConfirmacionServicios ConsultarServicios()
+
+
         {
             var respuesta = new ConfirmacionServicios();
 
@@ -21,7 +23,7 @@ namespace Api_TrabajoFidelitas.Controllers
             {
                 using (var db = new MotoresBritanicosEntities())
                 {
-                    var datos = db.ConsultarServicios().ToList();
+                    var datos = db.sp_GetServicios().ToList();
 
                     if (datos.Count > 0)
                     {
@@ -48,9 +50,9 @@ namespace Api_TrabajoFidelitas.Controllers
             return respuesta;
         }
 
-        [HttpGet]
-        [Route("Servicios/TraerServicio")]
-        public ConfirmacionServicios TraerServicio(long id)
+        [HttpPost]
+        [Route("Servicio/AgregarServicios")]
+        public ConfirmacionServicios AgregarServicio(Servicios entidad)
         {
             var respuesta = new ConfirmacionServicios();
 
@@ -58,19 +60,17 @@ namespace Api_TrabajoFidelitas.Controllers
             {
                 using (var db = new MotoresBritanicosEntities())
                 {
-                    var datos = db.TraerServicio(Convert.ToInt32(id)).FirstOrDefault();
+                    var resp = db.AgregarServicio(entidad.NombreServicio, entidad.PrecioServicio, entidad.DescripcionServicio);
 
-                    if (datos != null)
+                    if (resp > 0)
                     {
                         respuesta.Codigo = 0;
                         respuesta.Detalle = string.Empty;
-                        respuesta.Dato = datos;
-
                     }
                     else
                     {
                         respuesta.Codigo = -1;
-                        respuesta.Detalle = "No se encontro información";
+                        respuesta.Detalle = "No se pudo agregar";
                     }
                 }
             }
@@ -82,5 +82,106 @@ namespace Api_TrabajoFidelitas.Controllers
 
             return respuesta;
         }
+
+        [Route("Servicio/TraerServicio")]
+        [HttpGet]
+        public ConfirmacionServicios TraerServicio(long id)
+        {
+            var respuesta = new ConfirmacionServicios();
+
+            try
+            {
+                using (var db = new MotoresBritanicosEntities())
+                {
+                    var datos = db.ObtenerServicioPorId(id).FirstOrDefault();
+
+                    if (datos != null)
+                    {
+                        respuesta.Codigo = 0;
+                        respuesta.Detalle = string.Empty;
+                        respuesta.Dato = datos;
+                    }
+                    else
+                    {
+                        respuesta.Codigo = -1;
+                        respuesta.Detalle = "No se encontró la información respectiva";
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                respuesta.Codigo = -1;
+                respuesta.Detalle = "Se presentó un error en el sistema";
+            }
+
+            return respuesta;
+        }
+
+        [HttpPut]
+        [Route("Servicio/ActualizarServicios")]
+        public ConfirmacionServicios ActualizarServicio(Servicios entidad)
+        {
+            var respuesta = new ConfirmacionServicios();
+
+            try
+            {
+                using (var db = new MotoresBritanicosEntities())
+                {
+                    var resp = db.ActualizarServicio(entidad.IdServicio,entidad.NombreServicio,entidad.PrecioServicio,entidad.DescripcionServicio,entidad.Estado);
+
+                    if (resp > 0)
+                    {
+                        respuesta.Codigo = 0;
+                        respuesta.Detalle = string.Empty;
+                    }
+                    else
+                    {
+                        respuesta.Codigo = -1;
+                        respuesta.Detalle = "No se pudo agregar";
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                respuesta.Codigo = -1;
+                respuesta.Detalle = "Se presentó un error en el sistema,InicioSesion";
+            }
+
+            return respuesta;
+        }
+
+        [HttpDelete]
+        [Route("Servicio/EliminarServicios")]
+        public ConfirmacionServicios EliminarServicio(long id)
+        {
+            var respuesta = new ConfirmacionServicios();
+
+            try
+            {
+                using (var db = new MotoresBritanicosEntities())
+                {
+                    var resp = db.InactivarServicio(id);
+
+                    if (resp > 0)
+                    {
+                        respuesta.Codigo = 0;
+                        respuesta.Detalle = string.Empty;
+                    }
+                    else
+                    {
+                        respuesta.Codigo = -1;
+                        respuesta.Detalle = "El producto no se pudo eliminar";
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                respuesta.Codigo = -1;
+                respuesta.Detalle = "Se presentó un error en el sistema";
+            }
+
+            return respuesta;
+        }
     }
 }
+

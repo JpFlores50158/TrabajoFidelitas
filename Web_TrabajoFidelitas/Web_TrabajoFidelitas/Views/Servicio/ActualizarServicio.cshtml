@@ -1,0 +1,62 @@
+﻿@model Web_TrabajoFidelitas.Entidades.Servicios
+
+@{
+    ViewBag.Title = "Actualizar Servicio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<a class="btn btn-primary m-2 my-4" href="@Url.Action("MostrarServicios","Servicio")"><i class="bi bi-arrow-left-circle"></i> Regresar </a>
+<div class="card shadow mb-4">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <div class="card-body" style="margin-top: 20px;">
+                <div class="table-responsive" style="overflow-x: hidden;">
+                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                        <h3>Editar Servicio</h3>
+                        <hr />
+                        @if (ViewBag.MsjPantalla != null)
+                        {
+                            <div class="alert alert-warning" role="alert" style="text-align:center">
+                                @ViewBag.MsjPantalla
+                            </div>
+                        }
+
+                        @using (Html.BeginForm("ActualizarServicio", "Servicio", FormMethod.Post, new { @class = "row g-3 needs-validation", novalidate = "novalidate" }))
+                        {
+                            @Html.HiddenFor(m => m.IdServicio)
+                            <div class="form-group my-4">
+                                @Html.Label("Nombre del servicio a realizar")
+                                @Html.TextBoxFor(m => m.NombreServicio, new { @class = "form-control", @placeholder = "Nombre", @required = "true", @type = "text", @maxlength = "100" })
+                                @Html.ValidationMessageFor(m => m.NombreServicio, "", new { @class = "text-danger" })
+                                <div class="invalid-feedback">Por favor, ingrese el nombre del serviico a realizar</div>
+                            </div>
+                            <div class="form-group my-4">
+                                @Html.Label("Precio del servicio")
+                                @Html.TextBoxFor(m => m.PrecioServicio, new { @class = "form-control", @placeholder = "Precio", @required = "true", @type = "tel", })
+                                @Html.ValidationMessageFor(m => m.PrecioServicio, "", new { @class = "text-danger" })
+                                <div class="invalid-feedback">Por favor, ingrese el precio del servicio a realizar</div>
+                            </div>
+                            <div class="form-group my-4">
+                                @Html.Label("Descripcion del servicio")
+                                @Html.TextBoxFor(m => m.DescripcionServicio, new { @class = "form-control", @placeholder = "Descripcion", @required = "true", @type = "text", @maxlength = "255" })
+                                @Html.ValidationMessageFor(m => m.DescripcionServicio, "", new { @class = "text-danger" })
+                                <div class="invalid-feedback">Por favor, ingrese la descripcion del servicio</div>
+                            </div>
+                            
+                            <div class="form-group my-4">
+                                @Html.Label("Estado")
+                                @Html.DropDownListFor(m => m.estado, new SelectList(new[] { new SelectListItem { Text = "Seleccione....", Value = "null" }, new SelectListItem { Text = "Inactivo", Value = "false" }, new SelectListItem { Text = "Activo", Value = "true" } }, "Value", "Text"), new { @class = "form-control" })
+                                <div class="invalid-feedback">Escoge un estado respectivo</div>
+                            </div>
+
+                            <div style="display: flex; align-items: center; flex-direction: column;">
+                                <input type="submit" class="btn btn-primary btn-block" value="Actualizar Cliente" style="margin-top: 20px; margin-bottom: 20px;">
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

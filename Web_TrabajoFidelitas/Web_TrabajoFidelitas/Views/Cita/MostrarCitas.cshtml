@@ -5,6 +5,57 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+<div id="filtros" class="mb-4">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">Filtros</h5>
+        </div>
+        <div class="card-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label for="sucursal">Sucursal:</label>
+                        @Html.DropDownList("sucursal", ViewBag.SucursalesNombre as List<SelectListItem>, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="servicio">Servicio:</label>
+                        @Html.DropDownList("servicio", ViewBag.ServiciosNombre as List<SelectListItem>, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group my-3">
+                        @Html.Label("Estado")
+                        @Html.DropDownList("estado", new SelectList(new[] {
+                            new SelectListItem { Text = "Seleccione....", Value = "null" },
+                            new SelectListItem { Text = "Cancelada", Value = "Cancelada" },
+                            new SelectListItem { Text = "Activa", Value = "Activa" }
+                        }, "Value", "Text"), new { @class = "form-control", @id = "estadoSelect" })
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="mes">Mes:</label>
+                        <select id="mes" class="form-control">
+                            <option value="">Todos</option>
+                            @for (int i = 1; i <= 12; i++)
+                            {
+                                <option value="@i">@i</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="anio">Año:</label>
+                        <input id="anio" type="number" class="form-control" placeholder="YYYY" min="2000" max="2100" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col d-flex justify-content-between align-items-end">
+                        <button class="btn btn-primary" onclick="filtrarTodos()">Filtrar</button>
+                        <button class="btn btn-outline-secondary" onclick="quitarFiltros()">Quitar Filtros</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Sucursal</h6>
@@ -22,15 +73,7 @@
                             </div>
                         }
 
-                        <div class="row mb-3">
-                            <div class="col">
-                                <label for="sucursal">Sucursal:</label>
-                                @Html.DropDownList("sucursal", ViewBag.SucursalesNombre as List<SelectListItem>, new { @class = "form-control", @id = "sucursal" })
-                            </div>
-                            <div class="col d-flex align-items-end">
-                                <button class="btn btn-primary" onclick="filtrarCitas()">Buscar</button>
-                            </div>
-                        </div>
+
 
                         <div style="margin-bottom:1%; text-align:right">
                             <a class="btn btn-primary" href="@Url.Action("NuevoCita", "Cita")"> + Agregar</a>
@@ -115,12 +158,11 @@
     </div>
 </div>
 
-
 <!-- CDN de DataTables -->
 <link href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script>
     $(document).ready(function () {
         $('#myDataTable').DataTable({
@@ -129,30 +171,66 @@
             }
         });
     });
-
-    function filtrarCitas() {
+    function filtrarTodos() {
         var sucursal = $('#sucursal').val();
+        var servicio = $('#servicio').val();
+        var estado = $('#estadoSelect').val();
+        var mes = $('#mes').val();
+        var anio = $('#anio').val();
+        var table = $('#myDataTable').DataTable();
 
-        $('#myDataTable').DataTable().column(3).search(sucursal).draw(); // Filtrar por columna de Sucursal
+        table.rows().every(function () {
+            var fechaHora = $(this.node()).find('td:eq(5)').text().trim();
+            var date = moment(fechaHora, 'M/D/YYYY h:mm:ss A');
+
+            if (date.isValid()) {
+                var rowMes = date.month() + 1;
+                var rowAnio = date.year();
+                var rowSucursal = $(this.node()).find('td:eq(3)').text().trim();
+                var rowServicio = $(this.node()).find('td:eq(4)').text().trim();
+                var rowEstado = $(this.node()).find('td:eq(7)').text().trim();
+
+                var estadoCond = estado === "null" || rowEstado === estado;
+                var servicioCond = servicio === "" || rowServicio.includes(servicio);
+
+                if ((sucursal == "" || rowSucursal.includes(sucursal)) &&
+                    (mes == "" || mes == rowMes) &&
+                    (anio == "" || anio == rowAnio) &&
+                    estadoCond &&
+                    servicioCond) {
+                    $(this.node()).show();
+                } else {
+                    $(this.node()).hide();
+                }
+            } else {
+                $(this.node()).hide();
+            }
+        });
+
+        table.draw();
+    }
+
+    function quitarFiltros() {
+        location.reload();
     }
 
     function ordenarPorHora() {
         var table = $('#myDataTable').DataTable();
-        table.order([5, 'asc']).draw(); // Ordenar por Fecha Hora (índice 5)
+        table.order([5, 'asc']).draw();
     }
 
     function ordenarPorNombre() {
         var table = $('#myDataTable').DataTable();
-        table.order([1, 'asc']).draw(); // Ordenar por Nombre Cliente (índice 1)
+        table.order([1, 'asc']).draw();
     }
 </script>
 
 <style>
     .estado-activo {
-        background-color: #d4edda; /* Verde claro */
+        background-color: #ADFFAA;
     }
 
     .estado-cancelado {
-        background-color: #f8d7da; /* Rojo claro */
+        background-color: #FFAAAA;
     }
 </style>

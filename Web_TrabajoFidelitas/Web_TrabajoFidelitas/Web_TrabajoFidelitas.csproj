@@ -151,6 +151,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ServicioController.cs" />
     <Compile Include="Controllers\SucursalController.cs" />
     <Compile Include="Controllers\ReporteController.cs" />
     <Compile Include="Controllers\AuditoriaController.cs" />
@@ -175,6 +176,7 @@
     <Compile Include="Models\CitasModel.cs" />
     <Compile Include="Models\FiltroAdmin.cs" />
     <Compile Include="Models\FiltroSeguridad.cs" />
+    <Compile Include="Models\ServiciosModel.cs" />
     <Compile Include="Models\SucursalModel.cs" />
     <Compile Include="Models\AutomovilModel.cs" />
     <Compile Include="Models\ClienteModel.cs" />
@@ -638,6 +640,9 @@
     <Content Include="Views\Auditoria\MostrarAuditoria.cshtml" />
     <Content Include="Views\Usuario\MostrarUsuarios.cshtml" />
     <Content Include="Views\Usuario\ActualizarUsuario.cshtml" />
+    <Content Include="Views\Servicio\MostrarServicios.cshtml" />
+    <Content Include="Views\Servicio\NuevoServicio.cshtml" />
+    <Content Include="Views\Servicio\ActualizarServicio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
