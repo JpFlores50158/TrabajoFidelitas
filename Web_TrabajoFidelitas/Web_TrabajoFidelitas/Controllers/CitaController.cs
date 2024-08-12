@@ -266,7 +266,7 @@ namespace Web_TrabajoFidelitas.Controllers
         }
         private void CargarViewBagServicioNombre()
         {
-            var respuesta = model.ConsultarServicios();
+            var respuesta = modelSe.ConsultarServicios();
             var servicio = new List<SelectListItem>();
 
             servicio.Add(new SelectListItem { Text = "Seleccione un servicio", Value = "" });
@@ -277,7 +277,7 @@ namespace Web_TrabajoFidelitas.Controllers
         }
         private void CargarViewBagServicio()
         {
-            var respuesta = model.ConsultarServicios();
+            var respuesta = modelSe.ConsultarServicios();
             var servicio = new List<SelectListItem>();
 
             servicio.Add(new SelectListItem { Text = "Seleccione un servicio", Value = "" });

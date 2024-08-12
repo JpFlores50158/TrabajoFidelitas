@@ -141,7 +141,7 @@ namespace Web_TrabajoFidelitas.Models
         {
             using (var client = new HttpClient())
             {
-                string url = ConfigurationManager.AppSettings["urlWebApi"] + "Servicios/TraerServicio?id="+id;
+                string url = ConfigurationManager.AppSettings["urlWebApi"] + "Servicio/TraerServicio?id="+id;
                 var respuesta = client.GetAsync(url).Result;
 
                 if (respuesta.IsSuccessStatusCode)

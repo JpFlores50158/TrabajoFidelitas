@@ -13,6 +13,13 @@ namespace Web_TrabajoFidelitas.Controllers
     [FiltroSeguridad]
     public class ReporteController : Controller
     {
+        private readonly ReporteModel _reporteModel;
+
+        public ReporteController()
+        {
+            _reporteModel = new ReporteModel();
+        }
+
         public async Task<ActionResult> MostrarReportes()
         {
             //ReporteModel model = new ReporteModel();
@@ -31,7 +38,7 @@ namespace Web_TrabajoFidelitas.Controllers
             CitasModel modelCi = new CitasModel();
             AutomovilModel modelAuto = new AutomovilModel();
             ClienteModel modelCl = new ClienteModel();
-            
+
 
             var respuesta = modelCi.CitaSemanaActual();
             if (respuesta.Codigo == 0)
@@ -57,6 +64,107 @@ namespace Web_TrabajoFidelitas.Controllers
             }
 
             return View();
+        }
+
+
+        // PRIMER ACTION DE DOCKER / PARA TRAER TODAS LAS CITAS
+        // =================================================================
+        [HttpGet]
+        public async Task<ActionResult> TraerTodoDocker()
+        {
+            try
+            {
+                var respuesta = await _reporteModel.ObtenerTodasCitas();
+                if (respuesta != null)
+                {
+                    // Return the file as a download
+                    return File(respuesta, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "CitasTotales.xlsx");
+                }
+                else
+                {
+                    return new HttpStatusCodeResult(400, "No se pudo generar el reporte.");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar excepciones, por ejemplo, loguear el error
+                return new HttpStatusCodeResult(500, $"Ocurrió un error: {ex.Message}");
+            }
+        }
+
+        // SEGUNDO ACTION DE DOCKER / PARA TRAER TODAS LAS CITAS SEGUN LA SUCURSAL
+        // =================================================================
+        [HttpGet]
+        public async Task<ActionResult> TraerTodoDockerSegunSucursal(long idSucursal)
+        {
+            try
+            {
+                var respuesta = await _reporteModel.ObtenerTodasCitasSegunSucursal(idSucursal);
+                if (respuesta != null)
+                {
+                    // Return the file as a download
+                    return File(respuesta, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "CitasTotales.xlsx");
+                }
+                else
+                {
+                    return new HttpStatusCodeResult(400, "No se pudo generar el reporte.");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar excepciones, por ejemplo, loguear el error
+                return new HttpStatusCodeResult(500, $"Ocurrió un error: {ex.Message}");
+            }
+        }
+
+        // TERCER ACTION DE DOCKER / PARA TRAER TODAS LAS CITAS SEGUN EL NUMERO DEL MES
+        // =================================================================
+        [HttpGet]
+        public async Task<ActionResult> TraerTodoDockerSegunMes(int mes)
+        {
+            try
+            {
+                var respuesta = await _reporteModel.ObtenerTodasCitasSegunMes(mes);
+                if (respuesta != null)
+                {
+                    // Return the file as a download
+                    return File(respuesta, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "CitasTotales.xlsx");
+                }
+                else
+                {
+                    return new HttpStatusCodeResult(400, "No se pudo generar el reporte.");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar excepciones, por ejemplo, loguear el error
+                return new HttpStatusCodeResult(500, $"Ocurrió un error: {ex.Message}");
+            }
+        }
+
+        // CUARTO ACTION DE DOCKER / PARA TRAER TODAS LAS CITAS SEGUN UNA FECHA EN ESPECIFICO
+        // =================================================================
+        [HttpGet]
+        public async Task<ActionResult> TraerTodoDockerSegunFecha(DateTime fecha)
+        {
+            try
+            {
+                var respuesta = await _reporteModel.ObtenerTodasCitasSegunFecha(fecha);
+                if (respuesta != null)
+                {
+                    // Return the file as a download
+                    return File(respuesta, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "CitasTotales.xlsx");
+                }
+                else
+                {
+                    return new HttpStatusCodeResult(400, "No se pudo generar el reporte.");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar excepciones, por ejemplo, loguear el error
+                return new HttpStatusCodeResult(500, $"Ocurrió un error: {ex.Message}");
+            }
         }
     }
 }
