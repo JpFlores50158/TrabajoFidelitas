@@ -83,15 +83,26 @@
                             <!-- Line Chart -->
                             <div id="reportsChart"></div>
 
+                            <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> <!-- Asegúrate de incluir ApexCharts -->
+
                             <script>
                                 document.addEventListener("DOMContentLoaded", () => {
                                     // Function to fetch data from API and render chart
                                     const fetchDataAndRenderChart = (fechaInicio, fechaFin) => {
-                                        fetch(`https://localhost:44305/Citas/CitasPorDia?FechaInicio=${fechaInicio}&FechaFin=${fechaFin}`)
+                                        fetch(`/Reporte/Grafico4?fechaInicio=${encodeURIComponent(fechaInicio)}&fechaFin=${encodeURIComponent(fechaFin)}`)
                                             .then(response => response.json())
                                             .then(data => {
                                                 if (data.Codigo === 0) {
-                                                    const fechas = data.Datos.map(item => item.Fecha);
+                                                    // Convert dates from .NET format to JavaScript Date format
+                                                    const parseDate = (dateString) => {
+                                                        const matches = dateString.match(/\/Date\((\-?\d+)\)\//);
+                                                        if (matches) {
+                                                            return new Date(parseInt(matches[1], 10));
+                                                        }
+                                                        return new Date(); // Return a default date if parsing fails
+                                                    };
+
+                                                    const fechas = data.Datos.map(item => parseDate(item.Fecha).toISOString());
                                                     const cantidadCitas = data.Datos.map(item => Math.round(item.CantidadCitas)); // Redondear a entero
 
                                                     // Render chart
@@ -105,7 +116,7 @@
                                                             type: 'line',
                                                             toolbar: {
                                                                 show: false
-                                                            },
+                                                            }
                                                         },
                                                         markers: {
                                                             size: 4
@@ -167,9 +178,8 @@
                                     document.getElementById('filter-label').innerText = `/ ${year}`;
                                     fetchDataAndRenderChart(firstDay, lastDay);
                                 });
-                            </script>
-                            <!-- End Line Chart -->
 
+                            </script>
                         </div>
                     </div>
                 </div><!-- End Reports -->
@@ -251,20 +261,33 @@
 
                         <!-- Bar Chart -->
                         <canvas id="barChart" style="max-height: 400px;"></canvas>
+                        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Asegúrate de incluir Chart.js -->
+
                         <script>
                             document.addEventListener("DOMContentLoaded", () => {
-                                // Function to fetch data from API and render chart
+                                // Function to fetch data from the local controller and render chart
                                 const fetchDataAndRenderChart = () => {
-                                    fetch('https://localhost:44305/Citas/CitasPorAuto')
-                                        .then(response => response.json())
+                                    fetch('/Reporte/Grafico3', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json'
+                                        }
+                                    })
+                                        .then(response => {
+                                            if (!response.ok) {
+                                                throw new Error('Network response was not ok ' + response.statusText);
+                                            }
+                                            return response.json();
+                                        })
                                         .then(data => {
+                                            console.log('Datos recibidos:', data); // Debugging line
                                             if (data.Codigo === 0) {
                                                 const placas = data.Datos.map(item => item.Placa);
                                                 const cantidadCitas = data.Datos.map(item => item.CantidadCitas);
 
                                                 // Render chart
                                                 new Chart(document.querySelector('#barChart'), {
-                                                    type: 'bar', // Cambia a 'line' si prefieres un gráfico de líneas
+                                                    type: 'bar',
                                                     data: {
                                                         labels: placas,
                                                         datasets: [{
@@ -295,7 +318,7 @@
                                                     }
                                                 });
                                             } else {
-                                                console.error('Error en la respuesta de la API:', data.Detalle);
+                                                console.error('Error en la respuesta del controlador:', data.Detalle);
                                             }
                                         })
                                         .catch(error => console.error('Error al obtener los datos de las citas:', error));
@@ -311,24 +334,38 @@
                 </div>
             </div>
 
+
             <!-- Website Traffic -->
             <div class="card">
 
                 <div class="card-body pb-0">
-                    <h5 class="card-title">Citas por Sucursales</span></h5>
+                    <h5 class="card-title">Citas por Sucursales</h5>
 
                     <div id="trafficChart" style="min-height: 400px;" class="echart"></div>
 
+                    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script> <!-- Asegúrate de incluir ECharts -->
+
                     <script>
                         document.addEventListener("DOMContentLoaded", () => {
-                            // Function to fetch data from API and render chart
+                            // Function to fetch data from the local controller and render chart
                             const fetchDataAndRenderChart = () => {
-                                fetch('https://localhost:44305/Citas/CitasPorSucursal')
-                                    .then(response => response.json())
+                                fetch('/Reporte/Grafico2', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    }
+                                })
+                                    .then(response => {
+                                        if (!response.ok) {
+                                            throw new Error('Network response was not ok ' + response.statusText);
+                                        }
+                                        return response.json();
+                                    })
                                     .then(data => {
+                                        console.log('Datos recibidos:', data); // Debugging line
                                         if (data.Codigo === 0) {
-                                            const sucursales = data.Datos.map(item => item.nombreSucursal);
-                                            const cantidadCitas = data.Datos.map(item => item.cantidadCitas);
+                                            const sucursales = data.Datos.map(item => item.NombreSucursal);
+                                            const cantidadCitas = data.Datos.map(item => item.CantidadCitas);
 
                                             // Render chart
                                             echarts.init(document.querySelector("#trafficChart")).setOption({
@@ -365,7 +402,7 @@
                                                 }]
                                             });
                                         } else {
-                                            console.error('Error en la respuesta de la API:', data.Detalle);
+                                            console.error('Error en la respuesta del controlador:', data.Detalle);
                                         }
                                     })
                                     .catch(error => console.error('Error al obtener los datos de las citas:', error));
@@ -379,6 +416,7 @@
                 </div>
 
             </div><!-- End Website Traffic -->
+
 
 
             <div class="col-lg-12">
@@ -398,9 +436,14 @@
                                     return `rgb(${r}, ${g}, ${b})`;
                                 };
 
-                                // Function to fetch data from API and render chart
+                                // Function to fetch data from the local controller and render chart
                                 const fetchDataAndRenderChart = () => {
-                                    fetch('https://localhost:44305/Citas/CitasPorServicio')
+                                    fetch('/Reporte/Grafico', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json'
+                                        }
+                                    })
                                         .then(response => response.json())
                                         .then(data => {
                                             if (data.Codigo === 0) {
@@ -424,7 +467,7 @@
                                                     }
                                                 });
                                             } else {
-                                                console.error('Error en la respuesta de la API:', data.Detalle);
+                                                console.error('Error en la respuesta del controlador:', data.Detalle);
                                             }
                                         })
                                         .catch(error => console.error('Error al obtener los datos de las citas:', error));
@@ -441,8 +484,5 @@
             </div>
 
 
-
-        </div><!-- End Right side columns -->
-
-    </div>
+        </div>
 </section>

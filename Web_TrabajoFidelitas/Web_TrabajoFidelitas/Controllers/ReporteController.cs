@@ -14,6 +14,7 @@ namespace Web_TrabajoFidelitas.Controllers
     public class ReporteController : Controller
     {
         private readonly ReporteModel _reporteModel;
+        ReporteModel modelRe = new ReporteModel();
 
         public ReporteController()
         {
@@ -22,19 +23,7 @@ namespace Web_TrabajoFidelitas.Controllers
 
         public async Task<ActionResult> MostrarReportes()
         {
-            //ReporteModel model = new ReporteModel();
-
-            //try
-            //{
-            //    var reporteBytes = await model.ObtenerReporteAsync();
-
-            //    return File(reporteBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Reporte.xlsx");
-            //}
-            //catch (Exception ex)
-            //{
-            //    ViewBag.Error = ex.Message;
-            //    return View("Error");
-            //}
+           
             CitasModel modelCi = new CitasModel();
             AutomovilModel modelAuto = new AutomovilModel();
             ClienteModel modelCl = new ClienteModel();
@@ -166,5 +155,30 @@ namespace Web_TrabajoFidelitas.Controllers
                 return new HttpStatusCodeResult(500, $"Ocurrió un error: {ex.Message}");
             }
         }
+        [HttpPost]
+        public ActionResult Grafico()
+        {
+            var data = modelRe.Grafico();
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult Grafico2()
+        {
+            var data = modelRe.Grafico2();
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult Grafico3()
+        {
+            var data = modelRe.Grafico3();
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public ActionResult Grafico4(DateTime fechaInicio, DateTime fechaFin)
+        {
+            var data = modelRe.Grafico4(fechaInicio, fechaFin);
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

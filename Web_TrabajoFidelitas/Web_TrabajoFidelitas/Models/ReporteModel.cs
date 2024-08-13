@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 using System.Web;
 using Web_TrabajoFidelitas.Entidades;
@@ -129,6 +130,65 @@ namespace Web_TrabajoFidelitas.Models
                 }
             }
         }
+        public ConfirmacionReporte Grafico()
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlWebApi"] + "/Citas/CitasPorServicio";
+                var respuesta = client.GetAsync(url).Result;
+
+                if (respuesta.IsSuccessStatusCode)
+                    return respuesta.Content.ReadFromJsonAsync<ConfirmacionReporte>().Result;
+                else
+                    return null;
+            }
+        }
+        public ConfirmacionReporte Grafico2()
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlWebApi"] + "/Citas/CitasPorSucursal";
+                var respuesta = client.GetAsync(url).Result;
+
+                if (respuesta.IsSuccessStatusCode)
+                    return respuesta.Content.ReadFromJsonAsync<ConfirmacionReporte>().Result;
+                else
+                    return null;
+            }
+        }
+        public ConfirmacionReporte Grafico3()
+        {
+            using (var client = new HttpClient())
+            {
+                string url = ConfigurationManager.AppSettings["urlWebApi"] + "/Citas/CitasPorAuto";
+                var respuesta = client.GetAsync(url).Result;
+
+                if (respuesta.IsSuccessStatusCode)
+                    return respuesta.Content.ReadFromJsonAsync<ConfirmacionReporte>().Result;
+                else
+                    return null;
+            }
+        }
+        public ConfirmacionReporte Grafico4(DateTime fechaInicio, DateTime fechaFin)
+        {
+            using (var client = new HttpClient())
+            {
+                string url = $"{ConfigurationManager.AppSettings["urlWebApi"]}/Citas/CitasPorDia?FechaInicio={fechaInicio:yyyy-MM-dd}&FechaFin={fechaFin:yyyy-MM-dd}";
+
+                var respuesta = client.GetAsync(url).Result;
+
+                if (respuesta.IsSuccessStatusCode)
+                    return respuesta.Content.ReadFromJsonAsync<ConfirmacionReporte>().Result;
+                else
+                    return new ConfirmacionReporte
+                    {
+                        Codigo = -1,
+                        Detalle = "Error al obtener datos."
+                    };
+            }
+        }
+
+
 
     }
 }

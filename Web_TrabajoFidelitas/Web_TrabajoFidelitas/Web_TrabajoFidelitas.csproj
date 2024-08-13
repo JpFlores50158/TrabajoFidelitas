@@ -167,6 +167,7 @@
     <Compile Include="Entidades\Confirmacion.cs" />
     <Compile Include="Entidades\Cuidades.cs" />
     <Compile Include="Entidades\IdsClientes.cs" />
+    <Compile Include="Entidades\Reporte.cs" />
     <Compile Include="Entidades\Rol.cs" />
     <Compile Include="Entidades\Servicios.cs" />
     <Compile Include="Entidades\Sucursal.cs" />
