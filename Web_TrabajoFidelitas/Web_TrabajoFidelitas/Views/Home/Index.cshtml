@@ -85,71 +85,83 @@
                     </div>
                 </div>
                 <hr style="padding: 12px">
-                <div class="row">
-                    <div class="col-md-3 d-flex flex-column align-items-center">
-                        <a class="btn btn-success mb-2" href="@Url.Action("TraerTodoDocker", "Reporte")">EXCEL TOTAL CITAS</a>
+                <div class="container">
+                    <div class="row">
+                        <!-- Columna para los botones a la izquierda -->
+                        <div class="col-md-3 d-flex flex-column align-items-center">
+                            <div class="card" style="width: 100%;">
+                                <!-- Ancho ajustado aquí -->
+                                <div class="card-body text-center">
+                                    <a class="btn btn-success m-lg-4" href="@Url.Action("TraerTodoDocker", "Reporte")">EXCEL TOTAL CITAS</a>
 
-                        @using (Html.BeginForm("TraerTodoDockerSegunFecha", "Reporte", FormMethod.Get))
-                        {
-                            <div class="form-group my-3">
-                                <input type="date" name="fecha" class="form-control" required />
-                            </div>
+                                    <hr> <!-- Línea de separación -->
 
-                            <input type="submit" class="btn btn-success" value="EXCEL SEGÚN FECHA">
-                        }
-                    </div>
+                                    @using (Html.BeginForm("TraerTodoDockerSegunFecha", "Reporte", FormMethod.Get))
+                                    {
+                                        <div class="form-group m-lg-5">
+                                            <input type="date" name="fecha" class="form-control" required />
+                                        </div>
 
-                    <div class="col-md-9 ml-auto">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h3>SELECCIONAR SUCURSAL</h3>
-                                    </div>
-                                    <div class="card-body">
-                                        @using (Html.BeginForm("TraerTodoDockerSegunSucursal", "Reporte", FormMethod.Get))
-                                        {
-                                            <div class="form-group my-3 text-center">
-                                                @Html.Label("Seleccione una sucursal", new { @class = "my-3" })
-                                                @Html.DropDownList("idSucursal", ViewBag.Sucursales as List<SelectListItem>, new { @class = "form-control form-control-user", @required = "true" })
-                                                @Html.ValidationMessage("idSucursal", "", new { @class = "text-danger" })
-                                            </div>
-
-                                            <div style="display: flex; align-items: center; flex-direction: column;">
-                                                <input type="submit" class="btn btn-primary btn-block" value="EXCEL SUCURSAL" style="margin-top: 20px; margin-bottom: 20px;">
-                                            </div>
-                                        }
-                                    </div>
+                                        <input type="submit" class="btn btn-success" value="EXCEL SEGÚN FECHA">
+                                    }
                                 </div>
                             </div>
+                        </div>
 
-                            <!-- Segundo Card -->
-                            <div class="col-md-6">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h3>SELECCIONAR MESES</h3>
+                        <!-- Columna para las tarjetas a la derecha -->
+                        <div class="col-md-9">
+                            <div class="row">
+                                <!-- Tarjeta Seleccionar Sucursal -->
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h3>SELECCIONAR SUCURSAL</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            @using (Html.BeginForm("TraerTodoDockerSegunSucursal", "Reporte", FormMethod.Get))
+                                            {
+                                                <div class="form-group my-3 text-center">
+                                                    @Html.Label("Seleccione una sucursal", new { @class = "my-3" })
+                                                    @Html.DropDownList("idSucursal", ViewBag.Sucursales as List<SelectListItem>, new { @class = "form-control form-control-user", @required = "true" })
+                                                    @Html.ValidationMessage("idSucursal", "", new { @class = "text-danger" })
+                                                </div>
+
+                                                <div style="display: flex; align-items: center; flex-direction: column;">
+                                                    <input type="submit" class="btn btn-primary btn-block" value="EXCEL SUCURSAL" style="margin-top: 20px; margin-bottom: 20px;">
+                                                </div>
+                                            }
+                                        </div>
                                     </div>
-                                    <div class="card-body">
-                                        @using (Html.BeginForm("TraerTodoDockerSegunMes", "Reporte", FormMethod.Get))
-                                        {
-                                            <div class="form-group my-3 text-center">
-                                                @Html.Label("Seleccione un Mes", new { @class = "my-3" })
-                                                @Html.DropDownList("Mes", ViewBag.Meses as List<SelectListItem>, new { @class = "form-control form-control-user", @required = "true" })
-                                                @Html.ValidationMessage("mes", "", new { @class = "text-danger" })
+                                </div>
 
-                                                <!-- Mostrar el mensaje de error si existe -->
-                                                @if (!string.IsNullOrEmpty(errorMessage))
-                                                {
-                                                    <div class="text-danger">
-                                                        @errorMessage
-                                                    </div>
-                                                }
-                                            </div>
+                                <!-- Tarjeta Seleccionar Mes -->
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h3>SELECCIONAR MESES</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            @using (Html.BeginForm("TraerTodoDockerSegunMes", "Reporte", FormMethod.Get))
+                                            {
+                                                <div class="form-group my-3 text-center">
+                                                    @Html.Label("Seleccione un Mes", new { @class = "my-3" })
+                                                    @Html.DropDownList("Mes", ViewBag.Meses as List<SelectListItem>, new { @class = "form-control form-control-user", @required = "true" })
+                                                    @Html.ValidationMessage("mes", "", new { @class = "text-danger" })
 
-                                            <div style="display: flex; align-items: center; flex-direction: column;">
-                                                <input type="submit" class="btn btn-primary btn-block" value="Generar Reporte" style="margin-top: 20px; margin-bottom: 20px;">
-                                            </div>
-                                        }
+                                                    <!-- Mostrar el mensaje de error si existe -->
+                                                    @if (!string.IsNullOrEmpty(errorMessage))
+                                                    {
+                                                        <div class="text-danger">
+                                                            @errorMessage
+                                                        </div>
+                                                    }
+                                                </div>
+
+                                                <div style="display: flex; align-items: center; flex-direction: column;">
+                                                    <input type="submit" class="btn btn-primary btn-block" value="Generar Reporte" style="margin-top: 20px; margin-bottom: 20px;">
+                                                </div>
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                             </div>
