@@ -265,28 +265,47 @@ namespace Api_TrabajoFidelitas.Controllers
         {
             var respuesta = new Confirmacion();
 
-            string rutaHTML = AppDomain.CurrentDomain.BaseDirectory + "CorreoElec.html";
-            string contenidoHTML = File.ReadAllText(rutaHTML);
-            contenidoHTML = contenidoHTML.Replace("@@Tipo", entidad.correotipo);
-            contenidoHTML = contenidoHTML.Replace("@@Nombre", entidad.nombreCliente);
-            contenidoHTML = contenidoHTML.Replace("@@Fecha", entidad.fechaHora.ToString("dd/MM/yyyy"));
-            contenidoHTML = contenidoHTML.Replace("@@Sucursal", entidad.nombreSucursal);
-            contenidoHTML = contenidoHTML.Replace("@@Servicio", entidad.nombreServicio);
-            contenidoHTML = contenidoHTML.Replace("@@Placa", entidad.placa);
-            contenidoHTML = contenidoHTML.Replace("@@Comentario", entidad.comentarios);
-
-            if (entidad.correotipo == "Confirmacion")
+            try
             {
-                modeloCorreo.EnviarCorreo(entidad.correoElect, "Confirmación de Cita", contenidoHTML);
+                string rutaHTML = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CorreoElec.html");
+                string contenidoHTML = File.ReadAllText(rutaHTML);
+
+                contenidoHTML = contenidoHTML.Replace("@@Tipo", entidad.correotipo)
+                                             .Replace("@@Nombre", entidad.nombreCliente)
+                                             .Replace("@@Fecha", entidad.fechaHora.ToString("dd/MM/yyyy"))
+                                             .Replace("@@Sucursal", entidad.nombreSucursal)
+                                             .Replace("@@Servicio", entidad.nombreServicio)
+                                             .Replace("@@Placa", entidad.placa)
+                                             .Replace("@@Comentario", entidad.comentarios);
+
+                if (entidad.correotipo == "Confirmacion")
+                {
+                    modeloCorreo.EnviarCorreo(entidad.correoElect, "Confirmación de Cita", contenidoHTML);
+                }
+                else
+                {
+                    modeloCorreo.EnviarCorreo(entidad.correoElect, "Cambio de Cita", contenidoHTML);
+                }
+
+                respuesta.Codigo = 0;
+                respuesta.Detalle = "Se mando el correo";
             }
-            else
+            catch (FileNotFoundException ex)
             {
-                modeloCorreo.EnviarCorreo(entidad.correoElect, "Cambio de Cita", contenidoHTML);
+                respuesta.Codigo = 1;
+                respuesta.Detalle = $"Archivo no encontrado: {ex.Message}";
+            }
+            catch (IOException ex)
+            {
+                respuesta.Codigo = 2;
+                respuesta.Detalle = $"Error de E/S al leer el archivo HTML: {ex.Message}";
+            }
+            catch (Exception ex)
+            {
+                respuesta.Codigo = 3;
+                respuesta.Detalle = $"Error al enviar el correo electrónico: {ex.Message}";
             }
 
-
-            respuesta.Codigo = 0;
-            respuesta.Detalle = string.Empty;
             return respuesta;
         }
 
