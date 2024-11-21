@@ -1,4 +1,4 @@
-﻿@model Web_TrabajoFidelitas.Entidades.Citas
+@model Web_TrabajoFidelitas.Entidades.Citas
 
 @{
     ViewBag.Title = "EditarCita";
@@ -64,7 +64,7 @@
                                     new SelectListItem { Text = "Activo", Value = "true" }
                                 }, "Value", "Text"), new { @class = "form-control", @id = "estadoSelect" })
                             </div>
-                           
+
 
                             <div style="display: flex; align-items: center; flex-direction: column;">
                                 <input type="submit" class="btn btn-primary btn-block" value="Actualizar Cita" style="margin-top: 20px; margin-bottom: 20px;">
@@ -86,9 +86,9 @@
 <!-- Incluir Select2 JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
-<!-- Tu código JavaScript -->
 <script type="text/javascript">
     $(document).ready(function () {
+        // Inicializar Select2 con marcadores de posición y opción de limpieza
         $('#automovilSelect').select2({
             placeholder: "Seleccione un automóvil",
             allowClear: true
@@ -108,5 +108,37 @@
             placeholder: "Seleccione el estado",
             allowClear: true
         });
+
+        // Validación del formulario
+        $('form').on('submit', function (e) {
+            let valid = true;
+
+            // Validar cada campo select
+            if (!$('#automovilSelect').val()) {
+                alert('Por favor seleccione un automóvil.');
+                valid = false;
+            }
+
+            if (!$('#sucursalSelect').val()) {
+                alert('Por favor seleccione una sucursal.');
+                valid = false;
+            }
+
+            if (!$('#servicioSelect').val()) {
+                alert('Por favor seleccione un servicio.');
+                valid = false;
+            }
+
+            if (!$('#estadoSelect').val() || $('#estadoSelect').val() === "null") {
+                alert('Por favor seleccione el estado.');
+                valid = false;
+            }
+
+            // Prevenir el envío si hay errores
+            if (!valid) {
+                e.preventDefault();
+            }
+        });
     });
 </script>
+
