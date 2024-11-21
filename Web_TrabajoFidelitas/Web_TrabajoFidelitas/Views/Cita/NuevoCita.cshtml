@@ -1,4 +1,4 @@
-﻿@model Web_TrabajoFidelitas.Entidades.Citas
+@model Web_TrabajoFidelitas.Entidades.Citas
 
 @{
     ViewBag.Title = "EditarCita";
@@ -13,7 +13,7 @@
             <div class="card-body" style="margin-top: 20px;">
                 <div class="table-responsive">
                     <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                        <h3>Agregar Cita</h3>
+                        <h3>Nueva Cita</h3>
                         <hr />
                         @if (ViewBag.MsjPantalla != null)
                         {
@@ -77,7 +77,6 @@
 <!-- Incluir Select2 JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
-<!-- Tu código JavaScript -->
 <script type="text/javascript">
     $(document).ready(function () {
         $('#automovilSelect').select2({
@@ -99,6 +98,38 @@
             placeholder: "Seleccione una hora",
             allowClear: true
         });
+
+        // Validación del formulario
+        $('form').on('submit', function (e) {
+            let valid = true;
+
+            // Validar cada select
+            if (!$('#automovilSelect').val()) {
+                alert('Por favor seleccione un automóvil.');
+                valid = false;
+            }
+
+            if (!$('#sucursalSelect').val()) {
+                alert('Por favor seleccione una sucursal.');
+                valid = false;
+            }
+
+            if (!$('#servicioSelect').val()) {
+                alert('Por favor seleccione un servicio.');
+                valid = false;
+            }
+
+            if (!$('#horaSelect').val()) {
+                alert('Por favor seleccione una hora.');
+                valid = false;
+            }
+
+            // Si alguna validación falla, prevenir el envío
+            if (!valid) {
+                e.preventDefault();
+            }
+        });
     });
 </script>
+
 
